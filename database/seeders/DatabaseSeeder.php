@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     {
         Admin::query()->create([
             'email' => 'online@gmail.com',
-            'password' => Hash::make('online@gmail.com')
+            'password' => Hash::make('online@gmail.com'),
         ]);
     }
 }
