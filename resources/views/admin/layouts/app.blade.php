@@ -121,5 +121,14 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
 @yield('scripts')
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $('.alert').fadeOut('slow', function () {
+                $(this).remove();
+            });
+        }, 1500);
+    })
+</script>
 </body>
 </html>

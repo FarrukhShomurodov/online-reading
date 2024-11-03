@@ -1,8 +1,8 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <h5 style="margin: 0px !important;">
+        <h5 style="margin: 0 !important;">
             <a href="{{ route('dashboard') }}" class="app-brand-link">
-                Онлайн чтение книг
+                Online reading
             </a>
         </h5>
 
@@ -15,10 +15,16 @@
     <div class="menu-divider mt-0"></div>
 
     <ul class="menu-inner py-1 ps ps--active-y">
-        <li class="menu-item {{ Request::is('/') || Request::is('statistics*') ? 'active' : '' }}">
+        <li class="menu-item {{ Request::is('/') || Request::is('dashboard*') ? 'active' : '' }}">
             <a href="{{route('dashboard')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Панели управления">Панели управления</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('/admins') || Request::is('admins*') ? 'active' : '' }}">
+            <a href="{{route('admins.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                <div data-i18n="Пользователи">Пользователи</div>
             </a>
         </li>
     </ul>
