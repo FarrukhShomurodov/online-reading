@@ -8,13 +8,6 @@
 
     @yield('title')
 
-    <meta name="description" content="Start your development with a Dashboard for Bootstrap 5"/>
-    <meta name="keywords"
-          content="dashboard, bootstrap 5 dashboard, bootstrap 5 admin, bootstrap 5 design, bootstrap 5">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}"/>
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,20 +27,10 @@
     <link rel="stylesheet" href="{{ asset('css/demo.css') }}"/>
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{asset('vendor/libs/fullcalendar/fullcalendar.css')}}"/>
     <link rel="stylesheet" href="{{ asset('vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}"/>
     <link rel="stylesheet" href="{{ asset('vendor/libs/typeahead-js/typeahead.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('vendor/libs/apex-charts/apex-charts.css') }}"/>
     <link rel="stylesheet" href="{{ asset('vendor/libs/bootstrap-select/bootstrap-select.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('vendor/libs/tagify/tagify.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('vendor/libs/flatpickr/flatpickr.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('vendor/libs/dropzone/dropzone.css') }}"/>
     <link rel="stylesheet" href="{{asset('vendor/libs/select2/select2.css')}}"/>
-    <link rel="stylesheet" href="{{asset('vendor/libs/quill/editor.css')}}"/>
-    <link rel="stylesheet" href="{{asset('vendor/libs/formvalidation/dist/css/formValidation.min.css')}}"/>
-
-    <!-- Page CSS -->
-    <link rel="stylesheet" href="{{asset('vendor/css/pages/app-calendar.css')}}"/>
 
     <!-- Helpers -->
     <script src="{{ asset('vendor/js/helpers.js') }}"></script>
@@ -56,8 +39,29 @@
         body {
             overflow-x: hidden;
         }
+
+        .alert-container .alert {
+            min-width: 250px;
+            max-width: 400px;
+            opacity: 0.8;
+            top: 50px;
+            z-index: 10000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .alert-container .alert:hover {
+            opacity: 1;
+        }
+
+        .alert ul {
+            margin-bottom: 0;
+            padding-left: 1em;
+        }
+
+        .alert .btn-close {
+            font-size: 0.8rem;
+        }
     </style>
-    <title></title>
 </head>
 
 <body>
@@ -83,51 +87,102 @@
 
 <!-- Core JS -->
 <script src="{{ asset('vendor/libs/jquery/jquery.js') }}"></script>
-<script src="{{ asset('vendor/libs/popper/popper.js') }}"></script>
 <script src="{{ asset('vendor/js/bootstrap.js') }}"></script>
 <script src="{{ asset('vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
 <script src="{{ asset('vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-
 <script src="{{ asset('vendor/libs/hammer/hammer.js') }}"></script>
-
-
-<script src="{{ asset('vendor/libs/i18n/i18n.js') }}"></script>
-<script src="{{ asset('vendor/libs/typeahead-js/typeahead.js') }}"></script>
-
 <script src="{{ asset('vendor/js/menu.js') }}"></script>
-<!-- end build -->
 
 <!-- Vendors JS -->
-<script src="{{ asset('vendor/libs/apex-charts/apexcharts.js') }}"></script>
 <script src="{{asset('vendor/libs/select2/select2.js')}}"></script>
-
-
-<!-- Vendors JS -->
-<script src="{{{asset('vendor/libs/fullcalendar/fullcalendar.js')}}}"></script>
 <script src="{{asset('vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
 <script src="{{asset('vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
 <script src="{{asset('vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
-<script src="{{asset('vendor/libs/flatpickr/flatpickr.js')}}"></script>
 <script src="{{asset('vendor/libs/moment/moment.js')}}"></script>
-
-<!-- Main JS -->
 <script src="{{asset('js/forms-selects.js')}}"></script>
 
+<!-- Main JS -->
 <script src="{{ asset('js/main.js') }}"></script>
 
-<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-<script src="https://npmcdn.com/flatpickr/dist/l10n/ru.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-
 @yield('scripts')
+
 <script>
     $(document).ready(function () {
+        // alert
         setTimeout(function () {
             $('.alert').fadeOut('slow', function () {
                 $(this).remove();
             });
-        }, 1500);
+        }, 3000);
+
+        // Image
+        $('#imageInput').on('change', function () {
+            const files = Array.from($(this)[0].files);
+            const imagePreview = $('#imagePreview');
+
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const imgElement = $('<img>', {
+                        src: e.target.result,
+                        alt: file.name,
+                        class: 'uploaded-image'
+                    });
+
+                    const imgContainer = $('<div>', {class: 'image-container td__img'});
+                    imgContainer.append(imgElement);
+
+                    const deleteBtn = $('<button>', {
+                        class: 'btn btn-danger btn-sm delete-image',
+                        text: 'Удалить',
+                        click: function () {
+                            imgContainer.remove();
+                            const index = files.indexOf(file);
+                            if (index !== -1) {
+                                files.splice(index, 1);
+                                updateFileInput(files);
+                            }
+                        }
+                    });
+                    imgContainer.append(deleteBtn);
+
+                    imagePreview.append(imgContainer);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        function updateFileInput(files) {
+            const input = $('#imageInput')[0];
+            const fileList = new DataTransfer();
+            files.forEach(file => {
+                fileList.items.add(file);
+            });
+            input.files = fileList.files;
+        }
+
+        $(document).on('click', '.delete-image', function () {
+            const path = $(this).data('photo-path');
+            if (path) {
+                $.ajax({
+                    url: `/api/delete/image/${path}`,
+                    method: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function (res) {
+                        console.log(res);
+                        $(this).closest('.image-container').remove();
+                    }.bind(this),
+                    error: function (error) {
+                        console.error('Error deleting photo:', error);
+                    }
+                });
+            }
+        });
+
+        // select2
+        $('.select2').select2();
     })
 </script>
 </body>

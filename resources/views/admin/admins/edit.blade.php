@@ -9,13 +9,19 @@
         <span class="text-muted fw-light"><a class="text-muted"
                                              href="{{ route('admins.index') }}">Пользователи</a> /</span>Редактировать
     </h6>
-    @if ($errors->any())
-        <div class="alert alert-solid-danger" role="alert">
+
+    <div class="alert-container position-fixed top-0 end-0 p-3" style="z-index: 10050;">
+        @if ($errors->any())
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <div class="alert alert-solid-danger alert-dismissible d-flex align-items-center" role="alert">
+                    <i class="bx bx-error-circle fs-4 me-2"></i>
+                    {{ $error }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             @endforeach
-        </div>
-    @endif
+        @endif
+    </div>
+
     <div class="card shadow-sm mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Редактировать</h5>

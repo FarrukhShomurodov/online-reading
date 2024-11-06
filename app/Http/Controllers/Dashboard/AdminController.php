@@ -6,8 +6,8 @@ use App\Http\Requests\Admin\StorageRequest;
 use App\Http\Requests\Admin\UpdateRequest;
 use App\Models\Admin;
 use App\Services\AdminService;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 
 class AdminController
 {
@@ -21,6 +21,7 @@ class AdminController
     public function index(): View
     {
         $admins = Admin::all();
+
         return view('admin.admins.index', compact('admins'));
     }
 
@@ -31,7 +32,8 @@ class AdminController
 
     public function store(StorageRequest $request): RedirectResponse
     {
-        $this->adminService->store($request->validated());
+        $this->adminService->store((array) $request->validated());
+
         return redirect()->route('admins.index')->with('success', 'Админ успешно добавлен!');
     }
 
@@ -42,13 +44,15 @@ class AdminController
 
     public function update(UpdateRequest $request, Admin $admin): RedirectResponse
     {
-        $this->adminService->update($admin, $request->validated());
+        $this->adminService->update($admin, (array) $request->validated());
+
         return redirect()->route('admins.index')->with('success', 'Админ успешно обнавлен!');
     }
 
     public function destroy(Admin $admin): RedirectResponse
     {
         $this->adminService->destroy($admin);
+
         return redirect()->route('admins.index')->with('success', 'Админ успешно удален!');
     }
 }

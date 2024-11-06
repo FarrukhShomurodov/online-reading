@@ -14,5 +14,12 @@ class Admin extends Authenticatable
         'password',
     ];
 
+    /**
+     * @var string[]
+     */
+    protected $casts = [
+        'password' => 'string',
+    ];
+
     protected $hidden = ['pasword'];
 }

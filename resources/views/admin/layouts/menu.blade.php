@@ -21,11 +21,54 @@
                 <div data-i18n="Панели управления">Панели управления</div>
             </a>
         </li>
-        <li class="menu-item {{ Request::is('/admins') || Request::is('admins*') ? 'active' : '' }}">
-            <a href="{{route('admins.index')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-user-circle"></i>
-                <div data-i18n="Пользователи">Пользователи</div>
+
+        <li class="menu-item {{ Request::is('admins*') ? 'active' : '' }}">
+            <a href="{{ route('admins.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-shield"></i>
+                <div data-i18n="Пользователи">Пользователи панели</div>
             </a>
+        </li>
+
+        <li class="menu-item {{ Request::is('users') ? 'active' : '' }}">
+            <a href="{{ route('users') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-group"></i>
+                <div data-i18n="Пользователи сайта">Пользователи сайта</div>
+            </a>
+        </li>
+
+        <li class="menu-item {{ Request::is('books*') || Request::is('categories*') || Request::is('genres*') || Request::is('tags*') || Request::is('reviews*') ? 'open' : '' }}"
+            style="">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-book"></i>
+                <div data-i18n="Книги">Книги</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item {{ Request::is('books*') ? 'active' : '' }}">
+                    <a href="{{route('books.index')}}" class="menu-link">
+                        <div data-i18n="Список">Список</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('categories*') ? 'active' : '' }}">
+                    <a href="{{route('categories.index')}}" class="menu-link">
+                        <div data-i18n="Категории">Категории</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('genres*') ? 'active' : '' }}">
+                    <a href="{{route('genres.index')}}" class="menu-link">
+                        <div data-i18n="Жанры">Жанры</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('tags*') ? 'active' : '' }}">
+                    <a href="{{route('tags.index')}}" class="menu-link">
+                        <div data-i18n="Теги">Теги</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('reviews*') ? 'active' : '' }}">
+                    <a href="{{route('reviews.index')}}" class="menu-link">
+                        <div data-i18n="Отзывы">Отзывы</div>
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
 </aside>

@@ -2,7 +2,13 @@
 
 use App\Http\Controllers\Dashboard\AdminAuthController;
 use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Dashboard\BookController;
+use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\GenreController;
+use App\Http\Controllers\Dashboard\ReviewController;
+use App\Http\Controllers\Dashboard\TagController;
+use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('admin/login', [AdminAuthController::class, 'showLoginForm']);
@@ -13,5 +19,14 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    // Users
     Route::resource('admins', AdminController::class);
+    Route::get('users', [UserController::class, 'index'])->name('users');
+
+    // Books
+    Route::resource('tags', TagController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('genres', GenreController::class);
+    Route::resource('books', BookController::class);
+    Route::resource('reviews', ReviewController::class);
 });

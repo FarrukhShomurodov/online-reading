@@ -13,7 +13,7 @@ class StorageRequest extends FormRequest
     }
 
     /**
-     * @return array<string>
+     * @return array<string, array<string, Password>
      */
     public function rules(): array
     {
