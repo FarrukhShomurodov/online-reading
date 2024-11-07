@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    <title>Online reading | Теги</title>
+    <title>Reading | Теги</title>
 @endsection
 
 @section('content')
@@ -67,6 +67,9 @@
                 @endforeach
                 </tbody>
             </table>
+            <div class="mt-4 p-1">
+                {{ $tags->links() }}
+            </div>
         </div>
     </div>
 @endsection

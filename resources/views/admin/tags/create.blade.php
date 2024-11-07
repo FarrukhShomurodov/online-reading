@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    <title>Online reading | Создать тег</title>
+    <title>Reading | Создать тег</title>
 @endsection
 
 @section('content')

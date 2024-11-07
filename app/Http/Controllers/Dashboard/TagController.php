@@ -19,7 +19,9 @@ class TagController
 
     public function index(): View
     {
-        $tags = Tag::query()->get();
+        $tags = Tag::query()
+            ->select(['id', 'name'])
+            ->simplePaginate(10);
 
         return view('admin.tags.index', compact('tags'));
     }
@@ -53,7 +55,6 @@ class TagController
     public function destroy(Tag $tag): RedirectResponse
     {
         $this->service->destroy($tag);
-
         return redirect()->route('tags.index')->with('success', 'Тег успешно удален!');
     }
 }

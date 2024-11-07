@@ -71,6 +71,7 @@
 
         @include('admin.layouts.menu')
 
+
         <!-- Layout container -->
         <div class="layout-page">
 
@@ -89,8 +90,10 @@
 <script src="{{ asset('vendor/libs/jquery/jquery.js') }}"></script>
 <script src="{{ asset('vendor/js/bootstrap.js') }}"></script>
 <script src="{{ asset('vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
-<script src="{{ asset('vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-<script src="{{ asset('vendor/libs/hammer/hammer.js') }}"></script>
+<script src="{{ asset('vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}" defer></script>
+<script src="{{ asset('vendor/libs/hammer/hammer.js') }}" defer></script>
+
+{{--/--}}
 <script src="{{ asset('vendor/js/menu.js') }}"></script>
 
 <!-- Vendors JS -->

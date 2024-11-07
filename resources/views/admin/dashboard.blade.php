@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    <title>Dashboard - Analytics | Online reading - Bootstrap Admin</title>
+    <title>Dashboard - Analytics | Reading - Admin</title>
 @endsection
 
 

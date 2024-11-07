@@ -20,10 +20,10 @@ class AdminController
 
     public function index(): View
     {
-        $admins = Admin::all();
-
+        $admins = Admin::query()->select(['id', 'email'])->simplePaginate(10);
         return view('admin.admins.index', compact('admins'));
     }
+
 
     public function create(): View
     {
@@ -33,7 +33,6 @@ class AdminController
     public function store(StorageRequest $request): RedirectResponse
     {
         $this->adminService->store((array)$request->validated());
-
         return redirect()->route('admins.index')->with('success', 'Админ успешно добавлен!');
     }
 
@@ -45,7 +44,6 @@ class AdminController
     public function update(UpdateRequest $request, Admin $admin): RedirectResponse
     {
         $this->adminService->update($admin, (array)$request->validated());
-
         return redirect()->route('admins.index')->with('success', 'Админ успешно обнавлен!');
     }
 
@@ -56,7 +54,6 @@ class AdminController
         }
 
         $this->adminService->destroy($admin);
-
         return redirect()->route('admins.index')->with('success', 'Админ успешно удален!');
     }
 }

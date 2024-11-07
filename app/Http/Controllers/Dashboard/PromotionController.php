@@ -19,7 +19,10 @@ class PromotionController
 
     public function index(): View
     {
-        $promotions = Promotion::query()->get();
+        $promotions = Promotion::query()
+            ->select(['id', 'title', 'start_time', 'end_time'])
+            ->simplePaginate(10);
+
         return view('admin.promotions.index', compact('promotions'));
     }
 
@@ -51,7 +54,6 @@ class PromotionController
     public function destroy(Promotion $promotion): RedirectResponse
     {
         $this->service->destroy($promotion);
-
         return redirect()->route('promotions.index')->with('success', 'Акция успешно удалена!');
     }
 }

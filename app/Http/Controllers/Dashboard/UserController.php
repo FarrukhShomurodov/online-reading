@@ -19,7 +19,9 @@ class UserController
 
     public function index(): View
     {
-        $users = User::query()->get();
+        $users = User::query()
+            ->select(['id', 'name', 'last_name', 'phone_number', 'sms_code', 'is_active'])
+            ->simplePaginate(10);
 
         return view('admin.users.index', compact('users'));
     }
@@ -40,7 +42,6 @@ class UserController
     public function destroy(User $user): RedirectResponse
     {
         $this->service->destroy($user);
-
         return redirect()->route('users.index')->with('success', 'Пользователь успешно удален!');
     }
 }

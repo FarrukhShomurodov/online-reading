@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    <title>Online reading | Пользователи сайта</title>
+    <title>Reading | Пользователи сайта</title>
 @endsection
 
 @section('content')
@@ -65,6 +65,9 @@
                 @endforeach
                 </tbody>
             </table>
+            <div class="mt-4 p-1">
+                {{ $users->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </div>
 @endsection

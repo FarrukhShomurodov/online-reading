@@ -20,14 +20,18 @@ class ReviewController
 
     public function index(): View
     {
-        $reviews = Review::query()->groupBy('id')->get();
+        $reviews = Review::query()
+            ->groupBy('id')
+            ->select(['id', 'name', 'last_name', 'text', 'ratting', 'is_view', 'created_at', 'book_id', 'user_id'])
+            ->with(['book', 'user'])
+            ->simplePaginate(1);
 
         return view('admin.reviews.index', compact('reviews'));
     }
 
     public function create(): View
     {
-        $books = Book::query()->where('is_active', true)->get();
+        $books = Book::query()->where('is_active', true)->select(['id', 'title'])->get();
         return view('admin.reviews.create', compact('books'));
     }
 
@@ -41,7 +45,8 @@ class ReviewController
 
     public function edit(Review $review): View
     {
-        return view('admin.reviews.edit', compact('review'));
+        $books = Book::query()->where('is_active', true)->select(['id', 'title'])->get();
+        return view('admin.reviews.edit', compact('review', 'books'));
     }
 
     public function update(ReviewRequest $request, Review $review): RedirectResponse
@@ -55,7 +60,6 @@ class ReviewController
     public function destroy(Review $review): RedirectResponse
     {
         $this->service->destroy($review);
-
         return redirect()->route('reviews.index')->with('success', 'Отзыв успешно удален!');
     }
 }

@@ -23,9 +23,9 @@ class BookController
 
     public function index(Request $request): View
     {
-        $categories = Category::query()->get();
-        $genres = Genre::query()->get();
-        $tags = Tag::query()->get();
+        $categories = Category::query()->select('name')->get();
+        $genres = Genre::query()->select('name')->get();
+        $tags = Tag::query()->select('name')->get();
 
         $books = Book::query()
             ->when($request->input('category_id'), function ($query) use ($request) {
@@ -43,17 +43,18 @@ class BookController
                     $q->where('tag_id', $request->input('tag_id'));
                 });
             })
+            ->select(['id', 'title', 'author', 'is_active', 'publication_date'])
             ->orderBy('id')
-            ->get();
+            ->simplePaginate(10);
 
         return view('admin.books.index', compact('books', 'categories', 'genres', 'tags'));
     }
 
     public function create(): View
     {
-        $categories = Category::query()->get();
-        $genres = Genre::query()->get();
-        $tags = Tag::query()->get();
+        $categories = Category::query()->get(['id', 'name']);
+        $genres = Genre::query()->get(['id', 'name']);
+        $tags = Tag::query()->get(['id', 'name']);
         return view('admin.books.create', compact('categories', 'genres', 'tags'));
     }
 
@@ -67,9 +68,9 @@ class BookController
 
     public function edit(Book $book): View
     {
-        $categories = Category::query()->get();
-        $genres = Genre::query()->get();
-        $tags = Tag::query()->get();
+        $categories = Category::query()->get(['id', 'name']);
+        $genres = Genre::query()->get(['id', 'name']);
+        $tags = Tag::query()->get(['id', 'name']);
         return view('admin.books.edit', compact('book', 'categories', 'genres', 'tags'));
     }
 
@@ -84,7 +85,6 @@ class BookController
     public function destroy(Book $book): RedirectResponse
     {
         $this->service->destroy($book);
-
         return redirect()->route('books.index')->with('success', 'Книга успешно удалена!');
     }
 }

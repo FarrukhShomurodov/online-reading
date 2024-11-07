@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    <title>Online reading | Жанры</title>
+    <title>Reading | Жанры</title>
 @endsection
 
 @section('content')
@@ -67,6 +67,9 @@
                 @endforeach
                 </tbody>
             </table>
+            <div class="mt-4 p-1">
+                {{ $genres->links() }}
+            </div>
         </div>
     </div>
 @endsection

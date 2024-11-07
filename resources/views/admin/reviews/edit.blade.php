@@ -1,13 +1,13 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    <title>Online reading | Редактировать книгу</title>
+    <title>Reading | Редактировать отзыв</title>
 @endsection
 
 @section('content')
     <h6 class="py-3 breadcrumb-wrapper mb-4">
         <span class="text-muted fw-light"><a class="text-muted"
-                                             href="{{ route('books.index') }}">Книги</a> /</span>Редактировать
+                                             href="{{ route('reviews.index') }}">Отзывы</a> /</span>Редактировать
     </h6>
 
     <div class="alert-container position-fixed top-0 end-0 p-3" style="z-index: 10050;">
@@ -26,7 +26,7 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Редактировать</h5>
             <label class="switch" style="margin-right: 40px">
-                <input type="checkbox" class="switch-input" name="is_active" checked>
+                <input type="checkbox" class="switch-input" name="is_view" checked>
                 <span class="switch-toggle-slider">
                     <span class="switch-on"></span>
                     <span class="switch-off"></span>
@@ -34,119 +34,63 @@
             </label>
         </div>
         <div class="card-body">
-            <form action="{{ route('books.update', $book->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('reviews.update', $review->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                @method('put')
                 <div class="mb-3">
-                    <label class="form-label" for="title">Загаловок</label>
-                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
-                           id="title" placeholder="Загаловок" value="{{ $book->title }}" required>
-                    @error('title')
+                    <label class="form-label" for="name">Имя</label>
+                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                           id="name" placeholder="Загаловок" value="{{ $review->name }}" required>
+                    @error('name')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
-                <input type="number" class="is_active" name="is_active" value="{{ $book->is_active }}" hidden="">
+                <input type="number" class="is_view" name="is_view" hidden="">
 
                 <div class="mb-3">
-                    <label class="form-label" for="author">Автор</label>
-                    <input type="text" name="author" class="form-control @error('author') is-invalid @enderror"
-                           id="author" placeholder="Автор" value="{{ $book->author }}" required>
-                    @error('author')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="description">Описание</label>
-                    <textarea name="description" class="form-control @error('description') is-invalid @enderror"
-                              id="description" placeholder="Описание" required>{{ $book->description }}</textarea>
-                    @error('description')
+                    <label class="form-label" for="last_name">Фамилия</label>
+                    <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror"
+                           id="last_name" placeholder="Автор" value="{{ $review->last_name }}" required>
+                    @error('last_name')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="publication_date">Дата публикации</label>
-                    <input name="publication_date"
-                           type="date"
-                           value="{{ $book->publication_date }}"
-                           class="form-control @error('publication_date') is-invalid @enderror"
-                           id="publication_date" placeholder="Дата публикации" required>
-                    @error('publication_date')
+                    <label class="form-label" for="text">Текст</label>
+                    <textarea name="text" class="form-control @error('text') is-invalid @enderror"
+                              id="text" placeholder="Описание" required>{{ $review->text }}</textarea>
+                    @error('text')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="category_id">Категории</label>
-                    <select name="categories[]" class="select2 form-control @error('categories') is-invalid @enderror"
-                            id="category_id" required multiple>
-                        @foreach($categories as $category)
-                            <option value="{{ $category->id }}"
-                                {{ in_array($category->id, old('categories', $book->categories->pluck('id')->toArray())) ? 'selected' : '' }}>
-                                {{ $category->name }}
+                    <label class="form-label" for="ratting">Рейтинг</label>
+                    <input type="number" name="ratting"
+                           class="form-control @error('ratting') is-invalid @enderror" id="ratting"
+                           placeholder="Рейтинг"
+                           min="0" max="5" step="0.1" value="{{ $review->ratting }}" required>
+                    @error('ratting')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="book_id">Книга</label>
+                    <select name="book_id" class="select2 form-control @error('book_id') is-invalid @enderror"
+                            id="book_id" required>
+                        <option>Выберитие книгу</option>
+                        @foreach($books as $book)
+                            <option value="{{ $book->id }}"
+                                {{ in_array($book->id, old('reviews', $review->book->pluck('id')->toArray())) ? 'selected' : '' }}>
+                                {{ $book->title }}
                             </option>
                         @endforeach
                     </select>
-                    @error('categories')
+                    @error('book_id')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="genres">Жанры</label>
-                    <select name="genres[]" class="select2 form-control @error('genres') is-invalid @enderror"
-                            id="genres" required multiple>
-                        @foreach($genres as $genre)
-                            <option value="{{ $genre->id }}"
-                                {{ in_array($genre->id, old('genres', $book->genres->pluck('id')->toArray())) ? 'selected' : '' }}>
-                                {{ $genre->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('genres')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="tags">Теги</label>
-                    <select name="tags[]" class="select2 form-control @error('tags') is-invalid @enderror"
-                            id="tags" required multiple>
-                        @foreach($tags as $tag)
-                            <option value="{{ $tag->id }}"
-                                {{ in_array($tag->id, old('tags', $book->tags->pluck('id')->toArray())) ? 'selected' : '' }}>
-                                {{ $tag->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('tags')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="imageInput" class="form-label">Загрузить фото</label>
-                    <input type="file" name="photos[]" id="imageInput" class="form-control" multiple>
-                </div>
-
-                <div class="mb-3">
-                    <label for="imageInput" class="form-label">Загрузить фото</label>
-                    <input type="file" name="photos[]" id="imageInput" class="form-control" multiple>
-                </div>
-                <div id="imagePreview" class="mb-3 main__td">
-                    @if($book->images)
-                        @foreach(json_decode($book->images) as $photo)
-                            <div class="image-container td__img" data-photo-path="{{ $photo->url }}">
-                                <img src="{{ asset('storage/' . $photo->url) }}" alt="Court Image"
-                                     class="uploaded-image">
-                                <button type="button" class="btn btn-danger btn-sm delete-image"
-                                        data-photo-path="{{ $photo->url }}"> Удалить
-                                </button>
-                            </div>
-                        @endforeach
-                    @endif
                 </div>
 
                 <button type="submit" class="btn btn-primary">Сохранить</button>
@@ -154,14 +98,12 @@
         </div>
     </div>
 @endsection
-
 @section('scripts')
     <script>
         $(document).ready(function () {
-            $('.is_active').val(1);
             $('.switch-input').on('change', function () {
                 let isActive = $(this).is(':checked') ? 1 : 0;
-                $('.is_active').val(isActive);
+                $('.is_view').val(isActive);
             });
         });
     </script>

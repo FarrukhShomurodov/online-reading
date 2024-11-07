@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    <title>Online reading | Отзывы</title>
+    <title>Reading | Отзывы</title>
 @endsection
 
 @section('content')
@@ -90,6 +90,9 @@
                 @endforeach
                 </tbody>
             </table>
+            <div class="mt-4 p-1">
+                {{ $reviews->links() }}
+            </div>
         </div>
     </div>
 @endsection

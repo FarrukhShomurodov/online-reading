@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    <title>Journal - Редактироват жанр</title>
+    <title>Reading | Редактировать жанр</title>
 @endsection
 
 @section('content')

@@ -19,7 +19,9 @@ class GenreController
 
     public function index(): View
     {
-        $genres = Genre::query()->get();
+        $genres = Genre::query()
+            ->select('id', 'name')
+            ->simplePaginate(10);
 
         return view('admin.genres.index', compact('genres'));
     }
@@ -32,7 +34,7 @@ class GenreController
     public function store(GenreRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->store((array) $validated);
+        $this->service->store((array)$validated);
 
         return redirect()->route('genres.index')->with('success', 'Жанр успешно добавлен!');
     }
@@ -45,7 +47,7 @@ class GenreController
     public function update(GenreRequest $request, Genre $genre): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->update($genre, (array) $validated);
+        $this->service->update($genre, (array)$validated);
 
         return redirect()->route('genres.index')->with('success', 'Жанр успешно обновлен!');
     }
@@ -53,7 +55,6 @@ class GenreController
     public function destroy(Genre $genre): RedirectResponse
     {
         $this->service->destroy($genre);
-
         return redirect()->route('genres.index')->with('success', 'Жанр успешно удален!');
     }
 }

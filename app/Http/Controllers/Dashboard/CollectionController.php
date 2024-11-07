@@ -20,16 +20,26 @@ class CollectionController
 
     public function index(): View
     {
-        $collections = Collection::query()->get();
+        $collections = Collection::query()
+            ->select(['id', 'name', 'created_at'])
+            ->with('books:title')
+            ->simplePaginate(10);
+
         return view('admin.collections.index', compact('collections'));
     }
 
     public function create(): View
     {
-        $books = Book::with('images')->get()->map(function ($book) {
-            $book->first_image_url = $book->images->first() ? asset('storage/' . $book->images->first()->url) : null;
-            return $book;
-        });
+        $books = Book::select('id', 'title')
+            ->with(['images:id,imageable_id,url'])
+            ->get()
+            ->map(function ($book) {
+                $book->first_image_url = $book->images->first() ? asset(
+                    'storage/' . $book->images->first()->url
+                ) : null;
+                return $book;
+            });
+
         return view('admin.collections.create', compact('books'));
     }
 
@@ -42,7 +52,15 @@ class CollectionController
 
     public function edit(Collection $collection): View
     {
-        $books = Book::query()->get();
+        $books = Book::select('id', 'title')
+            ->with(['images:id,imageable_id,url'])
+            ->get()
+            ->map(function ($book) {
+                $book->first_image_url = $book->images->first() ? asset(
+                    'storage/' . $book->images->first()->url
+                ) : null;
+                return $book;
+            });
         return view('admin.collections.edit', compact('collection', 'books'));
     }
 
@@ -57,7 +75,6 @@ class CollectionController
     public function destroy(Collection $collection): RedirectResponse
     {
         $this->service->destroy($collection);
-
         return redirect()->route('collections.index')->with('success', 'Колекция успешно удалена!');
     }
 }

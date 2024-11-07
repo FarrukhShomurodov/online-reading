@@ -78,7 +78,7 @@
         </li>
         <li class="menu-item {{ Request::is('promotions*') ? 'active' : '' }}">
             <a href="{{ route('promotions.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-layer"></i>
+                <i class="menu-icon tf-icons bx bx-gift"></i>
                 <div data-i18n="Пользователи">Акции</div>
             </a>
         </li>
