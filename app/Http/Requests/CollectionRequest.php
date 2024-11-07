@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ReviewRequest extends FormRequest
+class CollectionRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -17,12 +17,14 @@ class ReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'book_id' => 'required|integer|exists:books,id',
             'name' => 'required|string|max:300',
-            'last_name' => 'required|string|max:300',
-            'text' => 'required|string|max:600',
-            'ratting' => 'required|numeric|min:0|max:5',
-            'is_view' => 'required|boolean',
+            'description' => 'required|string|max:500',
+
+            'books' => 'required|array',
+            'books.*' => 'required|integer|exists:books,id',
+
+            'photos' => 'sometimes|array|max:10',
+            'photos.*' => 'sometimes|image|mimes:jpg,png',
         ];
     }
 }

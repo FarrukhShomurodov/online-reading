@@ -10,6 +10,7 @@ use App\Models\Tag;
 use App\Services\BookService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class BookController
 {
@@ -20,11 +21,32 @@ class BookController
         $this->service = $service;
     }
 
-    public function index(): View
+    public function index(Request $request): View
     {
-        $books = Book::query()->groupBy('id')->get();
+        $categories = Category::query()->get();
+        $genres = Genre::query()->get();
+        $tags = Tag::query()->get();
 
-        return view('admin.books.index', compact('books'));
+        $books = Book::query()
+            ->when($request->input('category_id'), function ($query) use ($request) {
+                $query->whereHas('categories', function ($q) use ($request) {
+                    $q->where('category_id', $request->input('category_id'));
+                });
+            })
+            ->when($request->input('genre_id'), function ($query) use ($request) {
+                $query->whereHas('genres', function ($q) use ($request) {
+                    $q->where('genre_id', $request->input('genre_id'));
+                });
+            })
+            ->when($request->input('tag_id'), function ($query) use ($request) {
+                $query->whereHas('tags', function ($q) use ($request) {
+                    $q->where('tag_id', $request->input('tag_id'));
+                });
+            })
+            ->orderBy('id')
+            ->get();
+
+        return view('admin.books.index', compact('books', 'categories', 'genres', 'tags'));
     }
 
     public function create(): View

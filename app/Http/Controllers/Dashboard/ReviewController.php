@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Requests\ReviewRequest;
+use App\Models\Book;
 use App\Models\Review;
 use App\Services\ReviewService;
 use Illuminate\Contracts\View\View;
@@ -19,20 +20,21 @@ class ReviewController
 
     public function index(): View
     {
-        $reviews = Review::query()->get();
+        $reviews = Review::query()->groupBy('id')->get();
 
         return view('admin.reviews.index', compact('reviews'));
     }
 
     public function create(): View
     {
-        return view('admin.reviews.create');
+        $books = Book::query()->where('is_active', true)->get();
+        return view('admin.reviews.create', compact('books'));
     }
 
     public function store(ReviewRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->store((array) $validated);
+        $this->service->store((array)$validated);
 
         return redirect()->route('reviews.index')->with('success', 'Отзыв успешно добавлен!');
     }
@@ -45,7 +47,7 @@ class ReviewController
     public function update(ReviewRequest $request, Review $review): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->update($review, (array) $validated);
+        $this->service->update($review, (array)$validated);
 
         return redirect()->route('reviews.index')->with('success', 'Отзыв успешно обновлен!');
     }

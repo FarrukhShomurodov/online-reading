@@ -218,24 +218,60 @@
     box-shadow: 0 0 0 !important;
 }
 
-.price_for_coach, .sport_types_for_coach, .coach_desc{
+.price_for_coach, .sport_types_for_coach, .coach_desc {
     display: none;
 }
 
-.booking-cell{
+.booking-cell {
     cursor: pointer;
 }
 
 .popup-photo {
     margin-bottom: 10px;
 }
+
 .popup-photo img {
     max-width: 100%;
     height: auto;
 }
 
-.app-calendar-content{
+.app-calendar-content {
     width: max-content;
     overflow: auto;
     display: inline-block;
+}
+
+#sortable-books .sortable-item {
+    cursor: move;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#sortable-books .sortable-item .card {
+    position: relative;
+    width: 100%;
+}
+
+#sortable-books .sortable-item .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#sortable-books .sortable-item .drag-handle {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.2rem;
+    color: #6c757d;
+    cursor: move;
+}
+
+#sortable-books .sortable-item .order-number {
+    font-size: 0.8rem;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    border-radius: 50%;
+    color: white;
+    line-height: 24px;
+    margin-bottom: 10px;
 }

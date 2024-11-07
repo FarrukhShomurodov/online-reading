@@ -70,6 +70,18 @@
                 </li>
             </ul>
         </li>
+        <li class="menu-item {{ Request::is('collections*') ? 'active' : '' }}">
+            <a href="{{ route('collections.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-layer"></i>
+                <div data-i18n="Пользователи">Калекции</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('promotions*') ? 'active' : '' }}">
+            <a href="{{ route('promotions.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-layer"></i>
+                <div data-i18n="Пользователи">Акции</div>
+            </a>
+        </li>
     </ul>
 </aside>
 

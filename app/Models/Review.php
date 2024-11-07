@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Review extends Model
 {
@@ -22,4 +23,14 @@ class Review extends Model
     protected $casts = [
         'is_view' => 'boolean',
     ];
+
+    public function book(): BelongsTo
+    {
+        return $this->belongsTo(Book::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -131,6 +131,10 @@
                     <input type="file" name="photos[]" id="imageInput" class="form-control" multiple>
                 </div>
 
+                <div class="mb-3">
+                    <label for="imageInput" class="form-label">Загрузить фото</label>
+                    <input type="file" name="photos[]" id="imageInput" class="form-control" multiple>
+                </div>
                 <div id="imagePreview" class="mb-3 main__td">
                     @if($book->images)
                         @foreach(json_decode($book->images) as $photo)
@@ -145,7 +149,7 @@
                     @endif
                 </div>
 
-                <button type="submit" class="btn btn-warning ">Редактировать</button>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
             </form>
         </div>
     </div>

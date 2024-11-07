@@ -32,7 +32,7 @@ class AdminController
 
     public function store(StorageRequest $request): RedirectResponse
     {
-        $this->adminService->store((array) $request->validated());
+        $this->adminService->store((array)$request->validated());
 
         return redirect()->route('admins.index')->with('success', 'Админ успешно добавлен!');
     }
@@ -44,13 +44,17 @@ class AdminController
 
     public function update(UpdateRequest $request, Admin $admin): RedirectResponse
     {
-        $this->adminService->update($admin, (array) $request->validated());
+        $this->adminService->update($admin, (array)$request->validated());
 
         return redirect()->route('admins.index')->with('success', 'Админ успешно обнавлен!');
     }
 
     public function destroy(Admin $admin): RedirectResponse
     {
+        if ($admin->email === 'online@gmail.com') {
+            return redirect()->route('admins.index')->withErrors('Вы неможете удалить админа.');
+        }
+
         $this->adminService->destroy($admin);
 
         return redirect()->route('admins.index')->with('success', 'Админ успешно удален!');

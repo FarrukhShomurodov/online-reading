@@ -4,8 +4,10 @@ use App\Http\Controllers\Dashboard\AdminAuthController;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\BookController;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\CollectionController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\GenreController;
+use App\Http\Controllers\Dashboard\PromotionController;
 use App\Http\Controllers\Dashboard\ReviewController;
 use App\Http\Controllers\Dashboard\TagController;
 use App\Http\Controllers\Dashboard\UserController;
@@ -29,4 +31,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('genres', GenreController::class);
     Route::resource('books', BookController::class);
     Route::resource('reviews', ReviewController::class);
+    Route::resource('collections', CollectionController::class);
+    Route::resource('promotions', PromotionController::class);
 });
