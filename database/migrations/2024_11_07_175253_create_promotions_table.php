@@ -9,8 +9,8 @@ return new class extends Migration {
     {
         Schema::create('promotions', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
+            $table->json('title');
+            $table->json('description');
             $table->timestamp('start_time');
             $table->timestamp('end_time');
             $table->timestamps();

@@ -38,10 +38,19 @@
                 @csrf
                 @method('put')
                 <div class="mb-3">
-                    <label class="form-label" for="title">Загаловок</label>
-                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
-                           id="title" placeholder="Загаловок" value="{{ $book->title }}" required>
-                    @error('title')
+                    <label class="form-label" for="title">Загаловок Ru</label>
+                    <input type="text" name="title[ru]" class="form-control @error('title.ru') is-invalid @enderror"
+                           id="title" placeholder="Загаловок Ru" value="{{ $book->title['ru'] }}" required>
+                    @error('title.ru')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="title">Загаловок Uz</label>
+                    <input type="text" name="title[uz]" class="form-control @error('title.uz') is-invalid @enderror"
+                           id="title" placeholder="Загаловок Uz" value="{{ $book->title['uz'] }}" required>
+                    @error('title.uz')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -58,10 +67,21 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="description">Описание</label>
-                    <textarea name="description" class="form-control @error('description') is-invalid @enderror"
-                              id="description" placeholder="Описание" required>{{ $book->description }}</textarea>
-                    @error('description')
+                    <label class="form-label" for="description">Описание Ru</label>
+                    <textarea name="description[ru]" class="form-control @error('description.ru') is-invalid @enderror"
+                              id="description" placeholder="Описание Ru"
+                              required>{{ $book->description['ru'] }}</textarea>
+                    @error('description.ru')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Описание Uz</label>
+                    <textarea name="description[uz]" class="form-control @error('description.uz') is-invalid @enderror"
+                              id="description" placeholder="Описание uz"
+                              required>{{ $book->description['uz'] }}</textarea>
+                    @error('description.uz')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -85,7 +105,7 @@
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}"
                                 {{ in_array($category->id, old('categories', $book->categories->pluck('id')->toArray())) ? 'selected' : '' }}>
-                                {{ $category->name }}
+                                {{ $category->name['ru'] }}
                             </option>
                         @endforeach
                     </select>
@@ -101,7 +121,7 @@
                         @foreach($genres as $genre)
                             <option value="{{ $genre->id }}"
                                 {{ in_array($genre->id, old('genres', $book->genres->pluck('id')->toArray())) ? 'selected' : '' }}>
-                                {{ $genre->name }}
+                                {{ $genre->name['ru'] }}
                             </option>
                         @endforeach
                     </select>
@@ -117,7 +137,7 @@
                         @foreach($tags as $tag)
                             <option value="{{ $tag->id }}"
                                 {{ in_array($tag->id, old('tags', $book->tags->pluck('id')->toArray())) ? 'selected' : '' }}>
-                                {{ $tag->name }}
+                                {{ $tag->name['ru'] }}
                             </option>
                         @endforeach
                     </select>
@@ -142,6 +162,29 @@
                                 </button>
                             </div>
                         @endforeach
+                    @endif
+                </div>
+
+                {{-- Books --}}
+                <div class="mb-3">
+                    <label for="fileRu" class="form-label">Загрузить книгу (RU)</label>
+                    <input type="file" name="files[ru]" id="fileRu" class="form-control" accept=".pdf" required>
+                    @if(isset($book->files['ru']))
+                        <div class="mt-2">
+                            <a href="{{ Storage::url($book->files['ru']) }}" target="_blank">Скачать текущий файл
+                                (RU)</a>
+                        </div>
+                    @endif
+                </div>
+
+                <div class="mb-3">
+                    <label for="fileUz" class="form-label">Загрузить книгу (UZ)</label>
+                    <input type="file" name="files[uz]" id="fileUz" class="form-control" accept=".pdf" required>
+                    @if(isset($book->files['uz']))
+                        <div class="mt-2">
+                            <a href="{{ Storage::url($book->files['uz']) }}" target="_blank">Скачать текущий файл
+                                (UZ)</a>
+                        </div>
                     @endif
                 </div>
 

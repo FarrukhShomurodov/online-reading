@@ -51,8 +51,8 @@
                 <tbody>
                 @foreach($collections as $collection)
                     <tr>
-                        <td>{{ $collection->name }}</td>
-                        <td>{{ implode(', ', array_map(fn($title) => $title, $collection->books->pluck('title')->toArray())) }}</td>
+                        <td>{{ $collection->name['ru'] }}</td>
+                        <td>{{ implode(', ', array_map(fn($title) => $title, $collection->books->pluck('title.ru')->toArray())) }}</td>
                         <td>{{ $collection->created_at }}</td>
                         <td>
                             <div class="d-inline-block text-nowrap">

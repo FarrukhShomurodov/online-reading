@@ -6,7 +6,8 @@
 
 @section('content')
     <h6 class="py-3 breadcrumb-wrapper mb-4">
-        <span class="text-muted fw-light"><a class="text-muted" href="{{ route('books.index') }}">Колекции</a> /</span>Создать
+        <span class="text-muted fw-light"><a class="text-muted"
+                                             href="{{ route('collections.index') }}">Колекции</a> /</span>Создать
     </h6>
 
     <div class="alert-container position-fixed top-0 end-0 p-3" style="z-index: 10050;">
@@ -36,19 +37,39 @@
             <form action="{{ route('collections.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
-                    <label class="form-label" for="name">Название</label>
-                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name"
-                           placeholder="Загаловок" required>
-                    @error('name')
+                    <label class="form-label" for="name">Название Ru</label>
+                    <input type="text" name="name[ru]" class="form-control @error('name.ru') is-invalid @enderror"
+                           id="name"
+                           placeholder="Название Ru" required>
+                    @error('name.ru')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="description">Описание</label>
-                    <textarea name="description" class="form-control @error('description') is-invalid @enderror"
-                              id="description" placeholder="Описание" required></textarea>
-                    @error('description')
+                    <label class="form-label" for="name">Название Uz</label>
+                    <input type="text" name="name[uz]" class="form-control @error('name.uz') is-invalid @enderror"
+                           id="name"
+                           placeholder="Название Uz" required>
+                    @error('name.uz')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Описание Ru</label>
+                    <textarea name="description[ru]" class="form-control @error('description.ru') is-invalid @enderror"
+                              id="description" placeholder="Описание Ru" required></textarea>
+                    @error('description.ru')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Описание Uz</label>
+                    <textarea name="description[uz]" class="form-control @error('description.uz') is-invalid @enderror"
+                              id="description" placeholder="Описание Uz" required></textarea>
+                    @error('description.uz')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -59,7 +80,7 @@
                             multiple required>
                         @foreach($books as $book)
                             <option value="{{ $book->id }}"
-                                    data-image-url="{{ $book->first_image_url }}">{{ $book->title }}</option>
+                                    data-image-url="{{ $book->first_image_url }}">{{ $book->title['ru'] }}</option>
                         @endforeach
                     </select>
 

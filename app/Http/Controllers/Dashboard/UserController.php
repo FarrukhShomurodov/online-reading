@@ -20,7 +20,7 @@ class UserController
     public function index(): View
     {
         $users = User::query()
-            ->select(['id', 'name', 'last_name', 'phone_number', 'sms_code', 'is_active'])
+            ->select(['id', 'name', 'last_name', 'phone_number', 'is_active', 'created_at'])
             ->simplePaginate(10);
 
         return view('admin.users.index', compact('users'));

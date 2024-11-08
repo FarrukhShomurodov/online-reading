@@ -54,6 +54,7 @@
                                 ['id' => 'category', 'label' => 'Категории', 'items' => $categories],
                                 ['id' => 'genre', 'label' => 'Жанры', 'items' => $genres],
                                 ['id' => 'tag', 'label' => 'Теги', 'items' => $tags],
+                                ['id' => 'collection', 'label' => 'Колекции', 'items' => $collections],
                             ];
                         @endphp
 
@@ -64,17 +65,10 @@
                                         class="form-control select2">
                                     <option value="">Все</option>
                                     @foreach($filter['items'] as $item)
-                                        @if($filter['id'] == 'lang')
-                                            <option value="{{ $item->code }}"
-                                                {{ request("{$filter['id']}_id") == $item->code ? 'selected' : '' }}>
-                                                {{ $item->name }}
-                                            </option>
-                                        @else
-                                            <option value="{{ $item->id }}"
-                                                {{ request("{$filter['id']}_id") == $item->id ? 'selected' : '' }}>
-                                                {{ $item->name }}
-                                            </option>
-                                        @endif
+                                        <option value="{{ $item->id }}"
+                                            {{ request("{$filter['id']}_id") == $item->id ? 'selected' : '' }}>
+                                            {{ $item->name['ru'] }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -99,7 +93,7 @@
                 <tbody>
                 @foreach($books as $book)
                     <tr>
-                        <td>{{ $book->title }}</td>
+                        <td>{{ $book->title['ru'] }}</td>
                         <td>{{ $book->author }}</td>
                         <td>
                             <label class="switch">

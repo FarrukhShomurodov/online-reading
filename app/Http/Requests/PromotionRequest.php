@@ -17,8 +17,14 @@ class PromotionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:300',
-            'description' => 'required|string|max:600',
+            'title' => 'required|array',
+            'title.ru' => 'required|string|max:300',
+            'title.uz' => 'required|string|max:300',
+
+            'description' => 'required|array',
+            'description.ru' => 'required|string|max:500',
+            'description.uz' => 'required|string|max:500',
+
             'start_time' => 'required|date',
             'end_time' => 'required|date',
 

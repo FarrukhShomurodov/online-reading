@@ -15,7 +15,7 @@ class Genre extends Model
      * @var string[]
      */
     protected $casts = [
-        'name' => 'string',
+        'name' => 'array',
     ];
 
     public function books(): BelongsToMany

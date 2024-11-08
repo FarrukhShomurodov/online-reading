@@ -17,14 +17,18 @@ class BookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:300',
+            'title' => 'required|array',
+            'title.ru' => 'required|string|max:300',
+            'title.uz' => 'required|string|max:300',
+
             'author' => 'required|string|max:300',
-            'description' => 'required|string|max:500',
+
+            'description' => 'required|array',
+            'description.ru' => 'required|string|max:500',
+            'description.uz' => 'required|string|max:500',
+
             'is_active' => 'required|boolean',
             'publication_date' => 'required|date',
-
-            'image' => 'sometimes|array',
-            'image*' => 'sometimes|string|mime:jpg,png',
 
             'categories' => 'required|array',
             'categories.*' => 'required|integer|exists:categories,id',
@@ -35,6 +39,10 @@ class BookRequest extends FormRequest
 
             'photos' => 'sometimes|array|max:10',
             'photos.*' => 'sometimes|image|mimes:jpg,png',
+
+            'files' => 'sometimes|array|max:2',
+            'files.ru' => 'sometimes|mimes:pdf',
+            'files.uz' => 'sometimes|mimes:pdf',
         ];
     }
 }

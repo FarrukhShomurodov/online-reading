@@ -1,13 +1,13 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    <title>Reading - Редактировать пользователя</title>
+    <title>Reading - Редактировать пользователя панеля</title>
 @endsection
 
 @section('content')
     <h6 class="py-3 breadcrumb-wrapper mb-4">
         <span class="text-muted fw-light"><a class="text-muted"
-                                             href="{{ route('admins.index') }}">Пользователи</a> /</span>Редактировать
+                                             href="{{ route('admins.index') }}">Пользователи панели</a> /</span>Редактировать
     </h6>
 
     <div class="alert-container position-fixed top-0 end-0 p-3" style="z-index: 10050;">

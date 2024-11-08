@@ -21,6 +21,20 @@ class BookService
             }
         }
 
+        $files = [];
+
+        if (isset($validated['files']['ru'])) {
+            $pathRu = $validated['files']['ru']->store('book_files', 'public');
+            $files['ru'] = $pathRu;
+        }
+
+        if (isset($validated['files']['uz'])) {
+            $pathUz = $validated['files']['uz']->store('book_files', 'public');
+            $files['uz'] = $pathUz;
+        }
+
+        $book->update(['files' => $files]);
+
         $book->categories()->sync($validated['categories']);
         $book->tags()->sync($validated['tags']);
         $book->genres()->sync($validated['genres']);
@@ -41,6 +55,26 @@ class BookService
                 $book->images()->create(['url' => $path]);
             }
         }
+
+        $files = $book->files ?? [];
+
+        if (isset($validated['files']['ru'])) {
+            if (isset($files['ru']) && Storage::disk('public')->exists($files['ru'])) {
+                Storage::disk('public')->delete($files['ru']);
+            }
+            $pathRu = $validated['files']['ru']->store('book_files', 'public');
+            $files['ru'] = $pathRu;
+        }
+
+        if (isset($validated['files']['uz'])) {
+            if (isset($files['uz']) && Storage::disk('public')->exists($files['uz'])) {
+                Storage::disk('public')->delete($files['uz']);
+            }
+            $pathUz = $validated['files']['uz']->store('book_files', 'public');
+            $files['uz'] = $pathUz;
+        }
+
+        $book->update(['files' => $files]);
 
         $book->categories()->sync($validated['categories']);
         $book->tags()->sync($validated['tags']);

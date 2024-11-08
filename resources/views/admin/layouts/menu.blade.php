@@ -2,7 +2,7 @@
     <div class="app-brand demo">
         <h5 style="margin: 0 !important;">
             <a href="{{ route('dashboard') }}" class="app-brand-link">
-                Online reading
+                Reading
             </a>
         </h5>
 

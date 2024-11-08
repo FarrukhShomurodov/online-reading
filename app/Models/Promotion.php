@@ -14,6 +14,11 @@ class Promotion extends Model
         'end_time'
     ];
 
+    protected $casts = [
+        'title' => 'array',
+        'description' => 'array',
+    ];
+
     public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');

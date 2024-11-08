@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Collection;
 use App\Models\Genre;
 use App\Models\Tag;
 use App\Services\BookService;
@@ -23,9 +24,10 @@ class BookController
 
     public function index(Request $request): View
     {
-        $categories = Category::query()->select('name')->get();
-        $genres = Genre::query()->select('name')->get();
-        $tags = Tag::query()->select('name')->get();
+        $categories = Category::query()->select('id', 'name')->get();
+        $genres = Genre::query()->select('id', 'name')->get();
+        $tags = Tag::query()->select('id', 'name')->get();
+        $collections = Collection::query()->select('id', 'name')->get();
 
         $books = Book::query()
             ->when($request->input('category_id'), function ($query) use ($request) {
@@ -42,12 +44,16 @@ class BookController
                 $query->whereHas('tags', function ($q) use ($request) {
                     $q->where('tag_id', $request->input('tag_id'));
                 });
+            })->when($request->input('collection_id'), function ($query) use ($request) {
+                $query->whereHas('collections', function ($q) use ($request) {
+                    $q->where('collection_id', $request->input('collection_id'));
+                });
             })
             ->select(['id', 'title', 'author', 'is_active', 'publication_date'])
             ->orderBy('id')
             ->simplePaginate(10);
 
-        return view('admin.books.index', compact('books', 'categories', 'genres', 'tags'));
+        return view('admin.books.index', compact('books', 'categories', 'genres', 'tags', 'collections'));
     }
 
     public function create(): View

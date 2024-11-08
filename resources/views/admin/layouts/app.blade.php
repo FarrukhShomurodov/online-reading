@@ -112,11 +112,13 @@
 <script>
     $(document).ready(function () {
         // alert
-        setTimeout(function () {
-            $('.alert').fadeOut('slow', function () {
-                $(this).remove();
-            });
-        }, 3000);
+        $('.alert').each(function (index) {
+            setTimeout(() => {
+                $(this).fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 3000 * (index + 1));
+        });
 
         // Image
         $('#imageInput').on('change', function () {

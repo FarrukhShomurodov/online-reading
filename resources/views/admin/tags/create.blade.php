@@ -30,10 +30,18 @@
             <form action="{{ route('tags.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
-                    <label class="form-label" for="name">Название</label>
-                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                           id="name" placeholder="Название" required>
-                    @error('name')
+                    <label class="form-label" for="name">Название Ru</label>
+                    <input type="text" name="name[ru]" class="form-control @error('name.ru') is-invalid @enderror"
+                           id="name" placeholder="Название Ru" required>
+                    @error('name.ru')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="name">Название Uz</label>
+                    <input type="text" name="name[uz]" class="form-control @error('name.uz') is-invalid @enderror"
+                           id="name" placeholder="Название Uz" required>
+                    @error('name.uz')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

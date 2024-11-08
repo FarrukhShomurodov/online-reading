@@ -30,19 +30,38 @@
             <form action="{{ route('promotions.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
-                    <label class="form-label" for="title">Заголовок</label>
-                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
-                           id="title" placeholder="Название" required>
-                    @error('title')
+                    <label class="form-label" for="title">Загаловок Ru</label>
+                    <input type="text" name="title[ru]" class="form-control @error('title.ru') is-invalid @enderror"
+                           id="title" placeholder="Загаловок Ru" required>
+                    @error('title.ru')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="description">Описание</label>
-                    <textarea name="description" class="form-control @error('description') is-invalid @enderror"
-                              id="description" placeholder="Описание" required></textarea>
-                    @error('description')
+                    <label class="form-label" for="title">Загаловок Uz</label>
+                    <input type="text" name="title[uz]" class="form-control @error('title.uz') is-invalid @enderror"
+                           id="title" placeholder="Загаловок Uz" required>
+                    @error('title.uz')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Описание Ru</label>
+                    <textarea name="description[ru]" class="form-control @error('description.ru') is-invalid @enderror"
+                              id="description" placeholder="Описание Ru" required></textarea>
+                    @error('description.ru')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Описание Uz</label>
+                    <textarea name="description[uz]" class="form-control @error('description.uz') is-invalid @enderror"
+                              id="description" placeholder="Описание Uz" required></textarea>
+                    @error('description.uz')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

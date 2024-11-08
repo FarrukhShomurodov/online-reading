@@ -29,8 +29,6 @@
         @endif
     </div>
 
-    <div id="errors_alert"></div>
-
     <div class="card shadow-sm">
         <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-header">Пользователи сайта</h5>
@@ -87,21 +85,31 @@
                     is_active: isActive,
                 },
                 success: function () {
-                    $('#errors_alert').append(` <div class="alert alert-solid-success alert-dismissible d-flex align-items-center" role="alert">
+                    $('.alert-container').append(` <div class="alert alert-solid-success alert-dismissible d-flex align-items-center" role="alert">
                             <i class="bx bx-check-circle fs-4 me-2"></i>
                           Статус успешно изменен.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>`)
+                    setTimeout(function () {
+                        $('.alert').fadeOut('slow', function () {
+                            $(this).remove();
+                        });
+                    }, 3000);
                 },
                 error: function (error) {
                     console.error('Error updating user status:', error);
-                    $('#errors_alert').append(`<div class="alert alert-solid-danger alert-dismissible d-flex align-items-center" role="alert">
+                    $('.alert-container').append(`<div class="alert alert-solid-danger alert-dismissible d-flex align-items-center" role="alert">
                         <i class="bx bx-error-circle fs-4 me-2"></i>
                         <ul class="mb-0">
                             <li>Возникла ошибка повторте попытку позже.</li>
                         </ul>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>`)
+                    setTimeout(function () {
+                        $('.alert').fadeOut('slow', function () {
+                            $(this).remove();
+                        });
+                    }, 3000);
                     switchInput.prop('checked', !isActive);
                 }
             });

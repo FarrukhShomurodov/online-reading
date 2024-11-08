@@ -50,7 +50,7 @@
                 <tbody>
                 @foreach($promotions as $promotion)
                     <tr>
-                        <td>{{ $promotion->title }}</td>
+                        <td>{{ $promotion->title['ru'] }}</td>
                         <td>{{ $promotion->start_time }}</td>
                         <td>{{ $promotion->end_time }}</td>
                         <td>

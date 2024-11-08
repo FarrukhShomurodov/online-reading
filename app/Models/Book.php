@@ -14,7 +14,15 @@ class Book extends Model
         'description',
         'is_active',
         'publication_date',
+        'files',
     ];
+
+    protected $casts = [
+        'title' => 'array',
+        'description' => 'array',
+        'files' => 'array',
+    ];
+
 
     public function categories(): BelongsToMany
     {
@@ -29,6 +37,11 @@ class Book extends Model
     public function genres(): BelongsToMany
     {
         return $this->belongsToMany(Genre::class, 'book_genres', 'book_id', 'genre_id');
+    }
+
+    public function collections(): BelongsToMany
+    {
+        return $this->belongsToMany(Collection::class, 'collections_book', 'book_id', 'collection_id');
     }
 
     public function images(): MorphMany

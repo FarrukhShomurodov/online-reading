@@ -13,6 +13,11 @@ class Collection extends Model
         'description',
     ];
 
+    protected $casts = [
+        'name' => 'array',
+        'description' => 'array',
+    ];
+
     public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');

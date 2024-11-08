@@ -41,14 +41,14 @@
             <table class="datatables-users table border-top">
                 <thead>
                 <tr>
-                    <th>Имя</th>
+                    <th>Название</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($tags as $teg)
                     <tr>
-                        <td>{{ $teg->name }}</td>
+                        <td>{{ $teg->name['ru'] }}</td>
                         <td>
                             <div class="d-inline-block text-nowrap">
                                 <button class="btn btn-sm btn-icon"

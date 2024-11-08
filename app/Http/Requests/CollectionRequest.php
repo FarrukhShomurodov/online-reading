@@ -17,8 +17,13 @@ class CollectionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:300',
-            'description' => 'required|string|max:500',
+            'name' => 'required|array',
+            'name.ru' => 'required|string|max:300',
+            'name.uz' => 'required|string|max:300',
+
+            'description' => 'required|array',
+            'description.ru' => 'required|string|max:500',
+            'description.uz' => 'required|string|max:500',
 
             'books' => 'required|array',
             'books.*' => 'required|integer|exists:books,id',

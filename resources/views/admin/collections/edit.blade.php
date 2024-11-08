@@ -39,26 +39,46 @@
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
-                    <label class="form-label" for="name">Название</label>
-                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name"
-                           placeholder="Загаловок" value="{{$collection->name}}" required>
-                    @error('name')
+                    <label class="form-label" for="name">Название Ru</label>
+                    <input type="text" name="name[ru]" class="form-control @error('name.ru') is-invalid @enderror"
+                           id="name"
+                           placeholder="Название Ru" value="{{$collection->name['ru']}}" required>
+                    @error('name.ru')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="description">Описание</label>
-                    <textarea name="description" class="form-control @error('description') is-invalid @enderror"
-                              id="description" placeholder="Описание"
-                              required>{{ $collection->description }}</textarea>
-                    @error('description')
+                    <label class="form-label" for="name">Название Uz</label>
+                    <input type="text" name="name[uz]" class="form-control @error('name.uz') is-invalid @enderror"
+                           id="name"
+                           placeholder="Название Uz" value="{{$collection->name['uz']}}" required>
+                    @error('name.uz')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Описание Ru</label>
+                    <textarea name="description[ru]" class="form-control @error('description.ru') is-invalid @enderror"
+                              id="description" placeholder="Описание Ru"
+                              required>{{ $collection->description['ru'] }}</textarea>
+                    @error('description.ru')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Описание Uz</label>
+                    <textarea name="description[uz]" class="form-control @error('description.uz') is-invalid @enderror"
+                              id="description" placeholder="Описание Uz"
+                              required>{{ $collection->description['uz'] }}</textarea>
+                    @error('description.uz')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
                 @php
-
                     $collectionBookIds = $collection->books->pluck('id')->toArray();
 
                     $books = $books->sortBy(function($book) use ($collectionBookIds) {

@@ -37,10 +37,19 @@
             <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
-                    <label class="form-label" for="title">Загаловок</label>
-                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
-                           id="title" placeholder="Загаловок" required>
-                    @error('title')
+                    <label class="form-label" for="title">Загаловок Ru</label>
+                    <input type="text" name="title[ru]" class="form-control @error('title.ru') is-invalid @enderror"
+                           id="title" placeholder="Загаловок Ru" required>
+                    @error('title.ru')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="title">Загаловок Uz</label>
+                    <input type="text" name="title[uz]" class="form-control @error('title.uz') is-invalid @enderror"
+                           id="title" placeholder="Загаловок Uz" required>
+                    @error('title.uz')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -57,10 +66,19 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="description">Описание</label>
-                    <textarea name="description" class="form-control @error('description') is-invalid @enderror"
-                              id="description" placeholder="Описание" required></textarea>
-                    @error('description')
+                    <label class="form-label" for="description">Описание Ru</label>
+                    <textarea name="description[ru]" class="form-control @error('description.ru') is-invalid @enderror"
+                              id="description" placeholder="Описание Ru" required></textarea>
+                    @error('description.ru')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Описание Uz</label>
+                    <textarea name="description[uz]" class="form-control @error('description.uz') is-invalid @enderror"
+                              id="description" placeholder="Описание Uz" required></textarea>
+                    @error('description.uz')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -83,7 +101,7 @@
                         @foreach($categories as $category)
                             <option
                                 value="{{ $category->id }}">
-                                {{ $category->name}}
+                                {{ $category->name['ru']}}
                             </option>
                         @endforeach
                     </select>
@@ -99,7 +117,7 @@
                         @foreach($genres as $genre)
                             <option
                                 value="{{ $genre->id }}">
-                                {{ $genre->name}}
+                                {{ $genre->name['ru']}}
                             </option>
                         @endforeach
                     </select>
@@ -115,7 +133,7 @@
                         @foreach($tags as $tag)
                             <option
                                 value="{{ $tag->id }}">
-                                {{ $tag->name}}
+                                {{ $tag->name['ru']}}
                             </option>
                         @endforeach
                     </select>
@@ -129,6 +147,17 @@
                     <input type="file" name="photos[]" id="imageInput" class="form-control" multiple>
                 </div>
                 <div id="imagePreview" class="mb-3 main__td"></div>
+
+                {{-- Books --}}
+                <div class="mb-3">
+                    <label for="imageInput" class="form-label">Загрузить книгу ru</label>
+                    <input type="file" name="files[ru]" id="imageInput" class="form-control" accept=".pdf" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="imageInput" class="form-label">Загрузить книгу uz</label>
+                    <input type="file" name="files[uz]" id="imageInput" class="form-control" accept=".pdf" required>
+                </div>
 
                 <button type="submit" class="btn btn-primary">Сохранить</button>
             </form>

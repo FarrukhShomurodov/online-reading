@@ -31,6 +31,7 @@ class CollectionController
     public function create(): View
     {
         $books = Book::select('id', 'title')
+            ->where('is_active', true)
             ->with(['images:id,imageable_id,url'])
             ->get()
             ->map(function ($book) {
@@ -53,6 +54,7 @@ class CollectionController
     public function edit(Collection $collection): View
     {
         $books = Book::select('id', 'title')
+            ->where('is_active', true)
             ->with(['images:id,imageable_id,url'])
             ->get()
             ->map(function ($book) {
