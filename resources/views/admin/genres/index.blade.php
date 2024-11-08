@@ -34,9 +34,41 @@
     <div class="card shadow-sm">
         <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-header">Жанры</h5>
-            <a href="{{ route('genres.create') }}" class="btn btn-primary "
-               style="margin-right: 22px;">Создать</a>
+            <div>
+                <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#filtersCollapse">
+                    <i class="bx bx-list-ul"></i> Топ жанры
+                </button>
+                <a href="{{ route('genres.create') }}" class="btn btn-primary "
+                   style="margin-right: 22px;">Создать</a>
+            </div>
         </div>
+
+        <div id="filtersCollapse"
+             class="collapse">
+            <div class="card-body">
+                <form method="POST" action="{{ route('genres.top.save') }}">
+                    @csrf
+                    <div class="row g-3">
+                        <div class="col-md-3 form-group">
+                            <label for="genres">Топ жанры</label>
+                            <select id="genres" name="genres[]"
+                                    class="form-control select2" multiple>
+                                @foreach($genres as $genre)
+                                    <option value="{{ $genre->id }}"
+                                        {{ in_array($genre->id, $topGenres) ? 'selected' : '' }}>
+                                        {{ $genre->name['ru'] }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Применить</button>
+                </form>
+            </div>
+        </div>
+
+
         <div class="card-datatable table-responsive">
             <table class="datatables-users table border-top">
                 <thead>

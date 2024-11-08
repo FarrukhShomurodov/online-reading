@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Requests\GenreRequest;
 use App\Models\Genre;
+use App\Models\TopGenre;
 use App\Services\GenreService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -23,7 +24,8 @@ class GenreController
             ->select('id', 'name')
             ->simplePaginate(10);
 
-        return view('admin.genres.index', compact('genres'));
+        $topGenres = TopGenre::query()->pluck('genre_id')->toArray();
+        return view('admin.genres.index', compact('genres', 'topGenres'));
     }
 
     public function create(): View
