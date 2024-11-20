@@ -1,0 +1,68 @@
+@import url('header.css');
+@import url('genres-book.css');
+@import url('contacts.css');
+@import url('main-content.css');
+@import url('book-info.css');
+@import url('room.css');
+
+/* === Variables === */
+:root {
+    --font-family: "Source Code Pro", monospace;
+    --font-optical-sizing: auto;
+    --font-weight: 400;
+    --font-style: normal;
+    --bg-color: #ffffff;
+    --text-color: #333333;
+}
+
+/* === Reset Styles === */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    /* overflow-x: hidden !important; */
+}
+
+/* === Layout Styles === */
+.container {
+    max-width: 1320px !important;
+    padding: 0px;
+    width: 100%;
+}
+
+li {
+    list-style-type: none;
+}
+
+button {
+    color: black;
+}
+
+dl,
+ol,
+ul {
+    margin-top: 0;
+    padding: 0px !important;
+    margin-bottom: 0 !important;
+}
+
+@media (max-width: 500px) {
+    .container {
+        max-width: 390px !important;
+    }
+
+    .no-scroll {
+        overflow: hidden;
+        height: 100%;
+    }
+}
