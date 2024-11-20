@@ -47,6 +47,8 @@ class BookService
      */
     public function update(Book $book, array $validated): Book
     {
+        $files = $book->files ?? [];
+
         $book->update($validated);
 
         if (isset($validated['photos'])) {
@@ -55,8 +57,6 @@ class BookService
                 $book->images()->create(['url' => $path]);
             }
         }
-
-        $files = $book->files ?? [];
 
         if (isset($validated['files']['ru'])) {
             if (isset($files['ru']) && Storage::disk('public')->exists($files['ru'])) {
@@ -89,6 +89,11 @@ class BookService
             Storage::disk('public')->delete($image->url);
             $image->delete();
         }
+        if ($book->files) {
+            Storage::disk('public')->delete($book->files['uz']);
+            Storage::disk('public')->delete($book->files['ru']);
+        }
+
         $book->delete();
     }
 
