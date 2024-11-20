@@ -58,13 +58,21 @@
                 <input type="number" class="is_active" name="is_active" value="{{ $book->is_active }}" hidden="">
 
                 <div class="mb-3">
-                    <label class="form-label" for="author">Автор</label>
-                    <input type="text" name="author" class="form-control @error('author') is-invalid @enderror"
-                           id="author" placeholder="Автор" value="{{ $book->author }}" required>
-                    @error('author')
+                    <label class="form-label" for="author_id">Авторы</label>
+                    <select name="author_id" class="select2 form-control @error('author_id') is-invalid @enderror"
+                            id="author_id" required>
+                        @foreach($authors as $author)
+                            <option value="{{ $author->id }}"
+                                {{ $author->id, $book->author_id ? 'selected' : '' }}>
+                                {{ $author->name['ru'] }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('author_id')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
 
                 <div class="mb-3">
                     <label class="form-label" for="description">Описание Ru</label>
@@ -168,7 +176,7 @@
                 {{-- Books --}}
                 <div class="mb-3">
                     <label for="fileRu" class="form-label">Загрузить книгу (RU)</label>
-                    <input type="file" name="files[ru]" id="fileRu" class="form-control" accept=".pdf" required>
+                    <input type="file" name="files[ru]" id="fileRu" class="form-control" accept=".pdf">
                     @if(isset($book->files['ru']))
                         <div class="mt-2">
                             <a href="{{ Storage::url($book->files['ru']) }}" target="_blank">Скачать текущий файл
@@ -179,7 +187,7 @@
 
                 <div class="mb-3">
                     <label for="fileUz" class="form-label">Загрузить книгу (UZ)</label>
-                    <input type="file" name="files[uz]" id="fileUz" class="form-control" accept=".pdf" required>
+                    <input type="file" name="files[uz]" id="fileUz" class="form-control" accept=".pdf">
                     @if(isset($book->files['uz']))
                         <div class="mt-2">
                             <a href="{{ Storage::url($book->files['uz']) }}" target="_blank">Скачать текущий файл

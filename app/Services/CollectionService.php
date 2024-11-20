@@ -38,8 +38,11 @@ class CollectionService
                 $collection->images()->create(['url' => $path]);
             }
         }
-
-        $collection->books()->sync($validated['books']);
+        $collection->books()->detach();
+        
+        foreach ($validated['books'] as $bookId) {
+            $collection->books()->attach($bookId);
+        }
 
         return $collection->refresh();
     }

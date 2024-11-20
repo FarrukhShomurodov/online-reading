@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\Dashboard\AdminAuthController;
 use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Dashboard\AuthorController;
 use App\Http\Controllers\Dashboard\BookController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\CollectionController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\GenreController;
+use App\Http\Controllers\Dashboard\NewsCategoryController;
+use App\Http\Controllers\Dashboard\NewsController;
 use App\Http\Controllers\Dashboard\PromotionController;
 use App\Http\Controllers\Dashboard\ReviewController;
 use App\Http\Controllers\Dashboard\TagController;
@@ -26,7 +29,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('admins', AdminController::class);
     Route::get('users', [UserController::class, 'index'])->name('users');
 
-    // Books
+    // Books and book relations
     Route::resource('tags', TagController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('genres', GenreController::class);
@@ -34,5 +37,12 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('books', BookController::class);
     Route::resource('reviews', ReviewController::class);
     Route::resource('collections', CollectionController::class);
+    Route::resource('authors', AuthorController::class);
+
+    // Promotion
     Route::resource('promotions', PromotionController::class);
+
+    //News
+    Route::resource('news', NewsController::class);
+    Route::resource('news-categories', NewsCategoryController::class)->parameter('news-categories', 'category');
 });

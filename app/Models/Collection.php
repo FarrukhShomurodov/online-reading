@@ -25,6 +25,8 @@ class Collection extends Model
 
     public function books(): BelongsToMany
     {
-        return $this->belongsToMany(Book::class, 'collections_book', 'collection_id', 'book_id');
+        return $this->belongsToMany(Book::class, 'collections_book', 'collection_id', 'book_id')
+            ->withPivot(['id'])
+            ->orderByPivot('id');
     }
 }

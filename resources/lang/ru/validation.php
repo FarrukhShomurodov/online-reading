@@ -118,7 +118,7 @@ return [
         'title' => 'Заголовок',
         'title.ru' => 'Заголовок Ru',
         'title.uz' => 'Заголовок Uz',
-        'author' => 'Автор',
+        'author_id' => 'Автор',
         'description' => 'Описание',
         'description.ru' => 'Описание Ru',
         'description.uz' => 'Описание Uz',
@@ -142,5 +142,6 @@ return [
         'ratting' => 'Рейтинг',
         'phone_number' => 'Номер телефона',
         'is_view' => 'Просмотр',
+        'news_category_id' => 'Категория',
     ],
 ];

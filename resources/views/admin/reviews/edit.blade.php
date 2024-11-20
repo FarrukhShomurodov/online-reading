@@ -84,7 +84,7 @@
                         @foreach($books as $book)
                             <option value="{{ $book->id }}"
                                 {{ in_array($book->id, old('reviews', $review->book->pluck('id')->toArray())) ? 'selected' : '' }}>
-                                {{ $book->title }}
+                                {{ $book->title['ru'] }}
                             </option>
                         @endforeach
                     </select>

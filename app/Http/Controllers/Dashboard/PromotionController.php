@@ -21,6 +21,7 @@ class PromotionController
     {
         $promotions = Promotion::query()
             ->select(['id', 'title', 'start_time', 'end_time'])
+            ->orderBy('id')
             ->simplePaginate(10);
 
         return view('admin.promotions.index', compact('promotions'));

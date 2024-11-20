@@ -57,10 +57,17 @@
                 <input type="number" class="is_active" name="is_active" hidden="">
 
                 <div class="mb-3">
-                    <label class="form-label" for="author">Автор</label>
-                    <input type="text" name="author" class="form-control @error('author') is-invalid @enderror"
-                           id="author" placeholder="Автор" required>
-                    @error('author')
+                    <label class="form-label" for="author_id">Авторы</label>
+                    <select name="author_id" class="select2 form-control @error('author_id') is-invalid @enderror"
+                            id="author_id" required>
+                        @foreach($authors as $author)
+                            <option
+                                value="{{ $author->id }}">
+                                {{ $author->name['ru']}}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('author_id')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

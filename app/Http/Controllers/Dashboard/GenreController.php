@@ -22,6 +22,7 @@ class GenreController
     {
         $genres = Genre::query()
             ->select('id', 'name')
+            ->orderBy('id')
             ->simplePaginate(10);
 
         $topGenres = TopGenre::query()->pluck('genre_id')->toArray();

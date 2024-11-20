@@ -21,6 +21,7 @@ class TagController
     {
         $tags = Tag::query()
             ->select(['id', 'name'])
+            ->orderBy('id')
             ->simplePaginate(10);
 
         return view('admin.tags.index', compact('tags'));

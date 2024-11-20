@@ -55,7 +55,7 @@
                 <tbody>
                 @foreach($reviews as $review)
                     <tr>
-                        <td>{{ $review->book->title }}</td>
+                        <td>{{ $review->book->title['ru'] }}</td>
                         <td>{{ $review->user->name ?? '' }}</td>
                         <td>{{ $review->name }}</td>
                         <td>{{ $review->last_name }}</td>

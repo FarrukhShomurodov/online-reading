@@ -7,20 +7,17 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->json('title');
-            $table->foreignId('author_id')->constrained()->cascadeOnDelete();
-            $table->json('description');
-            $table->boolean('is_active');
-            $table->date('publication_date');
-            $table->json('files');
+            $table->json('text');
+            $table->foreignId('news_category_id')->constrained('news_categories')->cascadeOnDelete();
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('news');
     }
 };

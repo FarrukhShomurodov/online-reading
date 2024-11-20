@@ -21,7 +21,7 @@ class BookRequest extends FormRequest
             'title.ru' => 'required|string|max:300',
             'title.uz' => 'required|string|max:300',
 
-            'author' => 'required|string|max:300',
+            'author_id' => 'required|integer|exists:authors,id',
 
             'description' => 'required|array',
             'description.ru' => 'required|string|max:500',

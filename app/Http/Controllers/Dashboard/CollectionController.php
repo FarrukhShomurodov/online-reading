@@ -22,7 +22,8 @@ class CollectionController
     {
         $collections = Collection::query()
             ->select(['id', 'name', 'created_at'])
-            ->with('books:title')
+            ->with('books:title,id',)
+            ->orderBy('id')
             ->simplePaginate(10);
 
         return view('admin.collections.index', compact('collections'));

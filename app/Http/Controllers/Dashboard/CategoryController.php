@@ -21,6 +21,7 @@ class CategoryController
     {
         $categories = Category::query()
             ->select(['id', 'name'])
+            ->orderBy('id')
             ->simplePaginate(10);
 
         return view('admin.categories.index', compact('categories'));

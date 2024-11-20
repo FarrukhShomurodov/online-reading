@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Requests\BookRequest;
+use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Collection;
@@ -28,6 +29,7 @@ class BookController
         $genres = Genre::query()->select('id', 'name')->get();
         $tags = Tag::query()->select('id', 'name')->get();
         $collections = Collection::query()->select('id', 'name')->get();
+        $authors = Author::query()->select('id', 'name')->get();
 
         $books = Book::query()
             ->when($request->input('category_id'), function ($query) use ($request) {
@@ -49,11 +51,14 @@ class BookController
                     $q->where('collection_id', $request->input('collection_id'));
                 });
             })
-            ->select(['id', 'title', 'author', 'is_active', 'publication_date'])
+            ->when($request->input('author_id'), function ($query) use ($request) {
+                $query->where('author_id', $request->input('author_id'));
+            })
+            ->select(['id', 'title', 'author_id', 'is_active', 'publication_date'])
             ->orderBy('id')
             ->simplePaginate(10);
 
-        return view('admin.books.index', compact('books', 'categories', 'genres', 'tags', 'collections'));
+        return view('admin.books.index', compact('books', 'categories', 'genres', 'tags', 'collections', 'authors'));
     }
 
     public function create(): View
@@ -61,7 +66,9 @@ class BookController
         $categories = Category::query()->get(['id', 'name']);
         $genres = Genre::query()->get(['id', 'name']);
         $tags = Tag::query()->get(['id', 'name']);
-        return view('admin.books.create', compact('categories', 'genres', 'tags'));
+        $authors = Author::query()->select('id', 'name')->get();
+
+        return view('admin.books.create', compact('categories', 'genres', 'tags', 'authors'));
     }
 
     public function store(BookRequest $request): RedirectResponse
@@ -77,7 +84,9 @@ class BookController
         $categories = Category::query()->get(['id', 'name']);
         $genres = Genre::query()->get(['id', 'name']);
         $tags = Tag::query()->get(['id', 'name']);
-        return view('admin.books.edit', compact('book', 'categories', 'genres', 'tags'));
+        $authors = Author::query()->select('id', 'name')->get();
+
+        return view('admin.books.edit', compact('book', 'categories', 'genres', 'tags', 'authors'));
     }
 
     public function update(BookRequest $request, Book $book): RedirectResponse

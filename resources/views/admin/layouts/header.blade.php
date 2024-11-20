@@ -28,7 +28,7 @@
                                     </div>
                                     <div class="flex-grow-1">
                                         <span
-                                            class="fw-semibold d-block lh-1">{{ auth()->user()->email }}}</span>
+                                            class="fw-semibold d-block lh-1">{{ auth()->user()->email }}</span>
                                     </div>
                                 </div>
                             </a>

@@ -94,7 +94,7 @@
                             <option value="{{ $book->id }}"
                                     data-image-url="{{ $book->first_image_url }}"
                                 {{ in_array($book->id, $collectionBookIds) ? 'selected' : '' }}>
-                                {{ $book->title }}
+                                {{ $book->title['ru'] }}
                             </option>
                         @endforeach
                     </select>

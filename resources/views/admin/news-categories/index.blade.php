@@ -1,12 +1,12 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    <title>Reading | Коллекци</title>
+    <title>Reading | Категории новостей</title>
 @endsection
 
 @section('content')
     <h6 class="py-3 breadcrumb-wrapper mb-4">
-        <span class="text-muted fw-light">Коллекци</span>
+        <span class="text-muted fw-light">Категории новостей</span>
     </h6>
 
     <div class="alert-container position-fixed top-0 end-0 p-3" style="z-index: 10050;">
@@ -33,33 +33,28 @@
 
     <div class="card shadow-sm">
         <div class="d-flex justify-content-between align-items-center">
-            <h5 class="card-header">Коллекци</h5>
-            <a href="{{ route('collections.create') }}" class="btn btn-primary"
+            <h5 class="card-header">Категории новостей</h5>
+            <a href="{{ route('news-categories.create') }}" class="btn btn-primary "
                style="margin-right: 22px;">Создать</a>
         </div>
-
         <div class="card-datatable table-responsive">
             <table class="datatables-users table border-top">
                 <thead>
                 <tr>
                     <th>Название</th>
-                    <th>Книги</th>
-                    <th>Дата создание</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($collections as $collection)
+                @foreach($categories as $category)
                     <tr>
-                        <td>{{ $collection->name['ru'] }}</td>
-                        <td>{{ implode(', ', $collection->books->pluck('title.ru')->toArray()) }}</td>
-                        <td>{{ $collection->created_at }}</td>
+                        <td>{{ $category->name['ru'] }}</td>
                         <td>
                             <div class="d-inline-block text-nowrap">
                                 <button class="btn btn-sm btn-icon"
-                                        onclick="location.href='{{ route('collections.edit', $collection->id) }}'"><i
+                                        onclick="location.href='{{ route('news-categories.edit', $category->id) }}'"><i
                                         class="bx bx-edit"></i></button>
-                                <form action="{{ route('collections.destroy', $collection->id) }}" method="POST"
+                                <form action="{{ route('news-categories.destroy', $category->id) }}" method="POST"
                                       style="display:inline;">
                                     @csrf
                                     @method('DELETE')
@@ -73,7 +68,7 @@
                 </tbody>
             </table>
             <div class="mt-4 p-1">
-                {{ $collections->links('pagination::bootstrap-5') }}
+                {{ $categories->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

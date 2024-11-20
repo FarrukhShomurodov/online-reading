@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
@@ -10,7 +11,7 @@ class Book extends Model
 {
     protected $fillable = [
         'title',
-        'author',
+        'author_id',
         'description',
         'is_active',
         'publication_date',
@@ -27,6 +28,11 @@ class Book extends Model
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class, 'book_categories', 'book_id', 'category_id');
+    }
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(Author::class);
     }
 
     public function tags(): BelongsToMany

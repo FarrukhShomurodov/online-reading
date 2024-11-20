@@ -55,6 +55,7 @@
                                 ['id' => 'genre', 'label' => 'Жанры', 'items' => $genres],
                                 ['id' => 'tag', 'label' => 'Теги', 'items' => $tags],
                                 ['id' => 'collection', 'label' => 'Колекции', 'items' => $collections],
+                                ['id' => 'author', 'label' => 'Авторы', 'items' => $authors],
                             ];
                         @endphp
 
@@ -94,7 +95,7 @@
                 @foreach($books as $book)
                     <tr>
                         <td>{{ $book->title['ru'] }}</td>
-                        <td>{{ $book->author }}</td>
+                        <td>{{ $book->author->name['ru'] }}</td>
                         <td>
                             <label class="switch">
                                 <input type="checkbox" class="switch-input" data-book-id="{{ $book->id }}"

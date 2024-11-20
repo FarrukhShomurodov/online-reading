@@ -20,7 +20,9 @@ class AdminController
 
     public function index(): View
     {
-        $admins = Admin::query()->select(['id', 'email'])->simplePaginate(10);
+        $admins = Admin::query()->select(['id', 'email'])
+            ->orderBy('id')
+            ->simplePaginate(10);
         return view('admin.admins.index', compact('admins'));
     }
 
