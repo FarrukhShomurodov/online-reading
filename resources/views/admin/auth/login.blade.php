@@ -9,11 +9,11 @@
     <title>Reading | Login</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('vendor/css/rtl/core.css') }}" class="template-customizer-core-css"/>
-    <link rel="stylesheet" href="{{ asset('vendor/css/rtl/theme-default.css') }}"
+    <link rel="stylesheet" href="{{ asset('public/vendor/css/rtl/core.css') }}" class="template-customizer-core-css"/>
+    <link rel="stylesheet" href="{{ asset('public/vendor/css/rtl/theme-default.css') }}"
           class="template-customizer-theme-css"/>
     <link rel="stylesheet" href="{{ asset('css/demo.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('vendor/css/pages/page-auth.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/vendor/css/pages/page-auth.css') }}">
 </head>
 <body>
 <div class="container-xxl">
