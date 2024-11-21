@@ -56,6 +56,11 @@ ul {
     margin-bottom: 0 !important;
 }
 
+a {
+    color: black !important;
+    text-decoration: none !important;
+}
+
 @media (max-width: 500px) {
     .container {
         max-width: 390px !important;

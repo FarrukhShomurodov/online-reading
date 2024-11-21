@@ -3,8 +3,12 @@
 }
 
 .genres-book-info span {
-    color: #9A9A9A;
+    color: #9A9A9A !important;
     font-size: 14px;
+}
+
+.genres-book-info a {
+    color: #9A9A9A !important;
 }
 
 

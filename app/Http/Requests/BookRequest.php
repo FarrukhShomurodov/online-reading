@@ -43,6 +43,10 @@ class BookRequest extends FormRequest
             'files' => 'sometimes|array|max:2',
             'files.ru' => 'sometimes|mimes:pdf',
             'files.uz' => 'sometimes|mimes:pdf',
+
+            'ratting' => 'required|numeric|min:0|max:5',
+            'pages' => 'required|integer',
+            'readen_count' => 'sometimes|integer',
         ];
     }
 }

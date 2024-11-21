@@ -15,6 +15,9 @@ return new class extends Migration {
             $table->boolean('is_active');
             $table->date('publication_date');
             $table->json('files');
+            $table->integer('pages');
+            $table->decimal('ratting', 10, 1)->default(4.5);
+            $table->integer('readen_count')->default(0);
             $table->timestamps();
         });
     }

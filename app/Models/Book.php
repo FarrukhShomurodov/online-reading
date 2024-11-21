@@ -16,6 +16,9 @@ class Book extends Model
         'is_active',
         'publication_date',
         'files',
+        'ratting',
+        'readen_count',
+        'pages',
     ];
 
     protected $casts = [

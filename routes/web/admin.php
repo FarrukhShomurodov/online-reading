@@ -17,11 +17,11 @@ use App\Http\Controllers\Dashboard\TopGenreController;
 use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('admin/login', [AdminAuthController::class, 'showLoginForm']);
+Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('dashboard.login');
 Route::post('admin/login', [AdminAuthController::class, 'login'])->name('dashboard.login');
 
 Route::middleware('auth:admin')->group(function () {
-    Route::get('logout', [AdminAuthController::class, 'logout'])->name('logout');
+    Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

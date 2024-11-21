@@ -20,6 +20,10 @@ class GenreRequest extends FormRequest
             'name' => 'required|array',
             'name.ru' => 'required|string|max:300',
             'name.uz' => 'required|string|max:300',
+
+            'photos' => 'sometimes|array|max:10',
+            'photos.*' => 'sometimes|image|mimes:jpg,png',
+
         ];
     }
 }

@@ -107,6 +107,40 @@
                 </div>
 
                 <div class="mb-3">
+                    <label class="form-label" for="ratting">Рейтинг</label>
+                    <input type="number" name="ratting"
+                           class="form-control @error('ratting') is-invalid @enderror" id="ratting"
+                           placeholder="Рейтинг"
+                           value="{{ $book->ratting }}"
+                           min="0" max="5" step="0.1" required>
+                    @error('ratting')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="readen_count">Кол - во прочитаных</label>
+                    <input type="number" name="readen_count"
+                           class="form-control @error('readen_count') is-invalid @enderror" id="readen_count"
+                           value="{{ $book->readen_count }}"
+                           placeholder="Кол - во прочитаных" required>
+                    @error('readen_count')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="pages">Страницы</label>
+                    <input type="number" name="pages"
+                           value="{{ $book->pages }}"
+                           class="form-control @error('pages') is-invalid @enderror" id="pages"
+                           placeholder="Кол - во прочитаных" required>
+                    @error('pages')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
                     <label class="form-label" for="category_id">Категории</label>
                     <select name="categories[]" class="select2 form-control @error('categories') is-invalid @enderror"
                             id="category_id" required multiple>
