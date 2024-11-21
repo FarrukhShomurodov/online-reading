@@ -16,25 +16,25 @@
         rel="stylesheet">
 
     <!-- Icons -->
-    <link rel="stylesheet" href="{{ public_path('vendor/fonts/boxicons.css') }}"/>
-    <link rel="stylesheet" href="{{ public_path('vendor/fonts/fontawesome.css') }}"/>
-    <link rel="stylesheet" href="{{ public_path('vendor/fonts/flag-icons.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('public/vendor/fonts/boxicons.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('public/vendor/fonts/fontawesome.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('public/vendor/fonts/flag-icons.css') }}"/>
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="{{ public_path('vendor/css/rtl/core.css') }}" class="template-customizer-core-css"/>
-    <link rel="stylesheet" href="{{ public_path('vendor/css/rtl/theme-default.css') }}"
+    <link rel="stylesheet" href="{{ asset('public/vendor/css/rtl/core.css') }}" class="template-customizer-core-css"/>
+    <link rel="stylesheet" href="{{ asset('public/vendor/css/rtl/theme-default.css') }}"
           class="template-customizer-theme-css"/>
-    <link rel="stylesheet" href="{{ public_path('css/demo.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/demo.css') }}"/>
 
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ public_path('vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}"/>
-    <link rel="stylesheet" href="{{ public_path('vendor/libs/typeahead-js/typeahead.css') }}"/>
-    <link rel="stylesheet" href="{{ public_path('vendor/libs/bootstrap-select/bootstrap-select.css') }}"/>
-    <link rel="stylesheet" href="{{public_path('vendor/libs/select2/select2.css')}}"/>
+    <!-- public/vendors CSS -->
+    <link rel="stylesheet" href="{{ asset('public/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('public/vendor/libs/typeahead-js/typeahead.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('public/vendor/libs/bootstrap-select/bootstrap-select.css') }}"/>
+    <link rel="stylesheet" href="{{asset('public/vendor/libs/select2/select2.css')}}"/>
 
     <!-- Helpers -->
-    <script src="{{ public_path('vendor/js/helpers.js') }}"></script>
-    <script src="{{ public_path('js/config.js') }}"></script>
+    <script src="{{ asset('public/vendor/js/helpers.js') }}"></script>
+    <script src="{{ asset('js/config.js') }}"></script>
     <style>
         body {
             overflow-x: hidden;
@@ -87,25 +87,25 @@
 </div>
 
 <!-- Core JS -->
-<script src="{{ public_path('vendor/libs/jquery/jquery.js') }}"></script>
-<script src="{{ public_path('vendor/js/bootstrap.js') }}"></script>
-<script src="{{ public_path('vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
-<script src="{{ public_path('vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}" defer></script>
-<script src="{{ public_path('vendor/libs/hammer/hammer.js') }}" defer></script>
+<script src="{{ asset('public/vendor/libs/jquery/jquery.js') }}"></script>
+<script src="{{ asset('public/vendor/js/bootstrap.js') }}"></script>
+<script src="{{ asset('public/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
+<script src="{{ asset('public/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}" defer></script>
+<script src="{{ asset('public/vendor/libs/hammer/hammer.js') }}" defer></script>
 
 {{--/--}}
-<script src="{{ public_path('vendor/js/menu.js') }}"></script>
+<script src="{{ asset('public/vendor/js/menu.js') }}"></script>
 
-<!-- Vendors JS -->
-<script src="{{public_path('vendor/libs/select2/select2.js')}}"></script>
-<script src="{{public_path('vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
-<script src="{{public_path('vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
-<script src="{{public_path('vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
-<script src="{{public_path('vendor/libs/moment/moment.js')}}"></script>
-<script src="{{public_path('js/forms-selects.js')}}"></script>
+<!-- public/vendors JS -->
+<script src="{{asset('public/vendor/libs/select2/select2.js')}}"></script>
+<script src="{{asset('public/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
+<script src="{{asset('public/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
+<script src="{{asset('public/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
+<script src="{{asset('public/vendor/libs/moment/moment.js')}}"></script>
+<script src="{{asset('js/forms-selects.js')}}"></script>
 
 <!-- Main JS -->
-<script src="{{ public_path('js/main.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
 
 @yield('scripts')
 
