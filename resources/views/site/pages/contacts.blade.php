@@ -21,6 +21,33 @@
 
     <!-- Swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <style>
+        html, body {
+            height: 100%; /* Устанавливаем высоту страницы на 100% */
+            margin: 0; /* Убираем внешние отступы */
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%; /* Устанавливаем минимальную высоту для body */
+        }
+
+        .container {
+            flex: 1; /* Контент будет растягиваться, занимая доступное пространство */
+        }
+
+        footer {
+            /*background: #333;*/
+            /*color: #fff;*/
+            /*padding: 10px 0;*/
+            width: 100%;
+            height: auto;
+            /*text-align: center;*/
+            /*position: relative; !* Убираем абсолютное позиционирование *!*/
+        }
+
+    </style>
 
 </head>
 
@@ -99,31 +126,34 @@
     <button>Мои книги</button>
 </div>
 
-<div class="container genres-book-info">
+<div>
+    <div class="container genres-book-info">
         <span class="d-flex align-items-cente"><img src="/img/icons/chevron-left.svg" alt="" width="16px"> <a
                 href="{{url('/')}}">Главная</a> / Контакты</span>
-    <p>Контакты</p>
-</div>
-
-<div class="d-flex flex-row flex-wrap justify-content-between align-items-cente container">
-    <div class="contact-container">
-        <img src="/img/icons/phone.svg" alt="">
-        <div class="d-flex flex-row flex-wrap">
-            <span class="me-1">Номер коллцентра: </span>
-            <p>+ 998 (99) 123 45 67</p>
-        </div>
-    </div>
-    <div class="contact-container">
-        <img src="/img/icons/mail.svg" alt="">
-        <div class="d-flex flex-row flex-wrap">
-            <span class="me-1">Почта: </span>
-            <p>+ 998 (99) 123 45 67</p>
-        </div>
+        <p>Контакты</p>
     </div>
 
+    <div class="d-flex flex-row flex-wrap justify-content-between align-items-cente container">
+        <div class="contact-container">
+            <img src="/img/icons/phone.svg" alt="">
+            <div class="d-flex flex-row flex-wrap">
+                <span class="me-1">Номер коллцентра: </span>
+                <p>+ 998 (99) 123 45 67</p>
+            </div>
+        </div>
+        <div class="contact-container">
+            <img src="/img/icons/mail.svg" alt="">
+            <div class="d-flex flex-row flex-wrap">
+                <span class="me-1">Почта: </span>
+                <p>+ 998 (99) 123 45 67</p>
+            </div>
+        </div>
+
+    </div>
 </div>
 
-<footer class="d-flex align-items-center" style="position: absolute; bottom: 0;">
+
+<footer class="d-flex align-items-center" style=" bottom: 0;">
     <div class="container d-flex justify-content-between">
         <img class="logo-white" src="/img/logo-white.png" alt="" onclick="window.location.href='{{url('/')}}'">
         <div class="footer-content d-flex justify-content-between align-items-cente ">
