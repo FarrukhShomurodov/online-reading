@@ -2,6 +2,8 @@
     margin-top: 50px;
     width: 100%;
     height: 378px;
+    flex-direction: row;
+    align-items: center;
 }
 
 .about-book img {
@@ -63,6 +65,9 @@ footer {
         margin-top: 40px !important;
         width: 100%;
         height: auto;
+        flex-direction: column-reverse;
+        flex-wrap: wrap-reverse;
+        align-items: start;
     }
 
     .book {
@@ -72,7 +77,7 @@ footer {
     .book-details {
         margin-left: 10px;
         padding-left: 10px;
-        max-height: 184px;
+        height: auto !important;
     }
 
     .book-info-mobile {

@@ -127,13 +127,16 @@
 </div>
 
 <div>
-    <div class="container genres-book-info">
-        <span class="d-flex align-items-cente"><img src="/img/icons/chevron-left.svg" alt="" width="16px"> <a
-                href="{{url('/')}}">Главная</a> / Контакты</span>
-        <p>Контакты</p>
+    <div class="container genres-book-info" style="padding-left: 0">
+    <span class="d-flex align-items-center">
+        <img src="/img/icons/chevron-left.svg" alt="" width="16px">
+        <a href="{{ url('/') }}">Главная </a> / Контакты
+    </span>
     </div>
 
-    <div class="d-flex flex-row flex-wrap justify-content-between align-items-cente container">
+    <h3 class="container" style="padding-left: 0">Контакты</h3>
+
+    <div class="d-flex flex-row flex-wrap justify-content-between align-items-center container" style="padding: 0px">
         <div class="contact-container">
             <img src="/img/icons/phone.svg" alt="">
             <div class="d-flex flex-row flex-wrap">

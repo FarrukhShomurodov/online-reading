@@ -26,11 +26,12 @@
 
 <body>
 <header class="d-flex justify-content-between align-items-center">
-    <img src="/img/logo.png" alt="logo" width="70px" height="27px" onclick="window.location.href='{{url('/')}}'">
+    <img src="{{asset('/img/logo.png')}}" alt="logo" width="70px" height="27px"
+         onclick="window.location.href='{{url('/')}}'">
     <div class="container d-flex justify-content-between align-items-center">
         <ul class="menu">
-            <li class="menu-item" style="margin-left: 0px !important;" onclick="window.location.href='{{url('/')}}'">
-                Главная
+            <li class="menu-item active" style="margin-left: 0 !important;"
+                onclick="window.location.href='{{url('/')}}'">Главная
             </li>
             <li class="menu-item">Все категории</li>
             <li class="menu-item" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
@@ -39,22 +40,22 @@
         </ul>
 
         <div class="search-container">
-            <img class="search-icon" src="/img/icons/search.svg" alt="">
+            <img class="search-icon" src="{{asset('/img/icons/search.svg')}}" alt="search">
             <input class="search" type="text" placeholder="Книга, автор">
-            <img class="cross-icon" src="/img/icons/cross.svg" alt="">
+            <img class="cross-icon" src="{{asset('/img/icons/cross.svg')}}" alt="cross">
         </div>
 
         <div class="custom-select-container">
             <div class="custom-select">
                 <div class="custom-select-selected">
-                    <img src="/img/flag/ru.png" alt="RU" class="selected-flag"> RU
+                    <img src="{{asset('/img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
                 </div>
                 <div class="custom-select-options">
                     <div class="custom-select-option">
-                        <img src="/img/flag/ru.png" alt="RU" class="option-flag"> RU
+                        <img src="{{asset('/img/flag/ru.png')}}" alt="RU" class="option-flag"> RU
                     </div>
                     <div class="custom-select-option">
-                        <img src="/img/flag/uz.png" alt="UZ" class="option-flag"> Uz
+                        <img src="{{asset('/img/flag/uz.png')}}" alt="UZ" class="option-flag"> Uz
                     </div>
                 </div>
             </div>
@@ -62,31 +63,39 @@
     </div>
 
     <div class="menu-mobile-nav">
-        <img class="search-icon-mobile" src="/img/icons/search.svg" alt="">
+        <img class="search-icon-mobile" src="{{asset('/img/icons/search.svg')}}" alt="">
         <div class="user-ava d-flex justify-content-center align-items-center"
-             onclick="window.location.href='/pages/room.html'"><span>F</span></div>
-        <img class="menu-icon" src="/img/icons/menu.svg" alt="">
+             onclick="window.location.href='pages/room.html'"><span>F</span></div>
+        <img class="menu-icon" src="{{asset('/img/icons/menu.svg')}}" alt="">
     </div>
 </header>
+
+<div class="container d-flex justify-content-center">
+    <div class="search-container search-mobile">
+        <img class="search-icon" src="{{asset('/img/icons/search.svg')}}" alt="search">
+        <input class="search" type="text" placeholder="Книга, автор">
+        <img class="cross-icon" src="{{asset('/img/icons/cross.svg')}}" alt="cross">
+    </div>
+</div>
 
 <!-- popuop menu -->
 <div class="menu-mobile-active">
     <div class="d-flex justify-content-between align-items-cente w-100">
         <div class="custom-select">
             <div class="custom-select-selected">
-                <img src="/img/flag/ru.png" alt="RU" class="selected-flag"> RU
+                <img src="{{asset('/img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
             </div>
             <div class="custom-select-options">
                 <div class="custom-select-option">
-                    <img src="/img/flag/ru.png" alt="RU" class="option-flag"> RU
+                    <img src="{{asset('/img/flag/ru.png')}}" alt="RU" class="option-flag"> RU
                 </div>
                 <div class="custom-select-option">
-                    <img src="/img/flag/uz.png" alt="UZ" class="option-flag"> Uz
+                    <img src="{{asset('/img/flag/uz.png')}}" alt="UZ" class="option-flag"> Uz
                 </div>
             </div>
         </div>
-        <img src="{{asset('img/menu-logo.png')}}" alt="logo" width="99px" height="38px">
-        <img class="close-menu" src="/img/icons/cross.svg" alt="" width="36px" height="36px">
+        <img src="{{asset('/img/menu-logo.png')}}" alt="logo" width="99px" height="38px">
+        <img class="close-menu" src="{{ asset('/img/icons/cross.svg') }}" alt="" width="36px" height="36px">
     </div>
     <ul class="menu d-flex justify-content-center align-items-cente flex-column">
         <li class="menu-item" onclick="window.location.href='{{url('/')}}'">Главная</li>
@@ -98,12 +107,15 @@
 
     <button>Мои книги</button>
 </div>
-<div class="container genres-book-info">
-        <span class="d-flex align-items-cente"><img src="/img/icons/chevron-left.svg" alt="" width="16px">
-            <a href="{{url('/')}}">Главная </a> / Категории / {{ $genre->name['ru'] }}</span>
-    <p>Книги в жанре “{{ $genre->name['ru'] }}”</p>
+
+<div class="container genres-book-info" style="padding-left: 0">
+    <span class="d-flex align-items-center">
+        <img src="/img/icons/chevron-left.svg" alt="" width="16px">
+        <a href="{{ url('/') }}">Главная </a> / Категории / {{ $genre->name['ru'] }}
+    </span>
 </div>
 
+<h3 class="container" style="padding-left: 0">Книги в жанре “{{ $genre->name['ru'] }}”</h3>
 
 @php $placeNumber = 0; @endphp
 @foreach($categories->take(7) as $category)
@@ -246,6 +258,7 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 <script>
     @if($collections->first())
     const swiper = new Swiper('.swiper-container', {
@@ -265,7 +278,7 @@
     @endif
 
     @php $placeNumber = 0; @endphp
-    @foreach($categories->take(5) as $category)
+    @foreach($categories->take(7) as $category)
     @php $placeNumber++ @endphp
     new Swiper('.swiper-category-container{{$placeNumber}}', {
         loop: true,
@@ -302,7 +315,7 @@
     new Swiper('.swiper-top-book-container', {
         loop: true,
         {{--slidesPerView: {{$collections->find(4)->books->count()}},--}}
-        spaceBetween: 30,
+        spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-top-book-container-next',
             prevEl: '.swiper-top-book-container-prev',
@@ -320,10 +333,10 @@
     new Swiper('.swiper-collection-container', {
         loop: true,
         {{--slidesPerView: {{$collections->find(3)->books->count()}},--}}
-        spaceBetween: 30,
+        spaceBetween: 10,
         navigation: {
-            nextEl: '.swiper-new-book-next',
-            prevEl: '.swiper-new-book-prev',
+            nextEl: '.swiper-collection-container-next',
+            prevEl: '.swiper-collection-container-prev',
         },
         // autoplay: {
         //     delay: 3000,
@@ -342,6 +355,10 @@
         $('.close-menu').on('click', function () {
             $('.menu-mobile-active').removeClass('active');
             $('body').removeClass('no-scroll');
+        });
+
+        $('.search-icon-mobile').on('click', function () {
+            $('.search-mobile').toggleClass('search-container-mobile');
         });
 
 
@@ -399,6 +416,7 @@
         );
     });
 </script>
+
 </body>
 
 </html>

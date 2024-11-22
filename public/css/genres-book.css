@@ -1,22 +1,50 @@
 .genres-book-info {
     margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: hidden;
 }
 
 .genres-book-info span {
     color: #9A9A9A !important;
     font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .genres-book-info a {
     color: #9A9A9A !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
+.genres-book-info a:hover {
+    color: #555555;
+}
 
 .genres-book-info span img {
     filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(225deg) brightness(91%) contrast(94%);
+    margin-right: 8px;
 }
 
 .genres-book-info p {
     font-size: 26px;
     font-weight: 600;
+}
+
+@media (max-width: 400px) {
+    .genres-book-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .genres-book-info span {
+        font-size: 12px;
+        white-space: normal;
+    }
 }

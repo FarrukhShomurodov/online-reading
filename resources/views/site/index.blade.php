@@ -462,7 +462,7 @@
     new Swiper('.swiper-top-book-container', {
         loop: true,
         {{--slidesPerView: {{$collections->find(4)->books->count()}},--}}
-        spaceBetween: 30,
+        spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-top-book-container-next',
             prevEl: '.swiper-top-book-container-prev',
@@ -480,7 +480,7 @@
     new Swiper('.swiper-collection-container', {
         loop: true,
         {{--slidesPerView: {{$collections->find(3)->books->count()}},--}}
-        spaceBetween: 30,
+        spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-collection-container-next',
             prevEl: '.swiper-collection-container-prev',
