@@ -26,16 +26,13 @@
             height: 100%;
             margin: 0;
         }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100%;
-        }
-
-        .container {
-            flex: 1;
-        }
+        
+        /*body {*/
+        /*    display: flex;*/
+        /*    flex-direction: column;*/
+        /*    justify-content: space-between;*/
+        /*    min-height: 100%;*/
+        /*}*/
 
         footer {
             width: 100%;
@@ -47,11 +44,12 @@
 
 <body>
 <header class="d-flex justify-content-between align-items-center">
-    <img src="/img/logo.png" alt="logo" width="70px" height="27px" onclick="window.location.href='{{url('/')}}'">
+    <img src="{{asset('/img/logo.png')}}" alt="logo" width="70px" height="27px"
+         onclick="window.location.href='{{url('/')}}'">
     <div class="container d-flex justify-content-between align-items-center">
         <ul class="menu">
-            <li class="menu-item" style="margin-left: 0px !important;" onclick="window.location.href='{{url('/')}}'">
-                Главная
+            <li class="menu-item active" style="margin-left: 0 !important;"
+                onclick="window.location.href='{{url('/')}}'">Главная
             </li>
             <li class="menu-item">Все категории</li>
             <li class="menu-item" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
@@ -60,22 +58,22 @@
         </ul>
 
         <div class="search-container">
-            <img class="search-icon" src="/img/icons/search.svg" alt="">
+            <img class="search-icon" src="{{asset('/img/icons/search.svg')}}" alt="search">
             <input class="search" type="text" placeholder="Книга, автор">
-            <img class="cross-icon" src="/img/icons/cross.svg" alt="">
+            <img class="cross-icon" src="{{asset('/img/icons/cross.svg')}}" alt="cross">
         </div>
 
         <div class="custom-select-container">
             <div class="custom-select">
                 <div class="custom-select-selected">
-                    <img src="/img/flag/ru.png" alt="RU" class="selected-flag"> RU
+                    <img src="{{asset('/img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
                 </div>
                 <div class="custom-select-options">
                     <div class="custom-select-option">
-                        <img src="/img/flag/ru.png" alt="RU" class="option-flag"> RU
+                        <img src="{{asset('/img/flag/ru.png')}}" alt="RU" class="option-flag"> RU
                     </div>
                     <div class="custom-select-option">
-                        <img src="/img/flag/uz.png" alt="UZ" class="option-flag"> Uz
+                        <img src="{{asset('/img/flag/uz.png')}}" alt="UZ" class="option-flag"> Uz
                     </div>
                 </div>
             </div>
@@ -83,31 +81,39 @@
     </div>
 
     <div class="menu-mobile-nav">
-        <img class="search-icon-mobile" src="/img/icons/search.svg" alt="">
+        <img class="search-icon-mobile" src="{{asset('/img/icons/search.svg')}}" alt="">
         <div class="user-ava d-flex justify-content-center align-items-center"
-             onclick="window.location.href='/pages/room.html'"><span>F</span></div>
-        <img class="menu-icon" src="/img/icons/menu.svg" alt="">
+             onclick="window.location.href='pages/room.html'"><span>F</span></div>
+        <img class="menu-icon" src="{{asset('/img/icons/menu.svg')}}" alt="">
     </div>
 </header>
+
+<div class="container d-flex justify-content-center" style="height: 40px">
+    <div class="search-container search-mobile">
+        <img class="search-icon" src="{{asset('/img/icons/search.svg')}}" alt="search">
+        <input class="search" type="text" placeholder="Книга, автор">
+        <img class="cross-icon" src="{{asset('/img/icons/cross.svg')}}" alt="cross">
+    </div>
+</div>
 
 <!-- popuop menu -->
 <div class="menu-mobile-active">
     <div class="d-flex justify-content-between align-items-cente w-100">
         <div class="custom-select">
             <div class="custom-select-selected">
-                <img src="/img/flag/ru.png" alt="RU" class="selected-flag"> RU
+                <img src="{{asset('/img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
             </div>
             <div class="custom-select-options">
                 <div class="custom-select-option">
-                    <img src="/img/flag/ru.png" alt="RU" class="option-flag"> RU
+                    <img src="{{asset('/img/flag/ru.png')}}" alt="RU" class="option-flag"> RU
                 </div>
                 <div class="custom-select-option">
-                    <img src="/img/flag/uz.png" alt="UZ" class="option-flag"> Uz
+                    <img src="{{asset('/img/flag/uz.png')}}" alt="UZ" class="option-flag"> Uz
                 </div>
             </div>
         </div>
-        <img src="{{asset('img/menu-logo.png')}}" alt="logo" width="99px" height="38px">
-        <img class="close-menu" src="/img/icons/cross.svg" alt="" width="36px" height="36px">
+        <img src="{{asset('/img/menu-logo.png')}}" alt="logo" width="99px" height="38px">
+        <img class="close-menu" src="{{ asset('/img/icons/cross.svg') }}" alt="" width="36px" height="36px">
     </div>
     <ul class="menu d-flex justify-content-center align-items-cente flex-column">
         <li class="menu-item" onclick="window.location.href='{{url('/')}}'">Главная</li>
@@ -179,6 +185,10 @@
         $('.close-menu').on('click', function () {
             $('.menu-mobile-active').removeClass('active');
             $('body').removeClass('no-scroll');
+        });
+
+        $('.search-icon-mobile').on('click', function () {
+            $('.search-mobile').toggleClass('search-container-mobile');
         });
 
 

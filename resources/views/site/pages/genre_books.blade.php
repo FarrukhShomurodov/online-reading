@@ -179,8 +179,8 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="swiper-collection-container-prev"><img src="img/icons/left.svg" alt=""></div>
-                        <div class="swiper-collection-container-next"><img src="img/icons/right.svg" alt=""></div>
+                        <div class="swiper-collection-container-prev"><img src="/img/icons/left.svg" alt=""></div>
+                        <div class="swiper-collection-container-next"><img src="/img/icons/right.svg" alt=""></div>
                     </div>
                 </div>
             </div>
@@ -224,28 +224,28 @@
                 </div>
             </div>
 
-            <div class="top-news-mobile category-container container">
+            <div class="top-news-mobile category-container container d-flex flex-column">
                 <div class="swiper-top-book-container">
                     <div class="swiper-wrapper">
                         @foreach( $collections->find(4)->books as $book)
                             <div class="book-container swiper-slide">
                                 <div>
-                                    <img src="{{asset('storage/'.$book->images->first()->url)}}" alt="">
+                                    <img src="{{asset('storage/'. $book->images->first()->url)}}" alt="">
                                     <div class="book-container-content">
                                         <span class="author">• {{ $book->author->name['ru'] }}</span><br>
                                         <p>{{ $book->title['ru'] }}</p>
                                     </div>
                                 </div>
-                                <button onclick=" window.location.href='{{route('book-show', $book->id)}}'"> Читать
+                                <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать
                                     книгу
                                 </button>
                             </div>
                         @endforeach
                     </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="swiper-top-book-container-prev"><img src="img/icons/left.svg" alt=""></div>
-                        <div class="swiper-top-book-container-next"><img src="img/icons/right.svg" alt=""></div>
-                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="swiper-top-book-container-prev"><img src="/img/icons/left.svg" alt=""></div>
+                    <div class="swiper-top-book-container-next"><img src="/img/icons/right.svg" alt=""></div>
                 </div>
             </div>
         @endif

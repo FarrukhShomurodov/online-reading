@@ -348,7 +348,7 @@
                 </div>
             </div>
 
-            <div class="top-news-mobile category-container container">
+            <div class="top-news-mobile category-container container d-flex flex-column">
                 <div class="swiper-top-book-container">
                     <div class="swiper-wrapper">
                         @foreach( $collections->find(4)->books as $book)
@@ -366,10 +366,10 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="swiper-top-book-container-prev"><img src="img/icons/left.svg" alt=""></div>
-                        <div class="swiper-top-book-container-next"><img src="img/icons/right.svg" alt=""></div>
-                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="swiper-top-book-container-prev"><img src="img/icons/left.svg" alt=""></div>
+                    <div class="swiper-top-book-container-next"><img src="img/icons/right.svg" alt=""></div>
                 </div>
             </div>
         @endif
