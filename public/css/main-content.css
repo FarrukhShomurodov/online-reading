@@ -572,11 +572,21 @@
 
 .genres-info {
     padding: 10px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .genres-info p {
     font-weight: 700;
-    font-size: 22px
+    font-size: 22px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .genre-grid {
