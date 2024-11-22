@@ -700,6 +700,14 @@ footer .container img {
         padding-bottom: 0px;
     }
 
+    .best-book-month .top-btn {
+        display: none;
+    }
+
+    .best-book-month .top-books-mobile .top-btn {
+        display: block;
+    }
+
     .top-readen {
         margin-top: 20px;
     }
