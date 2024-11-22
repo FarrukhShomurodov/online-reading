@@ -119,8 +119,8 @@
 </div>
 
 @if($collections->first())
-    <div class="top-books container d-flex justify-content-between align-items-center flex-row">
-        <div class="d-flex flex-column justify-content-between align-items-start" style="height: 100%;">
+    <div class="top-books container d-flex justify-content-between align-items-center flex-wrap-reverse">
+        <div class="top-books-info d-flex flex-column justify-content-between align-items-start">
             <button class="top-btn">
                 {{ $collections->first()->name['ru'] }}
             </button>
@@ -133,7 +133,6 @@
                     {{ $collections->first()->books->first()->description['ru'] }}
                 </p>
             </div>
-
             <div>
                 <button class="top-read-book"
                         onclick="window.location.href='{{route('book-show', $collections->first()->books->first()->id)}}'">
@@ -147,7 +146,10 @@
 
         <!-- Slider -->
         <div class="slider">
-            <div class="swiper-button-prev"><img src="{{asset('img/icons/left.svg')}}" alt=""></div>
+            <button class="top-btn">
+                {{ $collections->first()->name['ru'] }}
+            </button>
+            {{--                        <div class="swiper-button-prev"><img src="{{asset('img/icons/left.svg')}}" alt=""></div>--}}
             <div class="top-books-collection">
                 <img class="crown" src="{{asset('/img/icons/crown.svg')}}" alt="">
                 <div class="d-flex flex-row swiper-container">
@@ -164,7 +166,12 @@
                     </div>
                 </div>
             </div>
-            <div class="swiper-button-next"><img src="img/icons/right.svg" alt=""></div>
+            {{--            <div class="swiper-button-next"><img src="img/icons/right.svg" alt=""></div>--}}
+
+            <div class="nav-slider">
+                <div class="swiper-button-prev"><img src="{{asset('img/icons/left.svg')}}" alt=""></div>
+                <div class="swiper-button-next"><img src="img/icons/right.svg" alt=""></div>
+            </div>
         </div>
     </div>
 @endif
