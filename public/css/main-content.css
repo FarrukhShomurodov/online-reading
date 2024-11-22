@@ -746,6 +746,10 @@ footer .container img {
         left: 0;
     }
 
+    .top-books-collection {
+        margin-top: 30px;
+    }
+
     .top-books .top-btn {
         display: none;
     }
