@@ -144,6 +144,19 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
+    color: black;
+}
+
+.book-container-content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #9A9A9A;
+
+}
+
+.book-container-content, h3, p {
+    color: black;
 }
 
 .top-book-container {
@@ -209,7 +222,6 @@
     padding: 8px 12px;
     text-align: start;
     font-weight: 500;
-    white-space: nowrap;
 }
 
 .top-book-container p {
