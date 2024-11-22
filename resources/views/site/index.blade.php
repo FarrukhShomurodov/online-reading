@@ -21,29 +21,6 @@
 
     <!-- Swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100%;
-        }
-
-        .container {
-            flex: 1;
-        }
-
-        footer {
-            width: 100%;
-            height: auto;
-        }
-    </style>
-    
 </head>
 
 <body>
