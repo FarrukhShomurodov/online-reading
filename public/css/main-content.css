@@ -10,14 +10,24 @@
     font-weight: 600;
 }
 
+
 .all-books ul {
     display: flex;
-    flex-wrap: wrap;
     gap: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+    /*overflow-y: hidden;*/
+    /*overflow-x: scroll;*/
+    /*scrollbar-width: none;*/
+}
+
+.all-books ul::-webkit-scrollbar {
+    display: none;
 }
 
 .all-books ul li button {
     text-align: center;
+    width: 100%;
     padding: 8px 16px;
     font-size: 16px;
     font-weight: 500;
@@ -25,6 +35,7 @@
     border: 1px solid #CCCCCC;
     border-radius: 10px;
     transition: color 0.3s ease, border 0.3s ease;
+    white-space: nowrap;
 }
 
 .all-books ul li button:hover {
@@ -746,6 +757,14 @@ footer .container img {
         top: 0;
         left: 0;
     }
+
+    .all-books ul {
+        flex-wrap: nowrap;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        scrollbar-width: none;
+    }
+
 
     .top-books-collection {
         margin-top: 30px;
