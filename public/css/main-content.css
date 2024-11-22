@@ -155,7 +155,7 @@
 
 }
 
-.book-container-content, h3, p {
+.book-container-content h3, p {
     color: black;
 }
 
