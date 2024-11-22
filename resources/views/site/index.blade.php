@@ -70,6 +70,14 @@
     </div>
 </header>
 
+<div class="container d-flex justify-content-center">
+    <div class="search-container search-mobile">
+        <img class="search-icon" src="{{asset('img/icons/search.svg')}}" alt="search">
+        <input class="search" type="text" placeholder="Книга, автор">
+        <img class="cross-icon" src="{{asset('img/icons/cross.svg')}}" alt="cross">
+    </div>
+</div>
+
 <!-- popuop menu -->
 <div class="menu-mobile-active">
     <div class="d-flex justify-content-between align-items-cente w-100">
@@ -494,6 +502,10 @@
         $('.close-menu').on('click', function () {
             $('.menu-mobile-active').removeClass('active');
             $('body').removeClass('no-scroll');
+        });
+
+        $('.search-icon-mobile').on('click', function () {
+            $('.search-mobile').toggleClass('search-container-mobile');
         });
 
 

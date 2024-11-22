@@ -229,9 +229,23 @@ header {
     pointer-events: auto;
 }
 
+.search-container-mobile {
+    display: none;
+}
+
+.search-mobile {
+    display: none;
+}
+
 @media (max-width: 1400px) {
     .search-container {
         display: none;
+    }
+
+    .search-container-mobile {
+        display: block;
+        max-width: 100%;
+        margin-top: 40px;
     }
 
     .menu-mobile-nav {
