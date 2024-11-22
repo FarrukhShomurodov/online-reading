@@ -209,6 +209,7 @@
     padding: 8px 12px;
     text-align: start;
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .top-book-container p {
