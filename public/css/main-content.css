@@ -148,9 +148,11 @@
 }
 
 .book-container-content {
+    position: relative;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 100%;
     color: #9A9A9A;
 
 }
@@ -241,6 +243,10 @@
 
 /* Book */
 .book-container {
+    width: 160px !important;
+}
+
+.book-container div:first-child {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -253,13 +259,32 @@
     transition: border 0.3s ease;
 }
 
-.book-container:hover {
+.book-container button {
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 8px 12px;
+    width: 100%;
+    color: white;
+    font-size: 16px;
+    background-color: rgba(16, 16, 16, 1);
+    border: 1px solid black;
+    transition: color 0.3s ease, border 0.3s ease, background-color 0.3s ease;
+}
+
+.book-container button:hover {
+    color: black;
+    border: 1px solid #FFB539;
+    background-color: #FFB539;
+}
+
+
+.book-container div:first-child:hover {
     border: 1px solid #F6C065;
     cursor: pointer;
 }
 
 
-.book-container img {
+.book-container div:first-child img {
     width: 100%;
     height: 100%;
     max-height: 244px;
@@ -855,15 +880,23 @@ footer .container img {
 
     .book-container {
         width: 106px !important;
+    }
+
+    .book-container div:first-child {
+        width: 106px !important;
         height: 220px !important;
     }
 
-    .book-container img {
+    .book-container div:first-child img {
         width: 100%;
         height: 150px !important;
     }
 
-    .book-container p {
+    .book-container div:first-child p {
+        font-size: 12px;
+    }
+
+    .book-container button {
         font-size: 12px;
     }
 }

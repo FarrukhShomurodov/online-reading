@@ -127,13 +127,16 @@
                 @foreach($category->books as $book)
                     @if($book->is_active)
                         <div class="book-container swiper-slide">
-                            @foreach(json_decode($book->images) as $photo)
-                                <img src="{{ asset('storage/' . $photo->url) }}" alt="" width="100%" height="244px">
-                            @endforeach
-                            <div class="book-container-content">
-                                <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                <p>{{ $book->title['ru'] }}</p>
+                            <div>
+                                <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
+                                     height="244px">
+                                <div class="book-container-content">
+                                    <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                    <p>{{ $book->title['ru'] }}</p>
+                                </div>
                             </div>
+                            <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать книгу
+                            </button>
                         </div>
                     @endif
                 @endforeach
@@ -160,19 +163,24 @@
                         <div class="swiper-wrapper">
                             @foreach($collections->find(3)->books as $book)
                                 <div class="book-container swiper-slide">
-                                    <img src="{{asset('storage/'. $book->images->first()->url)}}"
-                                         alt="{{ $book->title['ru'] }}">
-                                    <div class="book-container-content">
-                                        <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                        <p>{{ $book->title['ru'] }}</p>
+                                    <div>
+                                        <img src="{{asset('storage/'. $book->images->first()->url)}}"
+                                             alt="{{ $book->title['ru'] }}">
+                                        <div class="book-container-content">
+                                            <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                            <p>{{ $book->title['ru'] }}</p>
+                                        </div>
                                     </div>
+                                    <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать
+                                        книгу
+                                    </button>
                                 </div>
                             @endforeach
                         </div>
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="swiper-category-button-prev2"><img src="/img/icons/left.svg" alt=""></div>
-                        <div class="swiper-category-button-next2"><img src="/img/icons/right.svg" alt=""></div>
+                        <div class="swiper-collection-container-prev"><img src="img/icons/left.svg" alt=""></div>
+                        <div class="swiper-collection-container-next"><img src="img/icons/right.svg" alt=""></div>
                     </div>
                 </div>
             </div>
@@ -221,17 +229,22 @@
                     <div class="swiper-wrapper">
                         @foreach( $collections->find(4)->books as $book)
                             <div class="book-container swiper-slide">
-                                <img src="{{asset('storage/'.$book->images->first()->url)}}" alt="">
-                                <div class="book-container-content">
-                                    <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                    <p>{{ $book->title['ru'] }}</p>
+                                <div>
+                                    <img src="{{asset('storage/'.$book->images->first()->url)}}" alt="">
+                                    <div class="book-container-content">
+                                        <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                        <p>{{ $book->title['ru'] }}</p>
+                                    </div>
                                 </div>
+                                <button onclick=" window.location.href='{{route('book-show', $book->id)}}'"> Читать
+                                    книгу
+                                </button>
                             </div>
                         @endforeach
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="swiper-new-book-prev"><img src="img/icons/left.svg" alt=""></div>
-                        <div class="swiper-new-book-next"><img src="img/icons/right.svg" alt=""></div>
+                        <div class="swiper-top-book-container-prev"><img src="img/icons/left.svg" alt=""></div>
+                        <div class="swiper-top-book-container-next"><img src="img/icons/right.svg" alt=""></div>
                     </div>
                 </div>
             </div>
@@ -241,7 +254,8 @@
 
 <footer class="position-relative">
     <div class="container d-flex justify-content-between">
-        <img class="logo-white" src="/img/logo-white.png" alt="" onclick="window.location.href='{{url('/')}}'">
+        <img class="logo-white" src="/img/logo-white.png" alt=""
+             onclick="window.location.href='{{url('/')}}'">
         <div class="footer-content d-flex justify-content-between align-items-cente ">
             <ul class="d-flex align-items-center flex-row container">
                 <li>Правила <img src="/img/icons/chevron-right.svg"></li>

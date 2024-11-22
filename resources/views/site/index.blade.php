@@ -193,15 +193,17 @@
             <div class="swiper-wrapper">
                 @foreach($category->books as $book)
                     @if($book->is_active)
-                        <div class="book-container swiper-slide"
-                             onclick="window.location.href='{{route('book-show', $book->id)}}'">
-                            @foreach(json_decode($book->images) as $photo)
-                                <img src="{{ asset('storage/' . $photo->url) }}" alt="" width="100%" height="244px">
-                            @endforeach
-                            <div class="book-container-content">
-                                <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                <p>{{ $book->title['ru'] }}</p>
+                        <div class="book-container swiper-slide">
+                            <div>
+                                <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
+                                     height="244px">
+                                <div class="book-container-content">
+                                    <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                    <p>{{ $book->title['ru'] }}</p>
+                                </div>
                             </div>
+                            <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать книгу
+                            </button>
                         </div>
                     @endif
                 @endforeach
@@ -284,14 +286,18 @@
                     <div class="container swiper-collection-container">
                         <div class="swiper-wrapper">
                             @foreach($collections->find(3)->books as $book)
-                                <div class="book-container swiper-slide"
-                                     onclick="window.location.href='{{route('book-show', $book->id)}}'">
-                                    <img src="{{asset('storage/'. $book->images->first()->url)}}"
-                                         alt="{{ $book->title['ru'] }}">
-                                    <div class="book-container-content">
-                                        <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                        <p>{{ $book->title['ru'] }}</p>
+                                <div class="book-container swiper-slide">
+                                    <div>
+                                        <img src="{{asset('storage/'. $book->images->first()->url)}}"
+                                             alt="{{ $book->title['ru'] }}">
+                                        <div class="book-container-content">
+                                            <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                            <p>{{ $book->title['ru'] }}</p>
+                                        </div>
                                     </div>
+                                    <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать
+                                        книгу
+                                    </button>
                                 </div>
                             @endforeach
                         </div>
@@ -347,13 +353,17 @@
                 <div class="swiper-top-book-container">
                     <div class="swiper-wrapper">
                         @foreach( $collections->find(4)->books as $book)
-                            <div class="book-container swiper-slide"
-                                 onclick="window.location.href='{{route('book-show', $book->id)}}'">
-                                <img src="storage/{{$book->images->first()->url}}" alt="">
-                                <div class="book-container-content">
-                                    <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                    <p>{{ $book->title['ru'] }}</p>
+                            <div class="book-container swiper-slide">
+                                <div>
+                                    <img src="storage/{{$book->images->first()->url}}" alt="">
+                                    <div class="book-container-content">
+                                        <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                        <p>{{ $book->title['ru'] }}</p>
+                                    </div>
                                 </div>
+                                <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать
+                                    книгу
+                                </button>
                             </div>
                         @endforeach
                     </div>
