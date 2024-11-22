@@ -23,30 +23,24 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     <style>
         html, body {
-            height: 100%; /* Устанавливаем высоту страницы на 100% */
-            margin: 0; /* Убираем внешние отступы */
+            height: 100%;
+            margin: 0;
         }
 
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100%; /* Устанавливаем минимальную высоту для body */
+            min-height: 100%;
         }
 
         .container {
-            flex: 1; /* Контент будет растягиваться, занимая доступное пространство */
+            flex: 1;
         }
 
         footer {
-            /*background: #333;*/
-            /*color: #fff;*/
-            /*padding: 10px 0;*/
             width: 100%;
             height: auto;
-            /*text-align: center;*/
-            /*position: relative; !* Убираем абсолютное позиционирование *!*/
         }
-
     </style>
 
 </head>
