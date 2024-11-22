@@ -124,6 +124,7 @@
     width: 100%;
     max-width: 500px;
     height: 470px;
+    z-index: 1;
     text-align: center;
 }
 
