@@ -113,7 +113,7 @@
 </div>
 
 <main class="container all-categories">
-    @if(count($genre->books) == 0)
+    @if($books->isEmpty())
         <div class="not-found">
             <p>Упс! Мы не нашли ни одной книги.</p>
             <button onclick="window.location.href='{{ url()->previous() }}'">Назад</button>
@@ -121,8 +121,7 @@
     @else
         <h3 style="padding-left: 0">Книги в жанре “{{ $genre->name['ru'] }}”</h3>
         <div class="genre-grid all-genres">
-
-            @foreach($genre->books->orderBy('images') as $book)
+            @foreach($books as $book)
                 <div class="book-container">
                     <div>
                         <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
@@ -132,8 +131,7 @@
                             <p>{{ $book->title['ru'] }}</p>
                         </div>
                     </div>
-                    <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать книгу
-                    </button>
+                    <button onclick="window.location.href='{{ route('book-show', $book->id) }}'">Читать книгу</button>
                 </div>
             @endforeach
         </div>

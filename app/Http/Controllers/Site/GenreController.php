@@ -15,7 +15,11 @@ class GenreController
 
     public function books(Genre $genre): View
     {
-        $genre->with('books');
-        return view('site.pages.genre_books', compact('genre'));
+        $books = $genre->books()
+            ->with(['images', 'author'])
+            ->withCount('images')
+            ->orderBy('images_count', 'desc')
+            ->get();
+        return view('site.pages.genre_books', compact('genre', 'books'));
     }
 }
