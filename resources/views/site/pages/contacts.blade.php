@@ -21,25 +21,6 @@
 
     <!-- Swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-        
-        /*body {*/
-        /*    display: flex;*/
-        /*    flex-direction: column;*/
-        /*    justify-content: space-between;*/
-        /*    min-height: 100%;*/
-        /*}*/
-
-        footer {
-            width: 100%;
-            height: auto;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -48,11 +29,13 @@
          onclick="window.location.href='{{url('/')}}'">
     <div class="container d-flex justify-content-between align-items-center">
         <ul class="menu">
-            <li class="menu-item active" style="margin-left: 0 !important;"
+            <li class="menu-item" style="margin-left: 0 !important;"
                 onclick="window.location.href='{{url('/')}}'">Главная
             </li>
-            <li class="menu-item">Все категории</li>
-            <li class="menu-item" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
+            <li class="menu-item" onclick="window.location.href='{{url('categories')}}'">Все категории</li>
+            <li class="menu-item" onclick="window.location.href='{{url('genres')}}'">Все жанры</li>
+            <li class="menu-item" onclick="window.location.href='{{url('collections')}}'">Подборки</li>
+            <li class="menu-item active" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
             <li class="menu-item">Оферта</li>
             <li class="menu-item">О нас</li>
         </ul>
@@ -88,12 +71,10 @@
     </div>
 </header>
 
-<div class="container d-flex justify-content-center" style="height: 40px">
-    <div class="search-container search-mobile">
-        <img class="search-icon" src="{{asset('/img/icons/search.svg')}}" alt="search">
-        <input class="search" type="text" placeholder="Книга, автор">
-        <img class="cross-icon" src="{{asset('/img/icons/cross.svg')}}" alt="cross">
-    </div>
+<div class="search-container search-mobile container">
+    <img class="search-icon" src="{{asset('/img/icons/search.svg')}}" alt="search">
+    <input class="search" type="text" placeholder="Книга, автор">
+    <img class="cross-icon" src="{{asset('/img/icons/cross.svg')}}" alt="cross">
 </div>
 
 <!-- popuop menu -->
@@ -116,8 +97,12 @@
         <img class="close-menu" src="{{ asset('/img/icons/cross.svg') }}" alt="" width="36px" height="36px">
     </div>
     <ul class="menu d-flex justify-content-center align-items-cente flex-column">
-        <li class="menu-item" onclick="window.location.href='{{url('/')}}'">Главная</li>
-        <li class="menu-item">Все категории</li>
+        <li class="menu-item" style="margin-left: 0 !important;"
+            onclick="window.location.href='{{url('/')}}'">Главная
+        </li>
+        <li class="menu-item" onclick="window.location.href='{{url('categories')}}'">Все категории</li>
+        <li class="menu-item" onclick="window.location.href='{{url('genres')}}'">Все жанры</li>
+        <li class="menu-item" onclick="window.location.href='{{url('collections')}}'">Подборки</li>
         <li class="menu-item" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
         <li class="menu-item">Оферта</li>
         <li class="menu-item">О нас</li>
@@ -126,17 +111,17 @@
     <button>Мои книги</button>
 </div>
 
-<div>
-    <div class="container genres-book-info" style="padding-left: 0">
+<main class="container">
+    <div class="genres-book-info" style="padding-left: 0">
     <span class="d-flex align-items-center">
         <img src="/img/icons/chevron-left.svg" alt="" width="16px">
         <a href="{{ url('/') }}">Главная </a> / Контакты
     </span>
     </div>
 
-    <h3 class="container" style="padding-left: 0">Контакты</h3>
+    <h3 style="padding-left: 0">Контакты</h3>
 
-    <div class="d-flex flex-row flex-wrap justify-content-between align-items-center container" style="padding: 0px">
+    <div class="d-flex flex-row flex-wrap justify-content-between align-items-center" style="padding: 0px">
         <div class="contact-container">
             <img src="/img/icons/phone.svg" alt="">
             <div class="d-flex flex-row flex-wrap">
@@ -153,10 +138,10 @@
         </div>
 
     </div>
-</div>
+</main>
 
 
-<footer class="d-flex align-items-center" style=" bottom: 0;">
+<footer>
     <div class="container d-flex justify-content-between">
         <img class="logo-white" src="/img/logo-white.png" alt="" onclick="window.location.href='{{url('/')}}'">
         <div class="footer-content d-flex justify-content-between align-items-cente ">

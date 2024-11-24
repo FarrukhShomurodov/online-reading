@@ -1,6 +1,6 @@
 /* All books */
 .all-books-container {
-    margin-top: 18px;
+    margin-top: 50px;
 }
 
 .all-books-container p {
@@ -94,7 +94,7 @@
 }
 
 .top-readen:hover {
-    border: 0px solid transparent !important;
+    border: 1px solid transparent !important;
 }
 
 .top-read-book {
@@ -543,10 +543,15 @@
     font-weight: 600;
 }
 
+.all-genres {
+    margin-top: 50px;
+}
+
 .genere-container {
     width: 255px;
-    height: 325px;
-    /*height: auto;*/
+    /*height: 325px;*/
+    max-height: 325px;
+    height: auto;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -571,17 +576,19 @@
 }
 
 .genres-info {
-    padding: 10px;
+    padding: 10px 10px 5px;
+    height: 70%;
     position: relative;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
+    color: #9A9A9A;
 }
 
 .genres-info p {
     font-weight: 700;
-    font-size: 22px;
+    /*font-size: 22px;*/
     position: relative;
     white-space: nowrap;
     overflow: hidden;
@@ -599,21 +606,15 @@
 
 /* Footer */
 footer {
-    position: relative;
-    bottom: 0;
     width: 100%;
-    margin-top: 50px;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    height: auto;
+    padding: 50px 20px;
     background-color: #212121;
     color: white;
     display: flex;
-    /* Flexbox для выравнивания содержимого футера */
     justify-content: center;
-    /* Центрирование по горизонтали */
     align-items: center;
-    /* Центрирование по вертикали */
-
+    margin-top: 50px;
 }
 
 footer .container img {
@@ -661,6 +662,27 @@ footer .container img {
     display: none;
 }
 
+.all-genres-section {
+    width: auto;
+}
+
+.all-genres-section button {
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 8px 12px;
+    width: 100%;
+    color: white;
+    font-size: 16px;
+    background-color: rgba(16, 16, 16, 1);
+    border: 1px solid black;
+    transition: color 0.3s ease, border 0.3s ease, background-color 0.3s ease;
+}
+
+.all-genres-section button:hover {
+    color: black;
+    border: 1px solid #FFB539;
+    background-color: #FFB539;
+}
 
 @media (max-width: 1100px) {
     .slider {
@@ -712,11 +734,19 @@ footer .container img {
         margin-top: 40px !important;
     }
 
+    .all-books-container {
+        margin-top: 40px !important;
+    }
+
     .swiper-new-book-prev, .swiper-new-book-next {
         display: none;
     }
 
     .top-genre {
+        margin-top: 40px !important;
+    }
+
+    .all-genres {
         margin-top: 40px !important;
     }
 
@@ -766,7 +796,7 @@ footer .container img {
 
     .top-readen-book-container {
         padding: 0px !important;
-        margin-top: 40px;
+        margin-top: 40px !important;
         flex-wrap: wrap;
     }
 
@@ -842,7 +872,7 @@ footer .container img {
 
     .genere-container {
         width: 158px;
-        height: 200px;
+        max-height: 200px;
     }
 
     .genere-container p {

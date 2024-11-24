@@ -56,9 +56,6 @@
     object-fit: cover;
 }
 
-footer {
-    position: absolute;
-}
 
 @media (max-width: 1200px) {
     .about-book {

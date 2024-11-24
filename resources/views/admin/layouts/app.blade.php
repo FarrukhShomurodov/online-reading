@@ -26,7 +26,7 @@
           class="template-customizer-theme-css"/>
     <link rel="stylesheet" href="{{ asset('css/demo.css') }}"/>
 
-    <!-- public/vendors CSS -->
+    <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('public/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}"/>
     <link rel="stylesheet" href="{{ asset('public/vendor/libs/typeahead-js/typeahead.css') }}"/>
     <link rel="stylesheet" href="{{ asset('public/vendor/libs/bootstrap-select/bootstrap-select.css') }}"/>
@@ -96,7 +96,7 @@
 {{--/--}}
 <script src="{{ asset('public/vendor/js/menu.js') }}"></script>
 
-<!-- public/vendors JS -->
+<!-- Vendors JS -->
 <script src="{{asset('public/vendor/libs/select2/select2.js')}}"></script>
 <script src="{{asset('public/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
 <script src="{{asset('public/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>

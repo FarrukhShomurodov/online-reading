@@ -30,11 +30,11 @@
          onclick="window.location.href='{{url('/')}}'">
     <div class="container d-flex justify-content-between align-items-center">
         <ul class="menu">
-            <li class="menu-item active" style="margin-left: 0 !important;"
+            <li class="menu-item" style="margin-left: 0 !important;"
                 onclick="window.location.href='{{url('/')}}'">Главная
             </li>
             <li class="menu-item" onclick="window.location.href='{{url('categories')}}'">Все категории</li>
-            <li class="menu-item" onclick="window.location.href='{{url('genres')}}'">Все жанры</li>
+            <li class="menu-item active" onclick="window.location.href='{{url('genres')}}'">Все жанры</li>
             <li class="menu-item" onclick="window.location.href='{{url('collections')}}'">Подборки</li>
             <li class="menu-item" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
             <li class="menu-item">Оферта</li>
@@ -112,84 +112,36 @@
     <button>Мои книги</button>
 </div>
 
+<main class="container all-categories">
+    <h3>Жанры</h3>
 
-<main class="container">
-    <div class=" genres-book-info" style="padding-left: 0">
-    <span class="d-flex align-items-center">
-        <img src="/img/icons/chevron-left.svg" alt="" width="16px">
-        <a href="{{ url('/') }}">Главная</a> / Поиск / {{ $book->title['ru'] }}
-    </span>
-    </div>
+    <div class="genre-grid all-genres">
+        @foreach($genres as $genre)
+            <div class="all-genres-section">
+                <div class="genere-container">
+                    @if($genre->images->first())
+                        <img src="storage/{{ $genre->images->first()->url }}" alt="">
+                    @endif
+                    <div class="genres-info">
+                        <span class="author">• {{ $genre->name['ru'] }}</span><br>
+                        <p>Книги в жанре<br>
+                            <span>«{{ $genre->name['ru'] }}»</span>
+                        </p>
+                    </div>
 
-
-    <div class="about-book d-flex  justify-content-between">
-        <img class="book"
-             src="{{ asset('storage/' . $book->images->first()->url) }}">
-        <div class="book-info top-books d-flex justify-content-between flex-column align-items-start">
-            <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-            <h2>
-                {{ $book->title['ru'] }}
-            </h2>
-            <div>
-                <button class="top-read-book">
-                    Читать книгу
-                </button>
-                <button class="top-readen">
-                    Прочитана
+                </div>
+                <button class="btn" onclick="window.location.href='{{route('genre-books', $genre->id)}}'">Посмотреть
+                    книги
                 </button>
             </div>
-            <p class="top-book-desc">
-                {{ $book->description['ru'] }}
-            </p>
-            {{--        <button class="see-more">Показать полностью</button>--}}
-        </div>
-
-        <div class="d-flex justify-content-between">
-            <img class="book-info-mobile"
-                 src="{{ asset('storage/' . $book->first()->images->first()->url) }}">
-            <div class="book-details d-flex flex-column justify-content-between align-items-start">
-                <div class="best-book-month-info">
-                    <div>
-                        <span class='author'>Рейтинг</span>
-                        <div><img src="/img/icons/star.svg" alt="">
-                            <b>{{ $book->ratting }} </b>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="author">Прочитана (раз)</span>
-                        <div><img class="me-2" src="/img/icons/heart.svg" alt="">
-                            <b> {{ $book->readen_count }} тыс</b>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex flex-column">
-                    <div>
-                        <span class="author">Год:</span>
-                        <b>{{ date('Y', strtotime($book->publication_date)) }}</b><br>
-                    </div>
-                    <div>
-                        <span class="author">Жанр:</span>
-                        <b>
-                            {{
-                                implode(', ', $book->genres->pluck('name.ru')->take(2)->toArray()) .
-                                ($book->genres->count() > 2 ? '...' : '')
-                            }}
-                        </b><br>
-                    </div>
-                    <div>
-                        <span class="author">Бумажных страниц:</span><b> {{ $book->pages }}</b><br>
-                    </div>
-                </div>
-                <button class="see-more">Оценить книгу</button>
-            </div>
-        </div>
+        @endforeach
     </div>
 </main>
 
-
-<footer>
+<footer class="position-relative">
     <div class="container d-flex justify-content-between">
-        <img class="logo-white" src="/img/logo-white.png" alt="" onclick="window.location.href='{{url('/')}}'">
+        <img class="logo-white" src="/img/logo-white.png" alt=""
+             onclick="window.location.href='{{url('/')}}'">
         <div class="footer-content d-flex justify-content-between align-items-cente ">
             <ul class="d-flex align-items-center flex-row container">
                 <li>Правила <img src="/img/icons/chevron-right.svg"></li>
@@ -201,12 +153,12 @@
         </div>
     </div>
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 <script>
     $(document).ready(function () {
         $('.menu-icon').on('click', function () {

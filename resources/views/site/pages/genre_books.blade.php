@@ -30,10 +30,12 @@
          onclick="window.location.href='{{url('/')}}'">
     <div class="container d-flex justify-content-between align-items-center">
         <ul class="menu">
-            <li class="menu-item active" style="margin-left: 0 !important;"
+            <li class="menu-item" style="margin-left: 0 !important;"
                 onclick="window.location.href='{{url('/')}}'">Главная
             </li>
-            <li class="menu-item">Все категории</li>
+            <li class="menu-item" onclick="window.location.href='{{url('categories')}}'">Все категории</li>
+            <li class="menu-item active" onclick="window.location.href='{{url('genres')}}'">Все жанры</li>
+            <li class="menu-item" onclick="window.location.href='{{url('collections')}}'">Подборки</li>
             <li class="menu-item" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
             <li class="menu-item">Оферта</li>
             <li class="menu-item">О нас</li>
@@ -70,12 +72,10 @@
     </div>
 </header>
 
-<div class="container d-flex justify-content-center">
-    <div class="search-container search-mobile">
-        <img class="search-icon" src="{{asset('/img/icons/search.svg')}}" alt="search">
-        <input class="search" type="text" placeholder="Книга, автор">
-        <img class="cross-icon" src="{{asset('/img/icons/cross.svg')}}" alt="cross">
-    </div>
+<div class="search-container search-mobile container">
+    <img class="search-icon" src="{{asset('/img/icons/search.svg')}}" alt="search">
+    <input class="search" type="text" placeholder="Книга, автор">
+    <img class="cross-icon" src="{{asset('/img/icons/cross.svg')}}" alt="cross">
 </div>
 
 <!-- popuop menu -->
@@ -98,8 +98,12 @@
         <img class="close-menu" src="{{ asset('/img/icons/cross.svg') }}" alt="" width="36px" height="36px">
     </div>
     <ul class="menu d-flex justify-content-center align-items-cente flex-column">
-        <li class="menu-item" onclick="window.location.href='{{url('/')}}'">Главная</li>
-        <li class="menu-item">Все категории</li>
+        <li class="menu-item" style="margin-left: 0 !important;"
+            onclick="window.location.href='{{url('/')}}'">Главная
+        </li>
+        <li class="menu-item" onclick="window.location.href='{{url('categories')}}'">Все категории</li>
+        <li class="menu-item" onclick="window.location.href='{{url('genres')}}'">Все жанры</li>
+        <li class="menu-item" onclick="window.location.href='{{url('collections')}}'">Подборки</li>
         <li class="menu-item" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
         <li class="menu-item">Оферта</li>
         <li class="menu-item">О нас</li>
@@ -108,151 +112,35 @@
     <button>Мои книги</button>
 </div>
 
-<div class="container genres-book-info" style="padding-left: 0">
-    <span class="d-flex align-items-center">
-        <img src="/img/icons/chevron-left.svg" alt="" width="16px">
-        <a href="{{ url('/') }}">Главная </a> / Категории / {{ $genre->name['ru'] }}
-    </span>
-</div>
-
-<h3 class="container" style="padding-left: 0">Книги в жанре “{{ $genre->name['ru'] }}”</h3>
-
-@php $placeNumber = 0; @endphp
-@foreach($categories->take(7) as $category)
-    @php $placeNumber++ @endphp
-    <div class="category-container container">
-        <h3>{{ $category->name['ru']}}</h3>
-        <div class="container swiper-category-container{{$placeNumber}}">
-            <div class="swiper-wrapper">
-                @foreach($category->books as $book)
-                    @if($book->is_active)
-                        <div class="book-container swiper-slide">
-                            <div>
-                                <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
-                                     height="244px">
-                                <div class="book-container-content">
-                                    <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                    <p>{{ $book->title['ru'] }}</p>
-                                </div>
-                            </div>
-                            <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать книгу
-                            </button>
-                        </div>
-                    @endif
-                @endforeach
-            </div>
+<main class="container all-categories">
+    @if(count($genre->books) == 0)
+        <div class="not-found">
+            <p>Упс! Мы не нашли ни одной книги.</p>
+            <button onclick="window.location.href='{{ url()->previous() }}'">Назад</button>
         </div>
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="swiper-category-button-prev{{$placeNumber}}"><img src="/img/icons/left.svg" alt=""></div>
-            <div class="swiper-category-button-next{{$placeNumber}}"><img src="/img/icons/right.svg" alt=""></div>
-        </div>
-    </div>
+    @else
+        <h3 style="padding-left: 0">Книги в жанре “{{ $genre->name['ru'] }}”</h3>
+        <div class="genre-grid all-genres">
 
-    @if($placeNumber == 2)
-        @if($collections->find(3))
-            <div class="top-readen-book-container container d-flex justify-content-between align-items-center">
-                <div class="top-readen-book d-flex justify-content-between flex-column align-items-start">
-                    <button>Cамые читаемые книги</button>
-                    <p>{{ $collections->find(3)->name['ru'] }}</p>
-                    <span>
-                     {{ $collections->find(3)->description['ru']}}
-                    </span>
-                </div>
-                <div class="category-container container">
-                    <div class="container swiper-collection-container">
-                        <div class="swiper-wrapper">
-                            @foreach($collections->find(3)->books as $book)
-                                <div class="book-container swiper-slide">
-                                    <div>
-                                        <img src="{{asset('storage/'. $book->images->first()->url)}}"
-                                             alt="{{ $book->title['ru'] }}">
-                                        <div class="book-container-content">
-                                            <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                            <p>{{ $book->title['ru'] }}</p>
-                                        </div>
-                                    </div>
-                                    <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать
-                                        книгу
-                                    </button>
-                                </div>
-                            @endforeach
+            @foreach($genre->books as $book)
+                <div class="book-container">
+                    <div>
+                        <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
+                             height="244px">
+                        <div class="book-container-content">
+                            <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                            <p>{{ $book->title['ru'] }}</p>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="swiper-collection-container-prev"><img src="/img/icons/left.svg" alt=""></div>
-                        <div class="swiper-collection-container-next"><img src="/img/icons/right.svg" alt=""></div>
-                    </div>
+                    <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать книгу
+                    </button>
                 </div>
-            </div>
-        @endif
+            @endforeach
+        </div>
     @endif
+</main>
 
-    @if($placeNumber == 4)
-        @if($collections->find(4))
-            <div class="container new-books">
-                <button>
-                    {{ $collections->find(4)->name['ru'] }}
-                </button>
-                <p>
-                    {{ $collections->find(4)->description['ru'] }}
-                </p>
-
-                <div class="new-books-slide swiper-new-book-container">
-                    <div class="swiper-wrapper">
-                        @php $books = $collections->find(4)->books; @endphp
-                        @foreach($books->chunk(2) as $bookPair)
-                            <div class="swiper-slide">
-                                @foreach($bookPair as $book)
-                                    <div class="new-book-container">
-                                        <img src="{{asset('storage/'. $book->images->first()->url )}}" alt=""
-                                             width="161px"
-                                             height="100%">
-                                        <div class="book-container-content">
-                                            <h3>{{ $book->title['ru'] }}</h3>
-                                            <p>{{ $book->description['ru'] }}</p>
-                                            <span class="author">• {{ $book->author->name['ru'] }}</span>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="swiper-new-book-prev"><img src="/img/icons/left.svg" alt=""></div>
-                    <div class="swiper-new-book-next"><img src="/img/icons/right.svg" alt=""></div>
-                </div>
-            </div>
-
-            <div class="top-news-mobile category-container container d-flex flex-column">
-                <div class="swiper-top-book-container">
-                    <div class="swiper-wrapper">
-                        @foreach( $collections->find(4)->books as $book)
-                            <div class="book-container swiper-slide">
-                                <div>
-                                    <img src="{{asset('storage/'. $book->images->first()->url)}}" alt="">
-                                    <div class="book-container-content">
-                                        <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                        <p>{{ $book->title['ru'] }}</p>
-                                    </div>
-                                </div>
-                                <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать
-                                    книгу
-                                </button>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="swiper-top-book-container-prev"><img src="/img/icons/left.svg" alt=""></div>
-                    <div class="swiper-top-book-container-next"><img src="/img/icons/right.svg" alt=""></div>
-                </div>
-            </div>
-        @endif
-    @endif
-@endforeach
-
-<footer class="position-relative">
+<footer>
     <div class="container d-flex justify-content-between">
         <img class="logo-white" src="/img/logo-white.png" alt=""
              onclick="window.location.href='{{url('/')}}'">
@@ -274,92 +162,6 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <script>
-    @if($collections->first())
-    const swiper = new Swiper('.swiper-container', {
-        loop: true,
-        slidesPerView: {{ $collections->first()->books->count() }},
-        centeredSlides: true,
-        spaceBetween: -3,
-        initialSlide: {{ round($collections->first()->books->count() / 2) }},
-        effect: 'coverflow',
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        slideToClickedSlide: true,
-        speed: 500,
-    });
-    @endif
-
-    @php $placeNumber = 0; @endphp
-    @foreach($categories->take(7) as $category)
-    @php $placeNumber++ @endphp
-    new Swiper('.swiper-category-container{{$placeNumber}}', {
-        loop: true,
-        {{--slidesPerView: {{$category->books->count()}},--}}
-        spaceBetween: 10,
-        navigation: {
-            nextEl: '.swiper-category-button-next{{$placeNumber}}',
-            prevEl: '.swiper-category-button-prev{{$placeNumber}}',
-        },
-        // autoplay: {
-        //     delay: 3000,
-        //     disableOnInteraction: false,
-        // },
-        speed: 500,
-    });
-    @endforeach
-
-    new Swiper('.swiper-new-book-container', {
-        loop: true,
-        slidesPerView: 2,
-        spaceBetween: 30,
-        navigation: {
-            nextEl: '.swiper-new-book-next',
-            prevEl: '.swiper-new-book-prev',
-        },
-        // autoplay: {
-        //     delay: 3000,
-        //     disableOnInteraction: false,
-        // },
-        speed: 500,
-    });
-
-    @if($collections->find(4))
-    new Swiper('.swiper-top-book-container', {
-        loop: true,
-        {{--slidesPerView: {{$collections->find(4)->books->count()}},--}}
-        spaceBetween: 10,
-        navigation: {
-            nextEl: '.swiper-top-book-container-next',
-            prevEl: '.swiper-top-book-container-prev',
-        },
-        // autoplay: {
-        //     delay: 3000,
-        //     disableOnInteraction: false,
-        // },
-        speed: 500,
-    });
-    @endif
-
-
-    @if($collections->find(3))
-    new Swiper('.swiper-collection-container', {
-        loop: true,
-        {{--slidesPerView: {{$collections->find(3)->books->count()}},--}}
-        spaceBetween: 10,
-        navigation: {
-            nextEl: '.swiper-collection-container-next',
-            prevEl: '.swiper-collection-container-prev',
-        },
-        // autoplay: {
-        //     delay: 3000,
-        //     disableOnInteraction: false,
-        // },
-        speed: 500,
-    });
-    @endif
-
     $(document).ready(function () {
         $('.menu-icon').on('click', function () {
             $('.menu-mobile-active').addClass('active');
