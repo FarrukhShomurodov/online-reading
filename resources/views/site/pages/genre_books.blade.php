@@ -122,7 +122,7 @@
         <h3 style="padding-left: 0">Книги в жанре “{{ $genre->name['ru'] }}”</h3>
         <div class="genre-grid all-genres">
 
-            @foreach($genre->books->orderBy('images') as $book)
+            @foreach($genre->books as $book)
                 <div class="book-container">
                     <div>
                         <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
