@@ -674,9 +674,10 @@ footer .container img {
         display: flex !important;
     }
 
-    /*.user-ava {*/
-    /*    max-width: 30px;*/
-    /*}*/
+    .user-ava {
+        max-width: 30px;
+        max-height: 30px;
+    }
 
 }
 
