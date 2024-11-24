@@ -7,16 +7,15 @@ use Illuminate\Contracts\View\View;
 
 class GenreController
 {
-    public function showGenres()
+    public function index(): View
     {
-        $genres = Genre::with('images') // Загружаем связанные изображения
-        ->withCount('images')      // Подсчитываем количество изображений
-        ->orderBy('images_count', 'desc') // Сортируем по количеству изображений
-        ->get();
+        $genres = Genre::with('images')
+            ->withCount('images')
+            ->orderBy('images_count', 'desc')
+            ->get();
 
-        return view('genres', compact('genres'));
+        return view('site.pages.genres', compact('genres'));
     }
-
 
     public function books(Genre $genre): View
     {
