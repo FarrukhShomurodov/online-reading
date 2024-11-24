@@ -647,6 +647,15 @@ footer .container img {
     display: none;
 }
 
+.mobile-device {
+    display: none;
+}
+
+.desctop {
+    display: flex;
+
+}
+
 @media (max-width: 1400px) {
     /*.swiper-button-next,*/
     /*.swiper-button-prev {*/
@@ -656,6 +665,19 @@ footer .container img {
     /*    position: relative;*/
     /*    z-index: 10000000000;*/
     /*}*/
+    .desctop {
+        display: none !important;
+
+    }
+
+    .mobile-device {
+        display: flex !important;
+    }
+    
+    .user-ava {
+        max-width: 30px;
+    }
+
 }
 
 .slider .top-btn {
@@ -683,6 +705,7 @@ footer .container img {
     border: 1px solid #FFB539;
     background-color: #FFB539;
 }
+
 
 @media (max-width: 1100px) {
     .slider {

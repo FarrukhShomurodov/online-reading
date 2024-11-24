@@ -25,15 +25,17 @@
 </head>
 
 <body>
-<header class="d-flex justify-content-between align-items-center">
+<header class="desctop justify-content-between align-items-center">
     <img src="{{asset('/img/logo.png')}}" alt="logo" width="70px" height="27px"
          onclick="window.location.href='{{url('/')}}'">
     <div class="container d-flex justify-content-between align-items-center">
         <ul class="menu">
-            <li class="menu-item active" style="margin-left: 0 !important;"
+            <li class="menu-item" style="margin-left: 0 !important;"
                 onclick="window.location.href='{{url('/')}}'">Главная
             </li>
-            <li class="menu-item">Все категории</li>
+            <li class="menu-item" onclick="window.location.href='{{url('categories')}}'">Все категории</li>
+            <li class="menu-item active" onclick="window.location.href='{{url('genres')}}'">Все жанры</li>
+            <li class="menu-item" onclick="window.location.href='{{url('collections')}}'">Подборки</li>
             <li class="menu-item" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
             <li class="menu-item">Оферта</li>
             <li class="menu-item">О нас</li>
@@ -61,12 +63,21 @@
             </div>
         </div>
     </div>
+    <div class="user-ava d-flex justify-content-center align-items-center"
+         onclick="window.location.href='/'"><span>F</span></div>
+</header>
 
-    <div class="menu-mobile-nav">
-        <img class="search-icon-mobile" src="{{asset('/img/icons/search.svg')}}" alt="">
-        <div class="user-ava d-flex justify-content-center align-items-center"
-             onclick="window.location.href='pages/room.html'"><span>F</span></div>
-        <img class="menu-icon" src="{{asset('/img/icons/menu.svg')}}" alt="">
+<header class="mobile-device align-items-center">
+    <div class="container d-flex justify-content-between flex-row align-items-center w-100">
+        <img src="{{asset('/img/logo.png')}}" alt="logo" width="70px" height="27px"
+             onclick="window.location.href='{{url('/')}}'">
+
+        <div class="menu-mobile-nav">
+            <img class="search-icon-mobile" src="{{asset('/img/icons/search.svg')}}" alt="">
+            <div class="user-ava d-flex justify-content-center align-items-center"
+                 onclick="window.location.href='/'"><span>F</span></div>
+            <img class="menu-icon" src="{{asset('/img/icons/menu.svg')}}" alt="">
+        </div>
     </div>
 </header>
 
