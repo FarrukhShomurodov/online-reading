@@ -673,10 +673,10 @@ footer .container img {
     .mobile-device {
         display: flex !important;
     }
-    
-    .user-ava {
-        max-width: 30px;
-    }
+
+    /*.user-ava {*/
+    /*    max-width: 30px;*/
+    /*}*/
 
 }
 
