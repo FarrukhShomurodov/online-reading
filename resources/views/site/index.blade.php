@@ -181,26 +181,36 @@
                                     </div>
                                 </div>
                             @endforeach
-                            <div class="top-book-container swiper-slide">
-                                <img
-                                    src="storage/{{$collections->first()->books->last()->images->first()->url}}"
-                                    alt="">
-                                <div class="book-container-content">
-                                    <span
-                                        class="author">• {{ $collections->first()->books->last()->author->name['ru'] }}</span><br>
-                                    <p>{{ $collections->first()->books->last()->title['ru'] }}</p>
+                            @foreach( $collections->first()->books as $book)
+                                <div class="top-book-container swiper-slide">
+                                    <img src="storage/{{$book->images->first()->url}}" alt="">
+                                    <div class="book-container-content">
+                                        <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                        <p>{{ $book->title['ru'] }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="top-book-container swiper-slide">
-                                <img
-                                    src="storage/{{$collections->first()->books->last()->images->first()->url}}"
-                                    alt="">
-                                <div class="book-container-content">
-                                    <span
-                                        class="author">• {{ $collections->first()->books->last()->author->name['ru'] }}</span><br>
-                                    <p>{{ $collections->first()->books->last()->title['ru'] }}</p>
-                                </div>
-                            </div>
+                            @endforeach
+                            {{--                            <div class="top-book-container swiper-slide">--}}
+                            {{--                                <img--}}
+                            {{--                                    src="storage/{{$collections->first()->books->first()->images->first()->url}}"--}}
+                            {{--                                    alt="">--}}
+                            {{--                                <div class="book-container-content">--}}
+                            {{--                                    <span--}}
+                            {{--                                        class="author">• {{ $collections->first()->books->first()->author->name['ru'] }}</span><br>--}}
+                            {{--                                    <p>{{ $collections->first()->books->first()->title['ru'] }}</p>--}}
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
+
+                            {{--                            <div class="top-book-container swiper-slide">--}}
+                            {{--                                <img--}}
+                            {{--                                    src="storage/{{$collections->first()->books->last()->images->first()->url}}"--}}
+                            {{--                                    alt="">--}}
+                            {{--                                <div class="book-container-content">--}}
+                            {{--                                    <span--}}
+                            {{--                                        class="author">• {{ $collections->first()->books->last()->author->name['ru'] }}</span><br>--}}
+                            {{--                                    <p>{{ $collections->first()->books->last()->title['ru'] }}</p>--}}
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -453,7 +463,7 @@
     @if($collections->first())
     const swiper = new Swiper('.swiper-container', {
         loop: true,
-        slidesPerView: {{ $collections->first()->books->count() + 2}},
+        slidesPerView: {{ $collections->first()->books->count() *  2}},
         centeredSlides: true,
         spaceBetween: -3,
         initialSlide: {{ round($collections->first()->books->count() / 2) + 1}},
