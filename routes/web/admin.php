@@ -33,7 +33,7 @@ Route::prefix('dashboard')->middleware('auth:admin')->group(function () {
     Route::resource('tags', TagController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('genres', GenreController::class);
-    Route::post('genres', [TopGenreController::class, 'save'])->name('genres.top.save');
+    Route::post('genres/top', [TopGenreController::class, 'save'])->name('genres.top.save');
     Route::resource('books', BookController::class);
     Route::resource('reviews', ReviewController::class);
     Route::resource('collections', CollectionController::class);
