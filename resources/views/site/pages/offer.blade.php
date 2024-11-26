@@ -21,6 +21,7 @@
 
     <!-- Swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
 </head>
 
 <body>
@@ -35,12 +36,12 @@
             <li class="menu-item" onclick="window.location.href='{{url('categories')}}'">Все категории</li>
             <li class="menu-item" onclick="window.location.href='{{url('genres')}}'">Все жанры</li>
             <li class="menu-item" onclick="window.location.href='{{url('collections')}}'">Подборки</li>
-            <li class="menu-item active" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
-            <li class="menu-item" onclick="window.location.href='{{route('offer')}}'">Оферта</li>
+            <li class="menu-item" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
+            <li class="menu-item active" onclick="window.location.href='{{route('offer')}}'">Оферта</li>
             <li class="menu-item" onclick="window.location.href='{{route('about-us')}}'">О нас</li>
         </ul>
 
-        <div class="search-container">
+        <div class="search-container ">
             <form action="{{ route('search') }}" method="GET">
                 <img class="search-icon" src="{{ asset('img/icons/search.svg') }}" alt="search">
                 <input class="search" name="query" type="text" placeholder="Книга, автор"
@@ -50,6 +51,7 @@
                 {{--                </button>--}}
             </form>
         </div>
+
 
         <div class="custom-select-container">
             <div class="custom-select">
@@ -131,32 +133,34 @@
     <button>Мои книги</button>
 </div>
 
-<main class="container">
-    <div class="genres-book-info" style="padding-left: 0">
-    <span class="d-flex align-items-center">
-        <img src="/img/icons/chevron-left.svg" alt="" width="16px">
-        <a href="{{ url('/') }}">Главная </a> / Контакты
-    </span>
-    </div>
 
-    <h3 style="padding-left: 0">Контакты</h3>
-
-    <div class="d-flex flex-row flex-wrap justify-content-between align-items-center" style="padding: 0px">
-        <div class="contact-container">
-            <img src="/img/icons/phone.svg" alt="">
-            <div class="d-flex flex-row flex-wrap">
-                <span class="me-1">Номер коллцентра: </span>
-                <p>+ 998 (99) 123 45 67</p>
-            </div>
+<main class="container all-categories">
+    <h3>Оффета</h3>
+    <div class="offer-section d-flex flex-row gap-5">
+        <div class="offer-section-content"> Lorem ipsum dolor sit amet consectetur. Et lorem integer vestibulum.
+            Lorem ipsum dolor sit amet consectetur. Vitae massa elementum malesuada quis. Sit vitae volutpat ultricies
+            sed purus cras quam consectetur purus. Adipiscing faucibus adipiscing vel tincidunt sed auctor. Leo et
+            pellentesque adipiscing aenean est lorem. Vitae ut senectus imperdiet ut tempor. Non enim dolor sed eu vitae
+            ultricies eleifend. Duis ante facilisis ullamcorper quis lorem habitant sapien. Bibendum dui etiam neque
+            donec libero quis eget. Velit eleifend nibh nulla nulla quam.
+            Lorem ipsum dolor sit amet consectetur. Et lorem integer vestibulum.
+            Lorem ipsum dolor sit amet consectetur. Vitae massa elementum malesuada quis. Sit vitae volutpat ultricies
+            sed purus cras quam consectetur purus. Adipiscing faucibus adipiscing vel tincidunt sed auctor. Leo et
+            pellentesque adipiscing aenean est lorem. Vitae ut senectus imperdiet ut tempor. Non enim dolor sed eu vitae
+            ultricies eleifend. Duis ante facilisis ullamcorper quis lorem habitant sapien. Bibendum dui etiam neque
+            donec libero quis eget. Velit eleifend nibh nulla nulla quam.
+            Lorem ipsum dolor sit amet consectetur. Et lorem integer vestibulum.
+            Lorem ipsum dolor sit amet consectetur. Vitae massa elementum malesuada quis. Sit vitae volutpat ultricies
+            sed purus cras quam consectetur purus. Adipiscing faucibus adipiscing vel tincidunt sed auctor. Leo et
+            pellentesque adipiscing aenean est lorem. Vitae ut senectus imperdiet ut tempor. Non enim dolor sed eu vitae
+            ultricies eleifend. Duis ante facilisis ullamcorper quis lorem habitant sapien. Bibendum dui etiam neque
+            donec libero quis eget. Velit eleifend nibh nulla nulla quam.
         </div>
-        <div class="contact-container">
-            <img src="/img/icons/mail.svg" alt="">
-            <div class="d-flex flex-row flex-wrap">
-                <span class="me-1">Почта: </span>
-                <p>+ 998 (99) 123 45 67</p>
-            </div>
+        <div class="offer-section-menu d-flex gap-2">
+            <a class="offer-menu-item" href="{{route('about-us')}}">О нас</a>
+            <a class="offer-menu-item offer-menu-item-active" href="{{route('offer')}}">Офферта</a>
+            <a class="offer-menu-item" href="#">Правила</a>
         </div>
-
     </div>
 </main>
 
@@ -176,83 +180,12 @@
         </div>
     </div>
 </footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.menu-icon').on('click', function () {
-            $('.menu-mobile-active').addClass('active');
-            $('body').addClass('no-scroll');
-        });
-
-        $('.close-menu').on('click', function () {
-            $('.menu-mobile-active').removeClass('active');
-            $('body').removeClass('no-scroll');
-        });
-
-        $('.search-icon-mobile').on('click', function () {
-            $('.search-mobile').toggleClass('search-container-mobile');
-        });
-
-
-        $('.search').on('focus', function () {
-            $('.search-icon').css('filter', 'invert(79%) sepia(78%) saturate(1862%) hue-rotate(330deg) brightness(106%) contrast(103%)');
-            $('.cross-icon').css('display', 'block');
-        });
-
-        $('.search').on('blur', function () {
-            setTimeout(function () {
-                $('.search-icon').css('filter', 'invert(68%) sepia(0%) saturate(13%) hue-rotate(166deg) brightness(91%) contrast(89%)');
-                $('.cross-icon').css('display', 'none');
-            }, 100);
-
-            $('.cross-icon').click(function () {
-                $('.search').val('');
-            });
-        });
-
-        document.querySelector('.custom-select').addEventListener('click', function () {
-            document.querySelector('.custom-select-options').classList.toggle('show');
-        });
-
-        document.querySelectorAll('.custom-select-option').forEach(function (option) {
-            option.addEventListener('click', function () {
-                let selectedOption = option.textContent.trim();
-                let selectedFlag = option.querySelector('img').src;
-                let customSelect = option.closest('.custom-select');
-
-                let selectedTextContainer = customSelect.querySelector('.custom-select-selected');
-
-                selectedTextContainer.textContent = selectedOption;
-
-                const existingFlag = selectedTextContainer.querySelector('.selected-flag');
-                if (existingFlag) {
-                    existingFlag.remove();
-                }
-
-                let flagImg = document.createElement('img');
-                flagImg.src = selectedFlag;
-                flagImg.alt = selectedOption;
-                flagImg.classList.add('selected-flag');
-
-                selectedTextContainer.insertBefore(flagImg, selectedTextContainer.firstChild);
-            });
-        });
-
-        $('.top-read-book').hover(
-            function () {
-                $(this).text('Читать').delay(500);
-            },
-            function () {
-                $(this).append(' книгу').delay(500);
-            }
-        );
-    });
-</script>
-
 </body>
 
 </html>

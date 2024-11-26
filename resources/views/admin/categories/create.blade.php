@@ -27,7 +27,7 @@
             <h5 class="mb-0">Создать</h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('categories.store') }}" method="POST">
+            <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label class="form-label" for="name">Название Ru</label>
@@ -45,6 +45,31 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Описание Ru</label>
+                    <input type="text" name="description[ru]"
+                           class="form-control @error('description.ru') is-invalid @enderror"
+                           id="description" placeholder="Название Ru" required>
+                    @error('description.ru')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Описание Uz</label>
+                    <input type="text" name="description[uz]"
+                           class="form-control @error('description.uz') is-invalid @enderror"
+                           id="description" placeholder="Название Uz" required>
+                    @error('description.uz')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="imageInput" class="form-label">Загрузить фото</label>
+                    <input type="file" name="photos[]" id="imageInput" class="form-control" multiple>
+                </div>
+                <div id="imagePreview" class="mb-3 main__td"></div>
                 <button type="submit" class="btn btn-primary">Сохранить</button>
             </form>
         </div>

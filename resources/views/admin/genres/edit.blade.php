@@ -50,6 +50,30 @@
                     @enderror
                 </div>
 
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Описание Ru</label>
+                    <input type="text" name="description[ru]"
+                           class="form-control @error('description.ru') is-invalid @enderror"
+                           id="description" placeholder="Название Ru"
+                           value="{{ $genre->description['ru'] ?? '' }}"
+                           required>
+                    @error('description.ru')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Описание Uz</label>
+                    <input type="text" name="description[uz]"
+                           class="form-control @error('description.uz') is-invalid @enderror"
+                           id="description" placeholder="Название Uz"
+                           value="{{ $genre->description['uz'] ?? '' }}"
+                           required>
+                    @error('description.uz')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 <div class="mb-3">
                     <label for="imageInput" class="form-label">Загрузить фото</label>
                     <input type="file" name="photos[]" id="imageInput" class="form-control" multiple>

@@ -36,15 +36,27 @@
             <li class="menu-item" onclick="window.location.href='{{url('genres')}}'">Все жанры</li>
             <li class="menu-item" onclick="window.location.href='{{url('collections')}}'">Подборки</li>
             <li class="menu-item" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
-            <li class="menu-item">Оферта</li>
-            <li class="menu-item">О нас</li>
+            <li class="menu-item" onclick="window.location.href='{{route('offer')}}'">Оферта</li>
+            <li class="menu-item" onclick="window.location.href='{{route('about-us')}}'">О нас</li>
         </ul>
 
+        {{--        <div class="search-container">--}}
+        {{--            <img class="search-icon" src="{{asset('img/icons/search.svg')}}" alt="search">--}}
+        {{--            <input class="search" type="text" placeholder="Книга, автор">--}}
+        {{--            <img class="cross-icon" src="{{asset('img/icons/cross.svg')}}" alt="cross">--}}
+        {{--        </div>--}}
+
         <div class="search-container">
-            <img class="search-icon" src="{{asset('img/icons/search.svg')}}" alt="search">
-            <input class="search" type="text" placeholder="Книга, автор">
-            <img class="cross-icon" src="{{asset('img/icons/cross.svg')}}" alt="cross">
+            <form action="{{ route('search') }}" method="GET">
+                <img class="search-icon" src="{{ asset('img/icons/search.svg') }}" alt="search">
+                <input class="search" name="query" type="text" placeholder="Книга, автор"
+                       value="{{ request('query') }}">
+                <img class="cross-icon" src="{{ asset('img/icons/cross.svg') }}" alt="search">
+                {{--                <button type="submit" style="opacity: 0">--}}
+                {{--                </button>--}}
+            </form>
         </div>
+
         <div class="custom-select-container">
             <div class="custom-select">
                 <div class="custom-select-selected">
@@ -62,7 +74,7 @@
         </div>
     </div>
     <div class="user-ava d-flex justify-content-center align-items-center"
-         onclick="window.location.href='/'"><span>F</span></div>
+         onclick="window.location.href='/room'"><span>F</span></div>
 </header>
 
 <header class="mobile-device align-items-center">
@@ -73,17 +85,23 @@
         <div class="menu-mobile-nav">
             <img class="search-icon-mobile" src="{{asset('img/icons/search.svg')}}" alt="">
             <div class="user-ava d-flex justify-content-center align-items-center"
-                 onclick="window.location.href='/'"><span>F</span></div>
+                 onclick="window.location.href='/room'"><span>F</span></div>
             <img class="menu-icon" src="{{asset('img/icons/menu.svg')}}" alt="">
         </div>
     </div>
 </header>
 
-<div class="search-container search-mobile container">
-    <img class="search-icon" src="{{asset('img/icons/search.svg')}}" alt="search">
-    <input class="search" type="text" placeholder="Книга, автор">
-    <img class="cross-icon" src="{{asset('img/icons/cross.svg')}}" alt="cross">
+<div class="search-container search-mobile">
+    <form action="{{ route('search') }}" method="GET">
+        <img class="search-icon" src="{{ asset('img/icons/search.svg') }}" alt="search">
+        <input class="search" name="query" type="text" placeholder="Книга, автор"
+               value="{{ request('query') }}">
+        <img class="cross-icon" src="{{ asset('img/icons/cross.svg') }}" alt="search">
+        {{--                <button type="submit" style="opacity: 0">--}}
+        {{--                </button>--}}
+    </form>
 </div>
+
 
 <!-- popuop menu -->
 <div class="menu-mobile-active">
@@ -111,7 +129,7 @@
         <li class="menu-item" onclick="window.location.href='{{url('collections')}}'">Подборки</li>
         <li class="menu-item" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
         <li class="menu-item">Оферта</li>
-        <li class="menu-item">О нас</li>
+        <li class="menu-item" onclick="window.location.href='{{route('about-us')}}'">О нас</li>
     </ul>
 
     <button>Мои книги</button>
@@ -131,7 +149,6 @@
                         </button>
                     </li>
                 @endforeach
-
             </ul>
         </div>
     </div>

@@ -9,6 +9,7 @@ class BookController
 {
     public function show(Book $book): View
     {
-        return view('site.pages.book-info', compact('book'));
+        $books = Book::query()->get();
+        return view('site.pages.book-info', compact('book', 'books'));
     }
 }

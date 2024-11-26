@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Models\Collection;
 use App\Models\Genre;
+use App\Models\Tag;
 use Illuminate\Contracts\View\View;
 
 class GenreController
@@ -14,7 +16,11 @@ class GenreController
             ->orderBy('images_count', 'desc')
             ->get();
 
-        return view('site.pages.genres', compact('genres'));
+        $tags = Tag::query()->get();
+
+        $collections = Collection::query()->get();
+
+        return view('site.pages.genres', compact('genres', 'tags', 'collections'));
     }
 
     public function books(Genre $genre): View

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Site;
 
-class RoomController
+class AboutUsController
 {
     public function index()
     {
-        return view('site.pages.room');
+        return view('site.pages.aboutus');
     }
 }

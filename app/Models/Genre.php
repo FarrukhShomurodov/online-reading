@@ -11,6 +11,7 @@ class Genre extends Model
 {
     protected $fillable = [
         'name',
+        'description',
     ];
 
     /**
@@ -18,6 +19,7 @@ class Genre extends Model
      */
     protected $casts = [
         'name' => 'array',
+        'description' => 'array',
     ];
 
     public function books(): BelongsToMany

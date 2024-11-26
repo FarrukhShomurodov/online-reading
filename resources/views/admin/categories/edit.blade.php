@@ -27,7 +27,7 @@
             <h5 class="mb-0">Редактировать</h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('categories.update', $category->id) }}" method="POST">
+            <form action="{{ route('categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="mb-3">
@@ -49,6 +49,48 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Описание Ru</label>
+                    <input type="text" name="description[ru]"
+                           class="form-control @error('description.ru') is-invalid @enderror"
+                           id="description" placeholder="Название Ru"
+                           value="{{ $category->description['ru'] ?? '' }}"
+                           required>
+                    @error('description.ru')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Описание Uz</label>
+                    <input type="text" name="description[uz]"
+                           class="form-control @error('description.uz') is-invalid @enderror"
+                           id="description" placeholder="Название Uz"
+                           value="{{ $category->description['uz'] ?? '' }}"
+                           required>
+                    @error('description.uz')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="imageInput" class="form-label">Загрузить фото</label>
+                    <input type="file" name="photos[]" id="imageInput" class="form-control" multiple>
+                </div>
+
+                <div id="imagePreview" class="mb-3 main__td">
+                    @if($category->images)
+                        @foreach(json_decode($category->images) as $photo)
+                            <div class="image-container td__img" data-photo-path="{{ $photo->url }}">
+                                <img src="{{ asset('storage/' . $photo->url) }}" alt="Court Image"
+                                     class="uploaded-image">
+                                <button type="button" class="btn btn-danger btn-sm delete-image"
+                                        data-photo-path="{{ $photo->url }}"> Удалить
+                                </button>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+
 
                 <button type="submit" class="btn btn-warning ">Редактировать</button>
             </form>

@@ -20,6 +20,14 @@ class CategoryRequest extends FormRequest
             'name' => 'required|array',
             'name.ru' => 'required|string|max:300',
             'name.uz' => 'required|string|max:300',
+
+
+            'description' => 'required|array',
+            'description.ru' => 'required|string|max:600',
+            'description.uz' => 'required|string|max:600',
+
+            'photos' => 'sometimes|array|max:10',
+            'photos.*' => 'sometimes|image|mimes:jpg,png',
         ];
     }
 }
