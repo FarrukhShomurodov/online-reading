@@ -141,7 +141,7 @@
             let isActive = $(this).is(':checked') ? 1 : 0;
 
             $.ajax({
-                url: `api/books/is-active/${bookId}`,
+                url: `/api/books/is-active/${bookId}`,
                 method: 'PUT',
                 data: {
                     _token: '{{ csrf_token() }}',
