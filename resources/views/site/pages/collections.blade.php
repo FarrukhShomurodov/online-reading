@@ -203,7 +203,7 @@
                 @foreach($tags as $tag)
                     <li>
                         <button class="click">
-                            <a href="{{ route('category-books', $tag->id) }}">
+                            <a href="{{ route('tag-books', $tag->id) }}">
                                 {{ $tag->name['ru'] }}
                             </a>
                         </button>

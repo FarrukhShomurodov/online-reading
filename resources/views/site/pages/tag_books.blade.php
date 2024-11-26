@@ -33,15 +33,15 @@
             <li class="menu-item" style="margin-left: 0 !important;"
                 onclick="window.location.href='{{url('/')}}'">Главная
             </li>
-            <li class="menu-item" onclick="window.location.href='{{url('categories')}}'">Все категории</li>
-            <li class="menu-item active" onclick="window.location.href='{{url('genres')}}'">Все жанры</li>
+            <li class="menu-item active" onclick="window.location.href='{{url('categories')}}'">Все категории</li>
+            <li class="menu-item" onclick="window.location.href='{{url('genres')}}'">Все жанры</li>
             <li class="menu-item" onclick="window.location.href='{{url('collections')}}'">Подборки</li>
             <li class="menu-item" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
             <li class="menu-item" onclick="window.location.href='{{route('offer')}}'">Оферта</li>
             <li class="menu-item" onclick="window.location.href='{{route('about-us')}}'">О нас</li>
         </ul>
 
-        <div class="search-container ">
+        <div class="search-container">
             <form action="{{ route('search') }}" method="GET">
                 <img class="search-icon" src="{{ asset('img/icons/search.svg') }}" alt="search">
                 <input class="search" name="query" type="text" placeholder="Книга, автор"
@@ -134,131 +134,109 @@
 </div>
 
 <main class="container all-categories">
-    <h3>Жанры</h3>
-    <span class="author">Откройте для себя книги по своим любимым жанрам. Выбирайте из множества категорий и находите то, что вам по душе.</span>
-
-    <div class="genre-grid all-genres">
-        @foreach($genres as $genre)
-            <div class="all-genres-section">
-                <div class="genere-container">
-                    @if($genre->images->first())
-                        <img src="storage/{{ $genre->images->first()->url }}" alt="">
-                    @endif
-                    <div class="genres-info">
-                        <span class="author">• {{ $genre->name['ru'] }}</span><br>
-                        <span class="author">{{ $genre->description['ru'] ?? ''}}</span><br>
-                        <p>Книги в жанре<br>
-                            <span>«{{ $genre->name['ru'] }}»</span>
-                        </p>
+    @if(count($tag->books) == 0)
+        <div class="not-found">
+            <p>Упс! Мы не нашли ни одной книги.</p>
+            <button onclick="window.location.href='{{ url()->previous() }}'">Назад</button>
+        </div>
+    @else
+        <h3 style="padding-left: 0">Книги в теге “{{ $tag->name['ru'] }}”</h3>
+        <div class="genre-grid all-genres">
+            @foreach($tag->books as $book)
+                <div class="book-container">
+                    <div>
+                        <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
+                             height="244px">
+                        <div class="book-container-content">
+                            <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                            <p>{{ $book->title['ru'] }}</p>
+                        </div>
                     </div>
-
+                    <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать книгу
+                    </button>
                 </div>
-                <button class="btn" onclick="window.location.href='{{route('genre-books', $genre->id)}}'">Посмотреть
-                    книги
-                </button>
-            </div>
-        @endforeach
-    </div>
-
-    <div class="category-container w-100">
-        <h3>{{ $collections->find(5)->name['ru']}}</h3>
-        <div class="swiper-category-container1">
-            <div class="swiper-wrapper">
-                @foreach($collections->find(5)->books as $book)
-                    @if($book->is_active)
-                        <div class="book-container swiper-slide">
-                            <div>
-                                <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
-                                     height="244px">
-                                <div class="book-container-content">
-                                    <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                    <p>{{ $book->title['ru'] }}</p>
-                                </div>
-                            </div>
-                            <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать книгу
-                            </button>
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="swiper-category-button-prev1"><img src="img/icons/left.svg" alt=""></div>
-            <div class="swiper-category-button-next1"><img src="img/icons/right.svg" alt=""></div>
-        </div>
-    </div>
-
-
-    <div class="all-books-container w-100">
-        <h3>Теги</h3>
-        <div class="all-books">
-            <ul>
-                @foreach($tags as $tag)
-                    <li>
-                        <button class="click">
-                            <a href="{{ route('tag-books', $tag->id) }}">
-                                {{ $tag->name['ru'] }}
-                            </a>
-                        </button>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-    </div>
-
-
-    <div class="category-container w-100">
-        <h3>{{ $collections->find(6)->name['ru']}}</h3>
-        <div class="swiper-category-container2">
-            <div class="swiper-wrapper">
-                @foreach($collections->find(6)->books as $book)
-                    @if($book->is_active)
-                        <div class="book-container swiper-slide">
-                            <div>
-                                <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
-                                     height="244px">
-                                <div class="book-container-content">
-                                    <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                    <p>{{ $book->title['ru'] }}</p>
-                                </div>
-                            </div>
-                            <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать книгу
-                            </button>
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="swiper-category-button-prev2"><img src="img/icons/left.svg" alt=""></div>
-            <div class="swiper-category-button-next2"><img src="img/icons/right.svg" alt=""></div>
-        </div>
-    </div>
-
-    <div class="top-genre w-100">
-        <p class="top-genre-p">{{ $collections->find(7)->name['ru']}}</p>
-        <div class="genre-grid">
-            @foreach($collections->find(7)->books as $book)
-                @if($book->is_active)
-                    <div class="book-container swiper-slide">
-                        <div>
-                            <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
-                                 height="244px">
-                            <div class="book-container-content">
-                                <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                <p>{{ $book->title['ru'] }}</p>
-                            </div>
-                        </div>
-                        <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать книгу
-                        </button>
-                    </div>
-                @endif
             @endforeach
         </div>
-    </div>
+
+        <div class="category-container w-100">
+            <h3>Популярные книги в теге </h3>
+            <div class="swiper-category-container1">
+                <div class="swiper-wrapper">
+                    @foreach($tag->books->shuffle()->take(10) as $book)
+                        @if($book->is_active)
+                            <div class="book-container swiper-slide">
+                                <div>
+                                    <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
+                                         height="244px">
+                                    <div class="book-container-content">
+                                        <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                        <p>{{ $book->title['ru'] }}</p>
+                                    </div>
+                                </div>
+                                <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать книгу
+                                </button>
+                            </div>
+                            <div class="book-container swiper-slide">
+                                <div>
+                                    <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
+                                         height="244px">
+                                    <div class="book-container-content">
+                                        <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                        <p>{{ $book->title['ru'] }}</p>
+                                    </div>
+                                </div>
+                                <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать книгу
+                                </button>
+                            </div>
+                            <div class="book-container swiper-slide">
+                                <div>
+                                    <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
+                                         height="244px">
+                                    <div class="book-container-content">
+                                        <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                        <p>{{ $book->title['ru'] }}</p>
+                                    </div>
+                                </div>
+                                <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать книгу
+                                </button>
+                            </div>
+                            <div class="book-container swiper-slide">
+                                <div>
+                                    <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
+                                         height="244px">
+                                    <div class="book-container-content">
+                                        <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                        <p>{{ $book->title['ru'] }}</p>
+                                    </div>
+                                </div>
+                                <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать книгу
+                                </button>
+                            </div>
+                            <div class="book-container swiper-slide">
+                                <div>
+                                    <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
+                                         height="244px">
+                                    <div class="book-container-content">
+                                        <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                        <p>{{ $book->title['ru'] }}</p>
+                                    </div>
+                                </div>
+                                <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать книгу
+                                </button>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="swiper-category-button-prev1"><img src="/img/icons/left.svg" alt=""></div>
+                <div class="swiper-category-button-next1"><img src="/img/icons/right.svg" alt=""></div>
+            </div>
+        </div>
+    @endif
 </main>
 
-<footer class="position-relative">
+<footer>
     <div class="container d-flex justify-content-between">
         <img class="logo-white" src="/img/logo-white.png" alt=""
              onclick="window.location.href='{{url('/')}}'">
@@ -295,22 +273,6 @@
         // },
         speed: 500,
     });
-
-    new Swiper('.swiper-category-container2', {
-        loop: true,
-        {{--slidesPerView: {{$category->books->count()}},--}}
-        spaceBetween: 10,
-        navigation: {
-            nextEl: '.swiper-category-button-next2',
-            prevEl: '.swiper-category-button-prev2',
-        },
-        // autoplay: {
-        //     delay: 3000,
-        //     disableOnInteraction: false,
-        // },
-        speed: 500,
-    });
-
 
     $(document).ready(function () {
         $('.menu-icon').on('click', function () {

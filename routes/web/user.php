@@ -11,6 +11,7 @@ use App\Http\Controllers\Site\MainPage;
 use App\Http\Controllers\Site\OfferController;
 use App\Http\Controllers\Site\RoomController;
 use App\Http\Controllers\Site\SearchController;
+use App\Http\Controllers\Site\TagControler;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainPage::class, 'index']);
@@ -43,3 +44,6 @@ Route::get('offer', [OfferController::class, 'index'])->name('offer');
 
 // Search
 Route::get('search', [SearchController::class, 'search'])->name('search');
+
+//Tag
+Route::get('tag-books/{tag}', [TagControler::class, 'books'])->name('tag-books');
