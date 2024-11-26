@@ -153,7 +153,7 @@
             <img src="/img/icons/mail.svg" alt="">
             <div class="d-flex flex-row flex-wrap">
                 <span class="me-1">Почта: </span>
-                <p>+ 998 (99) 123 45 67</p>
+                <p>example@gmail.com</p>
             </div>
         </div>
 

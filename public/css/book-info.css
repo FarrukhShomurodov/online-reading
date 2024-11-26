@@ -51,6 +51,14 @@
     text-overflow: ellipsis;
 }
 
+.book-details a {
+    transition: all 0.3s ease;
+}
+
+.book-details a:hover {
+    color: #FFB539 !important;
+}
+
 .book-info-mobile {
     display: none;
     object-fit: cover;

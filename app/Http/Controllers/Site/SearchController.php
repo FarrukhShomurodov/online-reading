@@ -14,9 +14,6 @@ class SearchController
 
         $books = Book::query()
             ->where('title->ru', 'LIKE', "%$query%")
-            ->orWhereHas('author', function ($q) use ($query) {
-                $q->where('name', 'LIKE', "%$query%");
-            })
             ->get();
 
         return view('site.pages.search-results', compact('books'));

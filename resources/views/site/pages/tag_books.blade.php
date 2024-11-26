@@ -149,6 +149,10 @@
                              height="244px">
                         <div class="book-container-content">
                             <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                            <div class=book-container-ratting>
+                                <img src="/img/icons/star.svg" alt="" style="height: 15px !important;">
+                                <b>{{ $book->ratting }} </b>
+                            </div>
                             <p>{{ $book->title['ru'] }}</p>
                         </div>
                     </div>
@@ -170,6 +174,10 @@
                                          height="244px">
                                     <div class="book-container-content">
                                         <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                        <div class=book-container-ratting>
+                                            <img src="/img/icons/star.svg" alt="" style="height: 15px !important;">
+                                            <b>{{ $book->ratting }} </b>
+                                        </div>
                                         <p>{{ $book->title['ru'] }}</p>
                                     </div>
                                 </div>
@@ -182,6 +190,10 @@
                                          height="244px">
                                     <div class="book-container-content">
                                         <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                        <div class=book-container-ratting>
+                                            <img src="/img/icons/star.svg" alt="" style="height: 15px !important;">
+                                            <b>{{ $book->ratting }} </b>
+                                        </div>
                                         <p>{{ $book->title['ru'] }}</p>
                                     </div>
                                 </div>
@@ -194,6 +206,10 @@
                                          height="244px">
                                     <div class="book-container-content">
                                         <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                        <div class=book-container-ratting>
+                                            <img src="/img/icons/star.svg" alt="" style="height: 15px !important;">
+                                            <b>{{ $book->ratting }} </b>
+                                        </div>
                                         <p>{{ $book->title['ru'] }}</p>
                                     </div>
                                 </div>
@@ -206,6 +222,10 @@
                                          height="244px">
                                     <div class="book-container-content">
                                         <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                        <div class=book-container-ratting>
+                                            <img src="/img/icons/star.svg" alt="" style="height: 15px !important;">
+                                            <b>{{ $book->ratting }} </b>
+                                        </div>
                                         <p>{{ $book->title['ru'] }}</p>
                                     </div>
                                 </div>
@@ -218,6 +238,10 @@
                                          height="244px">
                                     <div class="book-container-content">
                                         <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                        <div class=book-container-ratting>
+                                            <img src="/img/icons/star.svg" alt="" style="height: 15px !important;">
+                                            <b>{{ $book->ratting }} </b>
+                                        </div>
                                         <p>{{ $book->title['ru'] }}</p>
                                     </div>
                                 </div>

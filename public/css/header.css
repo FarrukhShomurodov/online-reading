@@ -183,6 +183,7 @@ header {
     background-color: #FFB539;
     border-radius: 50%;
     color: #ffffff;
+    cursor: pointer;
 }
 
 .menu-mobile-nav {

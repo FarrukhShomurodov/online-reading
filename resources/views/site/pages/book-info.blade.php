@@ -179,10 +179,12 @@
                     <div>
                         <span class="author">Жанр:</span>
                         <b>
-                            {{
-                                implode(', ', $book->genres->pluck('name.ru')->take(2)->toArray()) .
-                                ($book->genres->count() > 2 ? '...' : '')
-                            }}
+                            {!!
+                                 implode(', ', $book->genres->take(2)->map(function ($genre) {
+                                     return '<a href="' . route('genre-books', $genre->id) . '">' . $genre->name['ru'] . '</a>';
+                                 })->toArray()) .
+                                 ($book->genres->count() > 2 ? '...' : '')
+                             !!}
                         </b><br>
                     </div>
                     <div>
@@ -190,10 +192,16 @@
                     </div>
 
                     <div>
-                        <span class="author">Теги:</span><b>  {{
-                                implode(', ', $book->tags->pluck('name.ru')->take(2)->toArray()) .
-                                ($book->genres->count() > 2 ? '...' : '')
-                            }}</b><br>
+                        <span class="author">Теги:</span>
+                        <b>
+                            {!!
+                                implode(', ', $book->tags->take(2)->map(function ($tag) {
+                                  return '<a href="' . route('genre-books', $tag->id) . '">' . $tag->name['ru'] . '</a>';
+                              })->toArray()) .
+                              ($book->tags->count() > 2 ? '...' : '')
+                          !!}
+                        </b>
+                        <br>
                     </div>
                 </div>
                 <button class="see-more">Оценить книгу</button>
@@ -202,7 +210,7 @@
     </div>
 
     <div class="category-container w-100">
-        <h3>Популярные книги </h3>
+        <h3>Похожие книги </h3>
         <div class="swiper-category-container1">
             <div class="swiper-wrapper">
                 @foreach($books->shuffle()->take(10) as $book)
