@@ -14,11 +14,11 @@ class SearchController
         $query = $request->input('query');
 
         $books = Book::query()
-            ->where('title->ru', 'LIKE', "%$query%")
+            ->where('title->ru', 'ILIKE', "%$query%")
             ->get();
 
         $authors = Author::query()
-            ->where('name->ru', 'LIKE', "%$query%")
+            ->where('name->ru', 'ILIKE', "%$query%")
             ->get();
 
         return view('site.pages.search-results', compact('books', 'authors'));
