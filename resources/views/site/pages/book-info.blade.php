@@ -115,7 +115,7 @@
         </div>
     </div>
 
-    <div class="reviews-container">
+    <div class="category-container reviews-container">
         <h3>Отзывы</h3>
         @foreach($reviews as $review)
             <div class="reviews">
