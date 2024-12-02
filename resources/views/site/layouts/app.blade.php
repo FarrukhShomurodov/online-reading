@@ -61,15 +61,17 @@
 @yield('scripts')
 
 @if(isset($collections) && $collections->isNotEmpty())
-    {{--    @php--}}
-    {{--        $swiperParams = Cache::remember('swiper.params', 3600, function () use ($collections) {--}}
-    {{--            $booksCount = $collections->first()->books->count();--}}
-    {{--            return [--}}
-    {{--                'slidesPerView' => ,--}}
-    {{--                'initialSlide' => ,--}}
-    {{--            ];--}}
-    {{--        });--}}
-    {{--    @endphp--}}
+    @php
+        //            $swiperParams = Cache::remember('swiper.params', 3600, function () use ($collections) {
+        //
+        //                return [
+        //                    'slidesPerView' => ,
+        //                    'initialSlide' => ,
+        //                ];
+        //            });
+
+                    $booksCount = $collections->first()->books->count();
+    @endphp
     <script>
         const swiper = new Swiper('.swiper-container', {
             loop: true,
