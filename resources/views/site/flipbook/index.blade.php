@@ -3,7 +3,7 @@
 @section('content')
     <div class="all-categories">
         <div class="mb-3">
-            <div class="not-found d-flex align-items-start">
+            <div class="not-found d-flex align-items-start" style="padding: 0">
                 <button onclick="window.location.href='{{ url()->previous() }}'">Назад</button>
             </div>
         </div>
