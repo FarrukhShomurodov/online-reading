@@ -23,7 +23,7 @@ class BookController
 
         $userBook = UserBook::query()->where('book_id', $book->id)->exists();
 
-        if (!$userBook) {
+        if (!$userBook && $user) {
             UserBook::query()->create([
                 'user_id' => $user->id,
                 'book_id' => $book->id
