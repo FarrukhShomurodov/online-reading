@@ -61,22 +61,22 @@
 @yield('scripts')
 
 @if(isset($collections) && $collections->isNotEmpty())
-    @php
-        $swiperParams = Cache::remember('swiper.params', 3600, function () use ($collections) {
-            $booksCount = $collections->first()->books->count();
-            return [
-                'slidesPerView' => $booksCount * 2,
-                'initialSlide' => round($booksCount / 2) + 1,
-            ];
-        });
-    @endphp
+    {{--    @php--}}
+    {{--        $swiperParams = Cache::remember('swiper.params', 3600, function () use ($collections) {--}}
+    {{--            $booksCount = $collections->first()->books->count();--}}
+    {{--            return [--}}
+    {{--                'slidesPerView' => ,--}}
+    {{--                'initialSlide' => ,--}}
+    {{--            ];--}}
+    {{--        });--}}
+    {{--    @endphp--}}
     <script>
         const swiper = new Swiper('.swiper-container', {
             loop: true,
-            slidesPerView: {{ $swiperParams['slidesPerView'] }},
+            slidesPerView: {{ $booksCount * 2 }},
             centeredSlides: true,
             spaceBetween: -3,
-            initialSlide: {{ $swiperParams['initialSlide'] }},
+            initialSlide: {{ round($booksCount / 2) + 1 }},
             effect: 'coverflow',
             navigation: {
                 nextEl: '.swiper-button-next',
