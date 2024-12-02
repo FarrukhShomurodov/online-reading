@@ -22,6 +22,7 @@ class CollectionService
         }
 
         $collection->books()->sync($validated['books']);
+
         return $collection;
     }
 
@@ -38,10 +39,13 @@ class CollectionService
                 $collection->images()->create(['url' => $path]);
             }
         }
-        $collection->books()->detach();
-        
-        foreach ($validated['books'] as $bookId) {
-            $collection->books()->attach($bookId);
+
+        if (isset($validated['books'])) {
+            $collection->books()->detach();
+
+            foreach ($validated['books'] as $bookId) {
+                $collection->books()->attach($bookId);
+            }
         }
 
         return $collection->refresh();

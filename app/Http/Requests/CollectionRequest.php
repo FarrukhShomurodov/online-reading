@@ -11,6 +11,15 @@ class CollectionRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation(): void
+    {
+        if ($this->has('books') && $this->input('books')[0] === null) {
+            $this->merge([
+                'books' => [],
+            ]);
+        }
+    }
+
     /**
      * @return array<string>
      */
@@ -25,8 +34,8 @@ class CollectionRequest extends FormRequest
             'description.ru' => 'required|string|max:500',
             'description.uz' => 'required|string|max:500',
 
-            'books' => 'required|array',
-            'books.*' => 'required|integer|exists:books,id',
+            'books' => 'sometimes|array',
+            'books.*' => 'sometimes|integer|exists:books,id',
 
             'photos' => 'sometimes|array|max:10',
             'photos.*' => 'sometimes|image|mimes:jpg,png',

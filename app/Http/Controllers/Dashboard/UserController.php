@@ -42,6 +42,7 @@ class UserController
     public function destroy(User $user): RedirectResponse
     {
         $this->service->destroy($user);
+
         return redirect()->route('users.index')->with('success', 'Пользователь успешно удален!');
     }
 }

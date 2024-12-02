@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Book extends Model
@@ -26,7 +27,6 @@ class Book extends Model
         'description' => 'array',
         'files' => 'array',
     ];
-
 
     public function categories(): BelongsToMany
     {
@@ -56,5 +56,10 @@ class Book extends Model
     public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
     }
 }

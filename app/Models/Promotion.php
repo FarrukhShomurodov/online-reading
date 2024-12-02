@@ -9,9 +9,9 @@ class Promotion extends Model
 {
     protected $fillable = [
         'title',
-        'description',
         'start_time',
-        'end_time'
+        'description',
+        'end_time',
     ];
 
     protected $casts = [

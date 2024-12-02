@@ -21,5 +21,5 @@ class Admin extends Authenticatable
         'password' => 'string',
     ];
 
-    protected $hidden = ['pasword'];
+    protected $hidden = ['password'];
 }

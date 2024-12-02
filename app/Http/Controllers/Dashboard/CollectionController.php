@@ -22,7 +22,7 @@ class CollectionController
     {
         $collections = Collection::query()
             ->select(['id', 'name', 'created_at'])
-            ->with('books:title,id',)
+            ->with('books:title,id')
             ->orderBy('id')
             ->simplePaginate(10);
 
@@ -39,6 +39,7 @@ class CollectionController
                 $book->first_image_url = $book->images->first() ? asset(
                     'storage/' . $book->images->first()->url
                 ) : null;
+
                 return $book;
             });
 
@@ -49,10 +50,11 @@ class CollectionController
     {
         $validated = $request->validated();
         $this->service->store((array)$validated);
+
         return redirect()->route('collections.index')->with('success', 'Колекция успешно добавлена!');
     }
 
-    public function edit(Collection $collection): View
+    public function edit(Collection $collection)
     {
         $books = Book::select('id', 'title')
             ->where('is_active', true)
@@ -62,8 +64,10 @@ class CollectionController
                 $book->first_image_url = $book->images->first() ? asset(
                     'storage/' . $book->images->first()->url
                 ) : null;
+
                 return $book;
             });
+
         return view('admin.collections.edit', compact('collection', 'books'));
     }
 
@@ -77,7 +81,12 @@ class CollectionController
 
     public function destroy(Collection $collection): RedirectResponse
     {
+        if (collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])->contains($collection->id)) {
+            return redirect()->back()->withErrors('Удаление этой подборки недоступно.');
+        }
+
         $this->service->destroy($collection);
+
         return redirect()->route('collections.index')->with('success', 'Колекция успешно удалена!');
     }
 }

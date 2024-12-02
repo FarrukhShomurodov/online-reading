@@ -17,10 +17,15 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
     ],
 
     'providers' => [
-        'admins' => [
+        'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],

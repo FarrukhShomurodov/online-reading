@@ -74,7 +74,7 @@ class BookController
     public function store(BookRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->store((array)$validated);
+        $this->service->store((array) $validated);
 
         return redirect()->route('books.index')->with('success', 'Книга успешно добавлена!');
     }
@@ -92,7 +92,7 @@ class BookController
     public function update(BookRequest $request, Book $book): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->update($book, (array)$validated);
+        $this->service->update($book, (array) $validated);
 
         return redirect()->route('books.index')->with('success', 'Книга успешно обновлена!');
     }
@@ -100,6 +100,7 @@ class BookController
     public function destroy(Book $book): RedirectResponse
     {
         $this->service->destroy($book);
+
         return redirect()->route('books.index')->with('success', 'Книга успешно удалена!');
     }
 }

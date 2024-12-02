@@ -7,7 +7,7 @@ use App\Models\User;
 class UserService
 {
     /**
-     * @param array<string, mixed> $validated
+     * @param  array<string, mixed>  $validated
      */
     public function updateStatus(User $user, array $validated): void
     {
@@ -15,20 +15,15 @@ class UserService
     }
 
     /**
-     * @param User $user
-     * @param array<string, mixed> $validated
-     * @return User
+     * @param  array<string, mixed>  $validated
      */
     public function update(User $user, array $validated): User
     {
         $user->update($validated);
+
         return $user->refresh();
     }
 
-    /**
-     * @param User $user
-     * @return void
-     */
     public function destroy(User $user): void
     {
         $user->delete();

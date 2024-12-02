@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 class GenreService
 {
     /**
-     * @param array<string, mixed> $validated
+     * @param  array<string, mixed>  $validated
      */
     public function store(array $validated): Genre
     {
@@ -25,7 +25,7 @@ class GenreService
     }
 
     /**
-     * @param array<string, mixed> $validated
+     * @param  array<string, mixed>  $validated
      */
     public function update(Genre $genre, array $validated): Genre
     {

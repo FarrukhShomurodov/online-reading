@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class NewsCategory extends Model
 {
     protected $fillable = ['name'];
+
     protected $casts = ['name' => 'array'];
 
     public function news(): HasMany

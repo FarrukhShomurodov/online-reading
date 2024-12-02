@@ -35,7 +35,8 @@ class PromotionController
     public function store(PromotionRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->store((array)$validated);
+        $this->service->store((array) $validated);
+
         return redirect()->route('promotions.index')->with('success', 'Акция успешно добавлена!');
     }
 
@@ -47,7 +48,7 @@ class PromotionController
     public function update(PromotionRequest $request, Promotion $promotion): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->update($promotion, (array)$validated);
+        $this->service->update($promotion, (array) $validated);
 
         return redirect()->route('promotions.index')->with('success', 'Акция успешно обновлена!');
     }
@@ -55,6 +56,7 @@ class PromotionController
     public function destroy(Promotion $promotion): RedirectResponse
     {
         $this->service->destroy($promotion);
+
         return redirect()->route('promotions.index')->with('success', 'Акция успешно удалена!');
     }
 }

@@ -32,13 +32,14 @@ class NewsController
     public function create(): View
     {
         $categories = NewsCategory::query()->select('id', 'name')->get();
+
         return view('admin.news.create', compact('categories'));
     }
 
     public function store(NewsRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->store((array)$validated);
+        $this->service->store((array) $validated);
 
         return redirect()->route('news.index')->with('success', 'Новость успешно добавлена!');
     }
@@ -46,13 +47,14 @@ class NewsController
     public function edit(News $news): View
     {
         $categories = NewsCategory::query()->select('id', 'name')->get();
+
         return view('admin.news.edit', compact('news', 'categories'));
     }
 
     public function update(NewsRequest $request, News $news): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->update($news, (array)$validated);
+        $this->service->update($news, (array) $validated);
 
         return redirect()->route('news.index')->with('success', 'Новость успешно обновлена!');
     }
@@ -60,6 +62,7 @@ class NewsController
     public function destroy(News $news): RedirectResponse
     {
         $this->service->destroy($news);
+
         return redirect()->route('news.index')->with('success', 'Новость успешно удалена!');
     }
 }

@@ -17,14 +17,14 @@ class CollectionController
             ->get();
         $tags = Tag::query()->get();
 
-
-        return view('site.pages.collections', compact('collections', 'tags'));
+        return view('site.pages.collection.index', compact('collections', 'tags'));
     }
 
     public function books(Collection $collection): View
     {
         $collection->with('books');
         $books = Book::query()->get();
-        return view('site.pages.collection_books', compact('collection', 'books'));
+
+        return view('site.pages.collection.books', compact('collection', 'books'));
     }
 }

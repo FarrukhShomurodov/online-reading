@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignUlid('last_name')->nullable();
             $table->text('text');
             $table->decimal('ratting', 10, 1);
-            $table->boolean('is_view');
+            $table->boolean('is_view')->default(0);
             $table->timestamps();
         });
     }

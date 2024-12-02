@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -16,6 +17,10 @@ class SearchController
             ->where('title->ru', 'LIKE', "%$query%")
             ->get();
 
-        return view('site.pages.search-results', compact('books'));
+        $authors = Author::query()
+            ->where('name->ru', 'LIKE', "%$query%")
+            ->get();
+
+        return view('site.pages.search-results', compact('books', 'authors'));
     }
 }

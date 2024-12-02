@@ -1,129 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('site.layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <!-- Css -->
-    <link rel="stylesheet" href="/css/style.css">
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
-          rel="stylesheet">
-
-    <!-- Swiper -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-
-</head>
-
-<body>
-<header class="desctop justify-content-between align-items-center">
-    <img src="{{asset('/img/logo.png')}}" alt="logo" width="70px" height="27px"
-         onclick="window.location.href='{{url('/')}}'">
-    <div class="container d-flex justify-content-between align-items-center">
-        <ul class="menu">
-            <li class="menu-item active" style="margin-left: 0 !important;"
-                onclick="window.location.href='{{url('/')}}'">Главная
-            </li>
-            <li class="menu-item" onclick="window.location.href='{{url('categories')}}'">Все категории</li>
-            <li class="menu-item" onclick="window.location.href='{{url('genres')}}'">Все жанры</li>
-            <li class="menu-item" onclick="window.location.href='{{url('collections')}}'">Подборки</li>
-            <li class="menu-item" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
-            <li class="menu-item" onclick="window.location.href='{{route('offer')}}'">Оферта</li>
-            <li class="menu-item" onclick="window.location.href='{{route('about-us')}}'">О нас</li>
-        </ul>
-
-        <div class="search-container">
-            <img class="search-icon" src="{{asset('/img/icons/search.svg')}}" alt="search">
-            <input class="search" type="text" placeholder="Книга, автор">
-            <img class="cross-icon" src="{{asset('/img/icons/cross.svg')}}" alt="cross">
-        </div>
-
-        <div class="custom-select-container">
-            <div class="custom-select">
-                <div class="custom-select-selected">
-                    <img src="{{asset('/img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
-                </div>
-                <div class="custom-select-options">
-                    <div class="custom-select-option">
-                        <img src="{{asset('/img/flag/ru.png')}}" alt="RU" class="option-flag"> RU
-                    </div>
-                    <div class="custom-select-option">
-                        <img src="{{asset('/img/flag/uz.png')}}" alt="UZ" class="option-flag"> Uz
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="user-ava d-flex justify-content-center align-items-center"
-         onclick="window.location.href='/room'"><span>F</span></div>
-</header>
-
-<header class="mobile-device align-items-center">
-    <div class="container d-flex justify-content-between flex-row align-items-center w-100">
-        <img src="{{asset('/img/logo.png')}}" alt="logo" width="70px" height="27px"
-             onclick="window.location.href='{{url('/')}}'">
-
-        <div class="menu-mobile-nav">
-            <img class="search-icon-mobile" src="{{asset('/img/icons/search.svg')}}" alt="">
-            <div class="user-ava d-flex justify-content-center align-items-center"
-                 onclick="window.location.href='/room'"><span>F</span></div>
-            <img class="menu-icon" src="{{asset('/img/icons/menu.svg')}}" alt="">
-        </div>
-    </div>
-</header>
-
-<div class="search-container search-mobile container">
-    <img class="search-icon" src="{{asset('/img/icons/search.svg')}}" alt="search">
-    <input class="search" type="text" placeholder="Книга, автор">
-    <img class="cross-icon" src="{{asset('/img/icons/cross.svg')}}" alt="cross">
-</div>
-
-<!-- popuop menu -->
-<div class="menu-mobile-active">
-    <div class="d-flex justify-content-between align-items-cente w-100">
-        <div class="custom-select">
-            <div class="custom-select-selected">
-                <img src="{{asset('/img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
-            </div>
-            <div class="custom-select-options">
-                <div class="custom-select-option">
-                    <img src="{{asset('/img/flag/ru.png')}}" alt="RU" class="option-flag"> RU
-                </div>
-                <div class="custom-select-option">
-                    <img src="{{asset('/img/flag/uz.png')}}" alt="UZ" class="option-flag"> Uz
-                </div>
-            </div>
-        </div>
-        <img src="{{asset('/img/menu-logo.png')}}" alt="logo" width="99px" height="38px">
-        <img class="close-menu" src="{{ asset('/img/icons/cross.svg') }}" alt="" width="36px" height="36px">
-    </div>
-    <ul class="menu d-flex justify-content-center align-items-cente flex-column">
-        <li class="menu-item" style="margin-left: 0 !important;"
-            onclick="window.location.href='{{url('/')}}'">Главная
-        </li>
-        <li class="menu-item" onclick="window.location.href='{{url('categories')}}'">Все категории</li>
-        <li class="menu-item" onclick="window.location.href='{{url('genres')}}'">Все жанры</li>
-        <li class="menu-item" onclick="window.location.href='{{url('collections')}}'">Подборки</li>
-        <li class="menu-item" onclick="window.location.href='{{route('contacts')}}'">Контакты</li>
-        <li class="menu-item" onclick="window.location.href='{{route('offer')}}'">Оферта</li>
-        <li class="menu-item" onclick="window.location.href='{{route('about-us')}}'">О нас</li>
-    </ul>
-
-    <button>Мои книги</button>
-</div>
-
-
-<main class="container">
-    <div class=" genres-book-info" style="padding-left: 0">
+@section('content')
+    <div class="genres-book-info" style="padding-left: 0">
         {{--    <span class="d-flex align-items-center">--}}
         {{--        <img src="/img/icons/chevron-left.svg" alt="" width="16px">--}}
         {{--        <a href="{{ url('/') }}">Главная</a> / Поиск / {{ $book->title['ru'] }}--}}
@@ -140,7 +18,7 @@
                 {{ $book->title['ru'] }}
             </h2>
             <div>
-                <button class="top-read-book">
+                <button class="top-read-book" onclick="window.location.href='{{route('read.book', $book->id)}}'">
                     Читать книгу
                 </button>
                 <button class="top-readen">
@@ -160,13 +38,13 @@
                 <div class="best-book-month-info">
                     <div>
                         <span class='author'>Рейтинг</span>
-                        <div><img src="/img/icons/star.svg" alt="">
+                        <div><img src="{{asset('img/icons/star.svg')}}" alt="">
                             <b>{{ $book->ratting }} </b>
                         </div>
                     </div>
                     <div>
                         <span class="author">Прочитана (раз)</span>
-                        <div><img class="me-2" src="/img/icons/heart.svg" alt="">
+                        <div><img class="me-2" src="{{asset('img/icons/heart.svg')}}" alt="">
                             <b> {{ $book->readen_count }} тыс</b>
                         </div>
                     </div>
@@ -181,7 +59,7 @@
                         <b>
                             {!!
                                  implode(', ', $book->genres->take(2)->map(function ($genre) {
-                                     return '<a href="' . route('genre-books', $genre->id) . '">' . $genre->name['ru'] . '</a>';
+                                     return '<a href="' . route('genre.books', $genre->id) . '">' . $genre->name['ru'] . '</a>';
                                  })->toArray()) .
                                  ($book->genres->count() > 2 ? '...' : '')
                              !!}
@@ -196,7 +74,7 @@
                         <b>
                             {!!
                                 implode(', ', $book->tags->take(2)->map(function ($tag) {
-                                  return '<a href="' . route('genre-books', $tag->id) . '">' . $tag->name['ru'] . '</a>';
+                                  return '<a href="' . route('genre.books', $tag->id) . '">' . $tag->name['ru'] . '</a>';
                               })->toArray()) .
                               ($book->tags->count() > 2 ? '...' : '')
                           !!}
@@ -224,7 +102,7 @@
                                     <p>{{ $book->title['ru'] }}</p>
                                 </div>
                             </div>
-                            <button onclick="window.location.href='{{route('book-show', $book->id)}}'"> Читать книгу
+                            <button onclick="window.location.href='{{route('book.show', $book->id)}}'"> Читать книгу
                             </button>
                         </div>
                     @endif
@@ -232,121 +110,56 @@
             </div>
         </div>
         <div class="d-flex justify-content-between align-items-center">
-            <div class="swiper-category-button-prev1"><img src="/img/icons/left.svg" alt=""></div>
-            <div class="swiper-category-button-next1"><img src="/img/icons/right.svg" alt=""></div>
+            <div class="swiper-category-button-prev1"><img src="{{asset('img/icons/left.svg')}}" alt="left"></div>
+            <div class="swiper-category-button-next1"><img src="{{asset('img/icons/right.svg')}}" alt="right"></div>
         </div>
     </div>
-</main>
 
-
-<footer>
-    <div class="container d-flex justify-content-between">
-        <img class="logo-white" src="/img/logo-white.png" alt="" onclick="window.location.href='{{url('/')}}'">
-        <div class="footer-content d-flex justify-content-between align-items-cente ">
-            <ul class="d-flex align-items-center flex-row container">
-                <li>Правила <img src="/img/icons/chevron-right.svg"></li>
-                <li onclick="window.location.href='{{route('offer')}}'">Оферта <img src="/img/icons/chevron-right.svg">
-                </li>
-                <li onclick="window.location.href='{{route('contacts')}}'">Контакты<img
-                        src="/img/icons/chevron-right.svg"></li>
-                <li>Связаться <img src="/img/icons/chevron-right.svg"></li>
-            </ul>
-        </div>
+    <div class="reviews-container">
+        <h3>Отзывы</h3>
+        @foreach($reviews as $review)
+            <div class="reviews">
+                <div class="review-header">
+                    <div class="review-rating">
+                        @for($i = 1; $i <= 5; $i++)
+                            @if($i <= $review->ratting)
+                                <span class="star filled">&#9733;</span>
+                            @else
+                                <span class="star">&#9733;</span>
+                            @endif
+                        @endfor
+                    </div>
+                    <span class="review-user">{{ $review->name }}</span>
+                </div>
+                <p class="review-text">{{ $review->text }}</p>
+                <span class="review-date">{{ $review->created_at->format('d.m.Y H:i') }}</span>
+            </div>
+        @endforeach
     </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script>
-
-    new Swiper('.swiper-category-container1', {
-        loop: true,
-        {{--slidesPerView: {{$category->books->count()}},--}}
-        spaceBetween: 10,
-        navigation: {
-            nextEl: '.swiper-category-button-next1',
-            prevEl: '.swiper-category-button-prev1',
-        },
-        // autoplay: {
-        //     delay: 3000,
-        //     disableOnInteraction: false,
-        // },
-        speed: 500,
-    });
-    $(document).ready(function () {
-        $('.menu-icon').on('click', function () {
-            $('.menu-mobile-active').addClass('active');
-            $('body').addClass('no-scroll');
-        });
-
-        $('.close-menu').on('click', function () {
-            $('.menu-mobile-active').removeClass('active');
-            $('body').removeClass('no-scroll');
-        });
-
-        $('.search-icon-mobile').on('click', function () {
-            $('.search-mobile').toggleClass('search-container-mobile');
-        });
 
 
-        $('.search').on('focus', function () {
-            $('.search-icon').css('filter', 'invert(79%) sepia(78%) saturate(1862%) hue-rotate(330deg) brightness(106%) contrast(103%)');
-            $('.cross-icon').css('display', 'block');
-        });
+    @if(auth()->guard('user')->user())
+        <div class="category-container review">
+            <h3>Сообщение <span style="color: rgba(239, 79, 79, 1)">*</span></h3>
+            <form action="{{ route('review.store') }}" method="post"
+                  class="d-flex justify-content-between align-items-start flex-column w-100">
+                @csrf
+                <input type="hidden" name="book_id" value="{{ $book->id }}">
+                <input type="hidden" name="ratting" id="ratting" value="0">
+                <input type="hidden" name="user_id" value="{{ auth()->guard('user')->user()->id }}">
 
-        $('.search').on('blur', function () {
-            setTimeout(function () {
-                $('.search-icon').css('filter', 'invert(68%) sepia(0%) saturate(13%) hue-rotate(166deg) brightness(91%) contrast(89%)');
-                $('.cross-icon').css('display', 'none');
-            }, 100);
+                <!-- Рейтинг звезд -->
+                <div class="star-rating">
+                    <span data-value="5" class="star">&#9733;</span>
+                    <span data-value="4" class="star">&#9733;</span>
+                    <span data-value="3" class="star">&#9733;</span>
+                    <span data-value="2" class="star">&#9733;</span>
+                    <span data-value="1" class="star">&#9733;</span>
+                </div>
 
-            $('.cross-icon').click(function () {
-                $('.search').val('');
-            });
-        });
-
-        document.querySelector('.custom-select').addEventListener('click', function () {
-            document.querySelector('.custom-select-options').classList.toggle('show');
-        });
-
-        document.querySelectorAll('.custom-select-option').forEach(function (option) {
-            option.addEventListener('click', function () {
-                let selectedOption = option.textContent.trim();
-                let selectedFlag = option.querySelector('img').src;
-                let customSelect = option.closest('.custom-select');
-
-                let selectedTextContainer = customSelect.querySelector('.custom-select-selected');
-
-                selectedTextContainer.textContent = selectedOption;
-
-                const existingFlag = selectedTextContainer.querySelector('.selected-flag');
-                if (existingFlag) {
-                    existingFlag.remove();
-                }
-
-                let flagImg = document.createElement('img');
-                flagImg.src = selectedFlag;
-                flagImg.alt = selectedOption;
-                flagImg.classList.add('selected-flag');
-
-                selectedTextContainer.insertBefore(flagImg, selectedTextContainer.firstChild);
-            });
-        });
-
-        $('.top-read-book').hover(
-            function () {
-                $(this).text('Читать').delay(500);
-            },
-            function () {
-                $(this).append(' книгу').delay(500);
-            }
-        );
-    });
-</script>
-
-</body>
-
-</html>
+                <textarea name="text" placeholder="Напишите ваш отзыв..."></textarea>
+                <button>Отправить</button>
+            </form>
+        </div>
+    @endif
+@endsection

@@ -20,12 +20,13 @@ class GenreController
 
         $collections = Collection::query()->get();
 
-        return view('site.pages.genres', compact('genres', 'tags', 'collections'));
+        return view('site.pages.genre.index', compact('genres', 'tags', 'collections'));
     }
 
     public function books(Genre $genre): View
     {
         $genre->with('books');
-        return view('site.pages.genre_books', compact('genre'));
+
+        return view('site.pages.genre.books', compact('genre'));
     }
 }

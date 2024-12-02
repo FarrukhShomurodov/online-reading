@@ -7,7 +7,7 @@ use App\Models\News;
 class NewsService
 {
     /**
-     * @param array<string, mixed> $validated
+     * @param  array<string, mixed>  $validated
      */
     public function update(News $news, array $validated): News
     {
@@ -24,7 +24,7 @@ class NewsService
     }
 
     /**
-     * @param array<string, mixed> $validated
+     * @param  array<string, mixed>  $validated
      */
     public function store(array $validated): News
     {

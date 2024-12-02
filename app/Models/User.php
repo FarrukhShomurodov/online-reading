@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -17,6 +18,7 @@ class User extends Authenticatable
         'last_name',
         'phone_number',
         'sms_code',
+        'password',
         'is_active',
     ];
 
@@ -28,8 +30,15 @@ class User extends Authenticatable
         ];
     }
 
+    protected $hidden = ['password'];
+
     protected function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function books(): HasMany
+    {
+        return $this->hasMany(UserBook::class, 'user_id');
     }
 }

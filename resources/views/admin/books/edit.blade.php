@@ -26,7 +26,7 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Редактировать</h5>
             <label class="switch" style="margin-right: 40px">
-                <input type="checkbox" class="switch-input" name="is_active" checked>
+                <input type="checkbox" class="switch-input" name="is_active" @if($book->is_active) checked @endif>
                 <span class="switch-toggle-slider">
                     <span class="switch-on"></span>
                     <span class="switch-off"></span>
@@ -239,7 +239,7 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-            $('.is_active').val(1);
+            $('.is_active').val({{ json_encode($book->is_active) ? 0 : 1 }});
             $('.switch-input').on('change', function () {
                 let isActive = $(this).is(':checked') ? 1 : 0;
                 $('.is_active').val(isActive);

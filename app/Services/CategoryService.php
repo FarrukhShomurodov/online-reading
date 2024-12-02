@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 class CategoryService
 {
     /**
-     * @param array<string, mixed> $validated
+     * @param  array<string, mixed>  $validated
      */
     public function store(array $validated): Category
     {
@@ -25,7 +25,7 @@ class CategoryService
     }
 
     /**
-     * @param array<string, mixed> $validated
+     * @param  array<string, mixed>  $validated
      */
     public function update(Category $category, array $validated): Category
     {

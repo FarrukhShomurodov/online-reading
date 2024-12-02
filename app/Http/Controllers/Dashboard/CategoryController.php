@@ -35,7 +35,7 @@ class CategoryController
     public function store(CategoryRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->store((array)$validated);
+        $this->service->store((array) $validated);
 
         return redirect()->route('categories.index')->with('success', 'Категория успешно добавлена!');
     }
@@ -48,7 +48,7 @@ class CategoryController
     public function update(CategoryRequest $request, Category $category): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->update($category, (array)$validated);
+        $this->service->update($category, (array) $validated);
 
         return redirect()->route('categories.index')->with('success', 'Категория успешно обновлена!');
     }
@@ -56,6 +56,7 @@ class CategoryController
     public function destroy(Category $category): RedirectResponse
     {
         $this->service->destroy($category);
+
         return redirect()->route('categories.index')->with('success', 'Категория успешно удалена!');
     }
 }

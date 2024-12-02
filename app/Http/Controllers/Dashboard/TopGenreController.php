@@ -16,7 +16,7 @@ class TopGenreController
 
         foreach ($validated['genres'] as $genre) {
             TopGenre::query()->create([
-                'genre_id' => $genre
+                'genre_id' => $genre,
             ]);
         }
 

@@ -89,7 +89,7 @@
                 <div class="mb-3 books_input">
                     <label class="form-label" for="books">Добавить книги</label>
                     <select class="select2 form-control @error('books') is-invalid @enderror" id="books"
-                            multiple required>
+                            multiple>
                         @foreach($books as $book)
                             <option value="{{ $book->id }}"
                                     data-image-url="{{ $book->first_image_url }}"

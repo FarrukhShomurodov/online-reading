@@ -35,7 +35,7 @@ class AuthorController
     public function store(AuthorRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->store((array)$validated);
+        $this->service->store((array) $validated);
 
         return redirect()->route('authors.index')->with('success', 'Автор успешно добавлена!');
     }
@@ -48,7 +48,7 @@ class AuthorController
     public function update(AuthorRequest $request, Author $author): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->update($author, (array)$validated);
+        $this->service->update($author, (array) $validated);
 
         return redirect()->route('authors.index')->with('success', 'Автор успешно обновлена!');
     }
@@ -56,6 +56,7 @@ class AuthorController
     public function destroy(Author $author): RedirectResponse
     {
         $this->service->destroy($author);
+
         return redirect()->route('authors.index')->with('success', 'Автор успешно удалена!');
     }
 }

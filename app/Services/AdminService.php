@@ -9,28 +9,27 @@ use Illuminate\Support\Facades\Hash;
 class AdminService
 {
     /**
-     * @param array<string, mixed> $validated
+     * @param  array<string, mixed>  $validated
      */
     public function store(array $validated): Admin
     {
         return DB::transaction(function () use ($validated) {
             $validated['password'] = isset($validated['password'])
-                ? Hash::make((string)$validated['password'])
+                ? Hash::make((string) $validated['password'])
                 : null;
 
             return Admin::query()->create($validated);
         });
     }
 
-
     /**
-     * @param array<string, mixed> $validated
+     * @param  array<string, mixed>  $validated
      */
     public function update(Admin $admin, array $validated): Admin
     {
         return DB::transaction(function () use ($admin, $validated) {
             if (isset($validated['password']) && $validated['password'] !== '') {
-                $validated['password'] = Hash::make((string)$validated['password']);
+                $validated['password'] = Hash::make((string) $validated['password']);
             } else {
                 unset($validated['password']);
             }

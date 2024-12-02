@@ -19,12 +19,13 @@ class CategoryController
         $tags = Tag::query()->get();
         $collections = Collection::query()->get();
 
-        return view('site.pages.categories', compact('categories', 'tags', 'collections'));
+        return view('site.pages.category.index', compact('categories', 'tags', 'collections'));
     }
 
     public function books(Category $category): View
     {
         $category->with('books');
-        return view('site.pages.category_books', compact('category'));
+
+        return view('site.pages.category.books', compact('category'));
     }
 }

@@ -26,7 +26,7 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Редактировать</h5>
             <label class="switch" style="margin-right: 40px">
-                <input type="checkbox" class="switch-input" name="is_view" checked>
+                <input type="checkbox" class="switch-input" name="is_view" @if($review->is_view) checked @endif>
                 <span class="switch-toggle-slider">
                     <span class="switch-on"></span>
                     <span class="switch-off"></span>
@@ -36,10 +36,11 @@
         <div class="card-body">
             <form action="{{ route('reviews.update', $review->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('put')
                 <div class="mb-3">
                     <label class="form-label" for="name">Имя</label>
                     <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                           id="name" placeholder="Загаловок" value="{{ $review->name }}" required>
+                           id="name" placeholder="Имя" value="{{ $review->name }}" required>
                     @error('name')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -50,7 +51,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="last_name">Фамилия</label>
                     <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror"
-                           id="last_name" placeholder="Автор" value="{{ $review->last_name }}" required>
+                           id="last_name" placeholder="Фамилия" value="{{ $review->last_name }}" required>
                     @error('last_name')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -98,9 +99,11 @@
         </div>
     </div>
 @endsection
+
 @section('scripts')
     <script>
         $(document).ready(function () {
+            $('.is_view').val({{ json_encode($review->is_view) ? 0 : 1 }});
             $('.switch-input').on('change', function () {
                 let isActive = $(this).is(':checked') ? 1 : 0;
                 $('.is_view').val(isActive);

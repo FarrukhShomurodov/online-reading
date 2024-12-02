@@ -59,13 +59,15 @@
                                 <button class="btn btn-sm btn-icon"
                                         onclick="location.href='{{ route('collections.edit', $collection->id) }}'"><i
                                         class="bx bx-edit"></i></button>
-                                <form action="{{ route('collections.destroy', $collection->id) }}" method="POST"
-                                      style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-icon delete-record"><i class="bx bx-trash"></i>
-                                    </button>
-                                </form>
+                                @if(!collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])->contains($collection->id))
+                                    <form action="{{ route('collections.destroy', $collection->id) }}" method="POST"
+                                          style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm btn-icon delete-record"><i class="bx bx-trash"></i>
+                                        </button>
+                                    </form>
+                                @endif
                             </div>
                         </td>
                     </tr>
@@ -73,7 +75,7 @@
                 </tbody>
             </table>
             <div class="mt-4 p-1">
-                {{ $collections->links('pagination::bootstrap-5') }}
+                {{ $collections->links() }}
             </div>
         </div>
     </div>

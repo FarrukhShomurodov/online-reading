@@ -11,7 +11,7 @@ class News extends Model
     protected $fillable = [
         'title',
         'text',
-        'news_category_id'
+        'news_category_id',
     ];
 
     protected $casts = [

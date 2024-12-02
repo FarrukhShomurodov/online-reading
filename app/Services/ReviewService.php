@@ -7,7 +7,7 @@ use App\Models\Review;
 class ReviewService
 {
     /**
-     * @param array<string, mixed> $validated
+     * @param  array<string, mixed>  $validated
      */
     public function store(array $validated): Review
     {
@@ -15,7 +15,7 @@ class ReviewService
     }
 
     /**
-     * @param array<string, mixed> $validated
+     * @param  array<string, mixed>  $validated
      */
     public function update(Review $review, array $validated): Review
     {
@@ -30,11 +30,10 @@ class ReviewService
     }
 
     /**
-     * @param array<string, mixed> $validated
+     * @param  array<string, mixed>  $validated
      */
     public function updateStatus(Review $review, array $validated): void
     {
         $review->update($validated);
     }
-
 }

@@ -54,7 +54,7 @@
                             <label for="genres">Топ жанры</label>
                             <select id="genres" name="genres[]"
                                     class="form-control select2" multiple>
-                                @foreach($genres as $genre)
+                                @foreach($allGenres as $genre)
                                     <option value="{{ $genre->id }}"
                                         {{ in_array($genre->id, $topGenres) ? 'selected' : '' }}>
                                         {{ $genre->name['ru'] }}

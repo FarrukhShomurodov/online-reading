@@ -18,7 +18,7 @@ use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('dashboard.login');
-Route::post('admin/login', [AdminAuthController::class, 'login'])->name('dashboard.login');
+Route::post('admin/login', [AdminAuthController::class, 'login']);
 
 Route::prefix('dashboard')->middleware('auth:admin')->group(function () {
     Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');

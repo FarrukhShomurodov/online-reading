@@ -14,7 +14,7 @@ class ImageController
         string $folderName,
         string $fileName
     ): \Illuminate\Foundation\Application|Response|Application|ResponseFactory {
-        $url = $folderName . '/' . $fileName;
+        $url = $folderName.'/'.$fileName;
         Image::query()->where('url', $url)->delete();
         Storage::disk('public')->delete($url);
 

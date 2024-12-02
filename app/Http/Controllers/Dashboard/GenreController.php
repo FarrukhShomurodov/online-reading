@@ -25,8 +25,14 @@ class GenreController
             ->orderBy('id')
             ->simplePaginate(10);
 
+        $allGenres = Genre::query()
+            ->select('id', 'name')
+            ->orderBy('id')
+            ->get();
+
         $topGenres = TopGenre::query()->pluck('genre_id')->toArray();
-        return view('admin.genres.index', compact('genres', 'topGenres'));
+
+        return view('admin.genres.index', compact('genres', 'topGenres', 'allGenres'));
     }
 
     public function create(): View
@@ -58,6 +64,7 @@ class GenreController
     public function destroy(Genre $genre): RedirectResponse
     {
         $this->service->destroy($genre);
+
         return redirect()->route('genres.index')->with('success', 'Жанр успешно удален!');
     }
 }

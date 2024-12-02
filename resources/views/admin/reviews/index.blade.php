@@ -56,7 +56,7 @@
                 @foreach($reviews as $review)
                     <tr>
                         <td>{{ $review->book->title['ru'] }}</td>
-                        <td>{{ $review->user->name ?? '' }}</td>
+                        <td>{{ $review->user->phone_number ?? '' }}</td>
                         <td>{{ $review->name }}</td>
                         <td>{{ $review->last_name }}</td>
                         <td>{{ $review->text }}</td>
@@ -106,7 +106,7 @@
             let isActive = $(this).is(':checked') ? 1 : 0;
 
             $.ajax({
-                url: `api/reviews/is_view/${reviewId}`,
+                url: `/api/reviews/is_view/${reviewId}`,
                 method: 'PUT',
                 data: {
                     _token: '{{ csrf_token() }}',

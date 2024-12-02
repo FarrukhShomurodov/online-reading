@@ -7,7 +7,7 @@ use App\Models\Promotion;
 class PromotionService
 {
     /**
-     * @param array<string, mixed> $validated
+     * @param  array<string, mixed>  $validated
      */
     public function update(Promotion $promotion, array $validated): Promotion
     {
@@ -24,7 +24,7 @@ class PromotionService
     }
 
     /**
-     * @param array<string, mixed> $validated
+     * @param  array<string, mixed>  $validated
      */
     public function store(array $validated): Promotion
     {
