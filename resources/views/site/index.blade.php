@@ -127,7 +127,7 @@
         @endif
 
 
-        @if($placeNumber == 2)
+        @if($placeNumber == 2 && $collections->find(2)->books->count() > 0)
             @if($collections->find(2))
                 <div class="best-book-month d-flex justify-content-between w-100">
                     <div class="d-flex top-books flex-column justify-content-between align-items-start">
@@ -187,7 +187,7 @@
             @endif
         @endif
 
-        @if($placeNumber == 3)
+        @if($placeNumber == 3 && $collections->find(3)->books->count() > 0)
             @if($collections->find(3))
                 <div class="top-readen-book-container d-flex justify-content-between align-items-center w-100">
                     <div class="top-readen-book d-flex justify-content-between flex-column align-items-start">
@@ -231,7 +231,7 @@
             @endif
         @endif
 
-        @if($placeNumber == 4)
+        @if($placeNumber == 4 && $collections->find(4)->books->count() > 0)
             @if($collections->find(4))
                 <div class="new-books w-100">
                     <button>
