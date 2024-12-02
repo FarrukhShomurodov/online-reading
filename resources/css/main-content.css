@@ -1138,4 +1138,8 @@ footer .container img {
     .all-genres-section button {
         font-size: 14px;
     }
+
+    .genre-grid {
+        gap: 20px;
+    }
 }
