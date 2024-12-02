@@ -21,10 +21,14 @@ class BookController
     {
         $user = Auth::guard('user')->user();
 
-        UserBook::query()->create([
-            'user_id' => $user->id,
-            'book_id' => $book->id
-        ]);
+        $userBook = UserBook::query()->where('book_id', $book->id)->exists();
+
+        if (!$userBook) {
+            UserBook::query()->create([
+                'user_id' => $user->id,
+                'book_id' => $book->id
+            ]);
+        }
 
         return view('site.flipbook.index', compact('book'));
     }
