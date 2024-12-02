@@ -3,9 +3,9 @@
 @section('content')
     <div class="all-categories">
         <div class="mb-3">
-            <a href="{{ url()->previous() }}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> Назад
-            </a>
+            <div class="not-found">
+                <button onclick="window.location.href='{{ url()->previous() }}'">Назад</button>
+            </div>
         </div>
 
         <div id="reader-container" class="w-100"
