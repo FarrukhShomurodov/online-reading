@@ -15,9 +15,8 @@
         <div class="room-book">
             @foreach($books as $book)
                 <div class="d-flex flex-row align-items-start gap-5">
-                    <div>
-                        <div class="room-book-container"
-                             onclick="window.location.href='{{route('book.show', $book->id)}}'">
+                    <div class="w-100" onclick="window.location.href='{{route('book.show', $book->id)}}'">
+                        <div class="room-book-container">
                             @if($book->book->images->first())
                                 <img class="book-room" src="{{asset('storage/'.$book->book->images->first()->url)}}"
                                      alt="newbook">
