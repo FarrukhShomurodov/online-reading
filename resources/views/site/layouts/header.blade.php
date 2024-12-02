@@ -124,7 +124,7 @@
         <li class="menu-item"><a href="{{ route('about-us') }}">О нас</a></li>
     </ul>
 
-    <button>Мои книги</button>
+    <button onclick="window.location.href='{{route('room')}}'">Мои книги</button>
 </div>
 
 {{-- Auth --}}
