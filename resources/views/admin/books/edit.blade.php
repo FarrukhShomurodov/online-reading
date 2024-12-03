@@ -239,7 +239,8 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-            $('.is_active').val({{ json_encode($book->is_active) ? 0 : 1 }});
+            $('.is_active').val({{ $book->is_active ? 1 : 0 }});
+            console.log($('.is_active').val())
             $('.switch-input').on('change', function () {
                 let isActive = $(this).is(':checked') ? 1 : 0;
                 $('.is_active').val(isActive);

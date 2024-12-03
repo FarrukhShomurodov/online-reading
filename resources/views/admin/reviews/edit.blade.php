@@ -103,7 +103,7 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-            $('.is_view').val({{ json_encode($review->is_view) ? 0 : 1 }});
+            $('.is_view').val({{ $review->is_view ? 1 : 0 }});
             $('.switch-input').on('change', function () {
                 let isActive = $(this).is(':checked') ? 1 : 0;
                 $('.is_view').val(isActive);
