@@ -40,7 +40,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="name">Имя</label>
                     <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                           id="name" placeholder="Имя" value="{{ $review->name }}" required>
+                           id="name" placeholder="Имя" value="{{ $review->name }}">
                     @error('name')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -51,7 +51,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="last_name">Фамилия</label>
                     <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror"
-                           id="last_name" placeholder="Фамилия" value="{{ $review->last_name }}" required>
+                           id="last_name" placeholder="Фамилия" value="{{ $review->last_name }}">
                     @error('last_name')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
