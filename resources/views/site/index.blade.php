@@ -43,12 +43,12 @@
                     <button class="top-read-book"
                             id="topBookRead"
                             onclick="window.location.href='{{route('book.show', $collections->first()->books->where('is_active', true)->first()->id)}}'">
-                        Читать книгу
+                        @lang('site.read_book')
                     </button>
                     <button class="top-readen"
                             id="topBookMarkAsRead"
                             onclick="window.location.href='{{route( 'mark.as.read', $collections->first()->books->where('is_active', true)->first()->id )}}'">
-                        Прочитана
+                        @lang('site.mark_read')
                     </button>
                 </div>
             </div>
@@ -117,8 +117,8 @@
                                             <p>{{ $book->title[$currentLang] }}</p>
                                         </div>
                                     </div>
-                                    <button onclick="window.location.href='{{route('book.show', $book->id)}}'"> Читать
-                                        книгу
+                                    <button onclick="window.location.href='{{route('book.show', $book->id)}}'">
+                                        @lang('site.read_book')
                                     </button>
                                 </div>
                             @endif
@@ -156,11 +156,11 @@
                         <div>
                             <button class="top-read-book"
                                     onclick="window.location.href='{{route('book.show', $collections->find(2)->books->where('is_active', true)->first()->id)}}'">
-                                Читать книгу
+                                @lang('site.read_book')
                             </button>
                             <button class="top-readen"
                                     onclick="window.location.href='{{route( 'mark.as.read', $collections->find(2)->books->where('is_active', true)->first()->id )}}'">
-                                Прочитана
+                                @lang('site.mark_read')
                             </button>
                         </div>
                     </div>
@@ -175,16 +175,16 @@
 
                         <div class="best-book-month-info">
                             <div>
-                                <span class='author'>Рейтинг</span>
+                                <span class='author'>@lang('site.ratting')</span>
                                 <div><img src="{{asset('/img/icons/star.svg')}}" alt="star">
                                     <b>{{ $collections->find(2)->books->where('is_active', true)->first()->ratting }} </b>
                                 </div>
                             </div>
                             <div>
-                                <span class="author">Прочитана (раз)</span>
+                                <span class="author">@lang('site.read_count')</span>
                                 <div><img class="me-2" src="{{asset('/img/icons/heart.svg')}}" alt="heart">
                                     <b> {{ $collections->find(2)->books->where('is_active', true)->first()->readen_count }}
-                                        тыс</b>
+                                        @lang('site.count')</b>
                                 </div>
                             </div>
                         </div>
@@ -202,7 +202,7 @@
             @if($collections->find(3))
                 <div class="top-readen-book-container d-flex justify-content-between align-items-center w-100">
                     <div class="top-readen-book d-flex justify-content-between flex-column align-items-start">
-                        <button>Cамые читаемые книги</button>
+                        <button>@lang('site.most_read_book')</button>
                         <p>{{ $collections->find(3)->name[$currentLang] }}</p>
                         <span>
                      {{ $collections->find(3)->description[$currentLang]}}
@@ -225,8 +225,7 @@
                                             </div>
                                         </div>
                                         <button onclick="window.location.href='{{route('book.show', $book->id)}}'">
-                                            Читать
-                                            книгу
+                                            @lang('site.read_book')
                                         </button>
                                     </div>
                                 @endforeach
@@ -297,8 +296,8 @@
                                             <p>{{ $book->title[$currentLang] }}</p>
                                         </div>
                                     </div>
-                                    <button onclick="window.location.href='{{route('book.show', $book->id)}}'"> Читать
-                                        книгу
+                                    <button onclick="window.location.href='{{route('book.show', $book->id)}}'">
+                                        @lang('site.read_book')
                                     </button>
                                 </div>
                             @endforeach
@@ -317,7 +316,7 @@
 
     @if($topGenres->count() > 0)
         <div class="top-genre w-100">
-            <p class="top-genre-p">Топ жанры</p>
+            <p class="top-genre-p">@lang('site.top_genres')</p>
             <div class="genre-grid">
                 @foreach($topGenres as $top)
                     <div class="genre-container"
@@ -328,7 +327,7 @@
                         <div class="genres-info">
                             <span class="author">• {{ $top->genre->name[$currentLang] }}</span><br>
                             <span class="author">{{ $top->genre->description[$currentLang] ?? ''}}</span><br>
-                            <p>Книги в жанре<br>
+                            <p>@lang('site.genre_book')<br>
                                 <span>«{{ $top->genre->name[$currentLang] }}»</span>
                             </p>
                         </div>
