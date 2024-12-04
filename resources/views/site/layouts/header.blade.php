@@ -36,10 +36,10 @@
                     <img src="{{asset('img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
                 </div>
                 <div class="custom-select-options">
-                    <div class="custom-select-option">
+                    <div class="custom-select-option" onclick="window.location.href='{{route('change-locale', 'ru')}}'">
                         <img src="{{asset('img/flag/ru.png')}}" alt="RU" class="option-flag"> RU
                     </div>
-                    <div class="custom-select-option">
+                    <div class="custom-select-option" onclick="window.location.href='{{route('change-locale', 'uz')}}'">
                         <img src="{{asset('img/flag/uz.png')}}" alt="UZ" class="option-flag"> Uz
                     </div>
                 </div>
