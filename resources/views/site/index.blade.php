@@ -173,13 +173,14 @@
                             <div>
                                 <span class='author'>Рейтинг</span>
                                 <div><img src="{{asset('/img/icons/star.svg')}}" alt="star">
-                                    <b>4,9 </b>
+                                    <b>{{ $collections->find(2)->books->where('is_active', true)->first()->ratting }} </b>
                                 </div>
                             </div>
                             <div>
                                 <span class="author">Прочитана (раз)</span>
                                 <div><img class="me-2" src="{{asset('/img/icons/heart.svg')}}" alt="heart">
-                                    <b> 10,1 тыс</b>
+                                    <b> {{ $collections->find(2)->books->where('is_active', true)->first()->readen_count }}
+                                        тыс</b>
                                 </div>
                             </div>
                         </div>

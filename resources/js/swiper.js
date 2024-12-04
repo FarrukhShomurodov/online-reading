@@ -20,15 +20,50 @@ new Swiper('.swiper-top-book-container', {
 });
 
 
-new Swiper('.swiper-collection-container', {
-    loop: true,
-    spaceBetween: 10,
-    navigation: {
-        nextEl: '.swiper-collection-container-next',
-        prevEl: '.swiper-collection-container-prev',
-    },
-    speed: 500,
+// new Swiper('.swiper-collection-container', {
+//     loop: true,
+//     spaceBetween: 10,
+//     navigation: {
+//         nextEl: '.swiper-collection-container-next',
+//         prevEl: '.swiper-collection-container-prev',
+//     },
+//     speed: 500,
+// });
+
+$('[class^="swiper-collection-container"]').each(function (container) {
+    const $container = $(container);
+    const $slides = $container.find('.swiper-slide');
+
+    if ($slides.length === 0) {
+        console.warn(`No slides found in container ${index + 1}`);
+        return; // Пропускаем контейнеры без слайдов
+    }
+
+    // Инициализация Swiper
+    const swiper = new Swiper(container, {
+        loop: $slides.length > 1,
+        spaceBetween: 10,
+        slidesPerView: 'auto',
+        slidesPerGroup: 1,
+        navigation: {
+            nextEl: '.swiper-collection-container-next',
+            prevEl: '.swiper-collection-container-prev',
+        },
+        speed: 500,
+        breakpoints: {
+            600: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: Math.min($slides.length, 5),
+            },
+            1024: {
+                slidesPerView: Math.min($slides.length, 7),
+            },
+        },
+    });
 });
+
 
 $(document).ready(function () {
     // Находим все элементы с классом, начинающимся на `swiper-category-container`
