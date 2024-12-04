@@ -53,10 +53,10 @@ $('[class^="swiper-collection-container"]').each(function () {
                 slidesPerView: 1,
             },
             768: {
-                slidesPerView: Math.min($slides.length, 5),
+                slidesPerView: Math.min($slides.length, 4),
             },
             1024: {
-                slidesPerView: Math.min($slides.length, 7),
+                slidesPerView: Math.min($slides.length, 4),
             },
         },
     });
