@@ -69,13 +69,15 @@
 </main>
 
 {{-- Cache Footer --}}
-@php
-    $cachedFooter = Cache::remember('site_footer', now()->addHours(1), function () {
-        return view('site.layouts.footer')->render();
-    });
-@endphp
+{{--@php--}}
+{{--    $cachedFooter = Cache::remember('site_footer', now()->addHours(1), function () {--}}
+{{--        return view('site.layouts.footer')->render();--}}
+{{--    });--}}
+{{--@endphp--}}
 
-{!! $cachedFooter !!}
+{{--{!! $cachedFooter !!}--}}
+
+@include('site.layouts.footer')
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
