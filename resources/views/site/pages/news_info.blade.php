@@ -1,3 +1,7 @@
+@php
+    $currentLang = app()->getLocale();
+@endphp
+
 @extends('site.layouts.app')
 
 @section('content')
@@ -5,7 +9,7 @@
         <div class="genres-book-info">
             <span class="d-flex align-items-center">
                 <img src="{{asset('img/icons/chevron-left.svg')}}" alt="" width="16px">
-                <a href="{{ route('offer') }}">Оффер / Новости </a> / {{$news->category->name['ru']}} / {{ $news->title['ru'] }}
+                <a href="{{ route('offer') }}">@lang('site.offer_news')</a> / {{$news->category->name[$currentLang]}} / {{ $news->title[$currentLang] }}
             </span>
         </div>
         <div class="d-flex justify-content-between flex-column news-show">
@@ -14,16 +18,16 @@
             @endif
             <div class="all-categories">
                 <h2>
-                    {{ $news->title['ru'] }}
+                    {{ $news->title[$currentLang] }}
                 </h2>
                 <p class="top-book-desc">
-                    {{ $news->text['ru'] }}
+                    {{ $news->text[$currentLang] }}
                 </p>
             </div>
         </div>
 
         <div class="all-categories">
-            <h4>{{$news->category->name['ru']}}</h4>
+            <h4>{{$news->category->name[$currentLang]}}</h4>
             <div class="genre-grid all-genres">
                 @foreach($news->category->news as $news)
                     <div class="all-genres-section">
@@ -32,14 +36,14 @@
                                 <img src="{{ asset('storage/'.$news->images->first()->url) }}" alt="">
                             @endif
                             <div class="genres-info">
-                                <p>Новость<br>
-                                    <span>«{{ $news->title['ru'] }}»</span>
+                                <p>@lang('site.headline')<br>
+                                    <span>«{{ $news->title[$currentLang] }}»</span>
                                 </p>
                             </div>
 
                         </div>
                         <button class="btn" onclick="window.location.href='{{route('news', $news->id)}}'">
-                            Посмотреть
+                            @lang('site.watch')
                         </button>
                     </div>
                 @endforeach

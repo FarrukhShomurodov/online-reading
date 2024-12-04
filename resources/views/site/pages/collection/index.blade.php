@@ -1,9 +1,13 @@
+@php
+    $currentLang = app()->getLocale();
+@endphp
+
 @extends('site.layouts.app')
 
 @section('content')
     <div class="container all-categories">
-        <h3>Подборки</h3>
-        <span class="author">Исследуйте уникальные подборки книг, собранные для вашего вдохновения. Найдите новые произведения, которые обязательно вам понравятся.</span>
+        <h3>@lang('site.collections')</h3>
+        <span class="author">@lang('site.collection_title')</span>
 
         <div class="genre-grid all-genres">
             @foreach($collections as $collection)
@@ -13,17 +17,16 @@
                             <img src="{{asset('storage/'. $collection->images->first()->url)}}" alt="">
                         @endif
                         <div class="genres-info">
-                            <span class="author">• {{ $collection->name['ru'] }}</span><br>
-                            <span class="author">{{ $collection->description['ru'] ?? ''}}</span><br>
-                            <p>Книги в жанре<br>
-                                <span>«{{ $collection->name['ru'] }}»</span>
+                            <span class="author">• {{ $collection->name[$currentLang] }}</span><br>
+                            <span class="author">{{ $collection->description[$currentLang] ?? ''}}</span><br>
+                            <p>@lang('site.genre_book')<br>
+                                <span>«{{ $collection->name[$currentLang] }}»</span>
                             </p>
                         </div>
 
                     </div>
                     <button class="btn" onclick="window.location.href='{{route('collection.books', $collection->id)}}'">
-                        Посмотреть
-                        книги
+                        @lang('site.show_books')
                     </button>
                 </div>
             @endforeach
@@ -40,17 +43,17 @@
                                     <img src="{{asset('storage/' . $collection->images->first()->url )}}" alt="">
                                 @endif
                                 <div class="genres-info">
-                                    <span class="author">• {{ $collection->name['ru'] }}</span><br>
-                                    <span class="author">{{ $collection->description['ru'] ?? ''}}</span><br>
-                                    <p>Книги в жанре<br>
-                                        <span>«{{ $collection->name['ru'] }}»</span>
+                                    <span class="author">• {{ $collection->name[$currentLang] }}</span><br>
+                                    <span class="author">{{ $collection->description[$currentLang] ?? ''}}</span><br>
+                                    <p>@lang('site.genre_book')<br>
+                                        <span>«{{ $collection->name[$currentLang] }}»</span>
                                     </p>
                                 </div>
                             </div>
                             <button class="btn"
                                     onclick="window.location.href='{{ route('collection.books', $collection->id) }}'"
                                     style="width: 150px">
-                                Посмотреть
+                                @lang('site.watch')
                             </button>
                         </div>
                     @endforeach
@@ -65,14 +68,14 @@
 
         @if($tags->count() > 0)
             <div class="all-books-container w-100">
-                <h3>Теги</h3>
+                <h3>@lang('site.tags')</h3>
                 <div class="all-books">
                     <ul>
                         @foreach($tags as $tag)
                             <li>
                                 <button class="click">
                                     <a href="{{ route('tag.books', $tag->id) }}">
-                                        {{ $tag->name['ru'] }}
+                                        {{ $tag->name[$currentLang] }}
                                     </a>
                                 </button>
                             </li>

@@ -1,16 +1,20 @@
+@php
+    $currentLang = app()->getLocale();
+@endphp
+
 @extends('site.layouts.app')
 
 @section('content')
     <div class="container all-categories">
         @if(count($genre->books->where('is_active', true)) == 0)
             <div class="not-found">
-                <p>Упс! Мы не нашли ни одной книги.</p>
-                <button onclick="window.location.href='{{ url()->previous() }}'">Назад</button>
+                <p>@lang('site.not_found_book')</p>
+                <button onclick="window.location.href='{{ url()->previous() }}'">@lang('site.back')</button>
             </div>
         @else
-            <h3 style="padding-left: 0">Книги в жанре “{{ $genre->name['ru'] }}”</h3>
-            <span class="author">{{ $genre->description['ru'] ?? '' }}</span>
-            <span class="author">{{$genre->description['ru'] ?? ''}}</span>
+            <h3 style="padding-left: 0">@lang('site.genre_book') “{{ $genre->name[$currentLang] }}”</h3>
+            <span class="author">{{ $genre->description[$currentLang] ?? '' }}</span>
+            <span class="author">{{$genre->description[$currentLang] ?? ''}}</span>
             <div class="genre-grid all-genres">
 
                 @foreach($genre->books->where('is_active', true) as $book)
@@ -22,23 +26,24 @@
                             @endif
 
                             <div class="book-container-content">
-                                <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                <span class="author">• {{ $book->author->name[$currentLang] }}</span><br>
                                 <div class=book-container-ratting>
                                     <img src="{{asset('img/icons/star.svg')}}" alt="star"
                                          style="height: 15px !important;">
                                     <b>{{ $book->ratting }} </b>
                                 </div>
-                                <p>{{ $book->title['ru'] }}</p>
+                                <p>{{ $book->title[$currentLang] }}</p>
                             </div>
                         </div>
-                        <button onclick="window.location.href='{{route('book.show', $book->id)}}'"> Читать книгу
+                        <button
+                            onclick="window.location.href='{{route('book.show', $book->id)}}'"> @lang('site.read_book')
                         </button>
                     </div>
                 @endforeach
             </div>
 
             <div class="category-container w-100">
-                <h3>Популярные книги в жанре </h3>
+                <h3>@lang('site.popular_book_in_genre')</h3>
                 <div class="swiper-category-container1">
                     <div class="swiper-wrapper">
                         @foreach($genre->books->shuffle()->take(10) as $book)
@@ -52,17 +57,17 @@
                                         @endif
 
                                         <div class="book-container-content">
-                                            <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+                                            <span class="author">• {{ $book->author->name[$currentLang] }}</span><br>
                                             <div class=book-container-ratting>
                                                 <img src="{{asset('img/icons/star.svg')}}" alt="star"
                                                      style="height: 15px !important;">
                                                 <b>{{ $book->ratting }} </b>
                                             </div>
-                                            <p>{{ $book->title['ru'] }}</p>
+                                            <p>{{ $book->title[$currentLang] }}</p>
                                         </div>
                                     </div>
-                                    <button onclick="window.location.href='{{route('book.show', $book->id)}}'"> Читать
-                                        книгу
+                                    <button
+                                        onclick="window.location.href='{{route('book.show', $book->id)}}'"> @lang('site.read_book')
                                     </button>
                                 </div>
                             @endif

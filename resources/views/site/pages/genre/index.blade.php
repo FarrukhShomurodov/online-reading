@@ -1,9 +1,13 @@
+@php
+    $currentLang = app()->getLocale();
+@endphp
+
 @extends('site.layouts.app')
 
 @section('content')
     <div class="all-categories">
-        <h3>Жанры</h3>
-        <span class="author">Откройте для себя книги по своим любимым жанрам. Выбирайте из множества категорий и находите то, что вам по душе.</span>
+        <h3>@lang('site.genres_h')</h3>
+        <span class="author">@lang('site.genres_title')</span>
 
         <div class="genre-grid all-genres">
             @foreach($genres as $genre)
@@ -15,14 +19,14 @@
                         <div class="genres-info">
                             <span class="author">• {{ $genre->name['ru'] }}</span><br>
                             <span class="author">{{ $genre->description['ru'] ?? ''}}</span><br>
-                            <p>Книги в жанре<br>
+                            <p>@lang('site.genre_book')<br>
                                 <span>«{{ $genre->name['ru'] }}»</span>
                             </p>
                         </div>
 
                     </div>
-                    <button class="btn" onclick="window.location.href='{{route('genre.books', $genre->id)}}'">Посмотреть
-                        книги
+                    <button class="btn"
+                            onclick="window.location.href='{{route('genre.books', $genre->id)}}'">@lang('site.show_books')
                     </button>
                 </div>
             @endforeach
@@ -48,8 +52,8 @@
                                             <p>{{ $book->title['ru'] }}</p>
                                         </div>
                                     </div>
-                                    <button onclick="window.location.href='{{route('book.show', $book->id)}}'"> Читать
-                                        книгу
+                                    <button
+                                        onclick="window.location.href='{{route('book.show', $book->id)}}'">@lang('site.show_books')
                                     </button>
                                 </div>
                             @endif
@@ -68,7 +72,7 @@
 
         @if($tags->count() > 0)
             <div class="all-books-container w-100">
-                <h3>Теги</h3>
+                <h3>@lang('site.tags')</h3>
                 <div class="all-books">
                     <ul>
                         @foreach($tags as $tag)
@@ -106,8 +110,8 @@
                                             <p>{{ $book->title['ru'] }}</p>
                                         </div>
                                     </div>
-                                    <button onclick="window.location.href='{{route('book.show', $book->id)}}'"> Читать
-                                        книгу
+                                    <button
+                                        onclick="window.location.href='{{route('book.show', $book->id)}}'"> @lang('site.show_books')
                                     </button>
                                 </div>
                             @endif
@@ -142,7 +146,8 @@
                                         <p>{{ $book->title['ru'] }}</p>
                                     </div>
                                 </div>
-                                <button onclick="window.location.href='{{route('book.show', $book->id)}}'"> Читать книгу
+                                <button
+                                    onclick="window.location.href='{{route('book.show', $book->id)}}'"> @lang('site.show_books')
                                 </button>
                             </div>
                         @endif

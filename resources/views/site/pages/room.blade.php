@@ -1,18 +1,22 @@
+@php
+    $currentLang = app()->getLocale();
+@endphp
+
 @extends('site.layouts.app')
 
 @section('content')
     <div class="all-categories">
         <div class=" genres-book-info room-text d-block">
-            <p style="margin-bottom: 0 !important;">Кабинет</p>
-            <span class="author">Добро пожаловать, Анна!</span>
+            <p style="margin-bottom: 0 !important;">@lang('site.room')</p>
+            <span class="author">@lang('site.welcome')</span>
         </div>
 
         <div class="d-flex flex-row align-items-start cabinet-menu">
             <button class="cabinet-menu-item @if(Request::is('room')) cabinet-menu-active @endif"
-                    onclick="window.location.href='{{route('room')}}'">Мои книги
+                    onclick="window.location.href='{{route('room')}}'">@lang('site.my_books')
             </button>
             <button class="cabinet-menu-item @if(Request::is('get-reed-books')) cabinet-menu-active @endif"
-                    onclick="window.location.href='{{route('show.read.books')}}'">Прочтенные
+                    onclick="window.location.href='{{route('show.read.books')}}'">@lang('site.read_marked_book')
             </button>
         </div>
 
@@ -29,26 +33,26 @@
                                          alt="newbook">
                                 @endif
                                 <div class="book-short-info d-flex flex-column justify-content-between">
-                                    <h5><b>{{ $userBook->book->title['ru'] }}</b></h5>
+                                    <h5><b>{{ $userBook->book->title[$currentLang] }}</b></h5>
 
                                     <span class="description">
-                                    {{ $userBook->book->description['ru'] }}
+                                    {{ $userBook->book->description[$currentLang] }}
                                 </span>
-                                    <span class="author">• {{ $userBook->book->author->name['ru'] }}</span>
+                                    <span class="author">• {{ $userBook->book->author->name[$currentLang] }}</span>
                                     <div class="reating-info">
                                         <div
                                             class="best-book-month-info d-flex justify-content-between align-items-center">
                                             <div class="d-flex justify-content-center align-items-center flex-column">
-                                                <span class='author'>Рейтинг</span>
+                                                <span class='author'>@lang('site.ratting')</span>
                                                 <div><img src="{{asset('img/icons/star.svg')}}" alt="star">
                                                     <b>{{ $userBook->book->ratting }} </b>
                                                 </div>
                                             </div>
                                             <div class="d-flex justify-content-center align-items-center flex-column">
-                                                <span class="author">Прочитана (раз)</span>
+                                                <span class="author">@lang('site.read_count')</span>
                                                 <div><img class="me-2" src="{{asset('img/icons/heart.svg')}}"
                                                           alt="heart">
-                                                    <b> {{ $userBook->book->readen_count }} тыс</b>
+                                                    <b> {{ $userBook->book->readen_count }} @lang('site.count')</b>
                                                 </div>
                                             </div>
                                         </div>
@@ -60,11 +64,11 @@
                             <div class="top-books  book-room-btn">
                                 <button class="top-read-book"
                                         onclick="window.location.href='{{route('book.show', $userBook->book->id)}}'">
-                                    Читать книгу
+                                    @lang('site.read_book')
                                 </button>
                                 <button class="top-readen"
                                         onclick="window.location.href='{{route( 'mark.as.read', $userBook->book->id )}}'">
-                                    Прочитана
+                                    @lang('site.mark_read')
                                 </button>
                             </div>
                         </div>
@@ -77,8 +81,9 @@
                                      alt="">
                             @endif
                             <div class="d-flex justify-content-around flex-column g-2">
-                                <p>{{ $userBook->book->author->name['ru'] }}</p>
-                                <span class="author">• {{ $userBook->book->author->books->count() }} книг</span>
+                                <p>{{ $userBook->book->author->name[$currentLang] }}</p>
+                                <span
+                                    class="author">• {{ $userBook->book->author->books->count() }} @lang('site.book_m')</span>
                             </div>
                         </div>
                     </div>

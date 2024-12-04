@@ -1,3 +1,7 @@
+@php
+    $currentLang = app()->getLocale();
+@endphp
+
 @extends('site.layouts.app')
 
 @section('content')
@@ -6,11 +10,11 @@
         <div class="review-alert">
             <div class="d-flex justify-content-between align-items-start flex-wrap">
                 <div class="d-flex flex-column">
-                    <h5>Спасибо за отзыв!</h5>
-                    <p>Ваш отзыв был успешно отправлен и скоро появится на сайте.</p>
+                    <h5>@lang('site.thank_you_review')</h5>
+                    <p>@lang('site.review_success')</p>
                 </div>
                 <div class="not-found" style="padding: 0 !important;">
-                    <button id="hideAlert">Закрыть</button>
+                    <button id="hideAlert">@lang('site.close')</button>
                 </div>
             </div>
         </div>
@@ -19,7 +23,7 @@
     <div class="genres-book-info" style="padding-left: 0">
         {{--    <span class="d-flex align-items-center">--}}
         {{--        <img src="/img/icons/chevron-left.svg" alt="" width="16px">--}}
-        {{--        <a href="{{ url('/') }}">Главная</a> / Поиск / {{ $book->title['ru'] }}--}}
+        {{--        <a href="{{ url('/') }}">Главная</a> / Поиск / {{ $book->title[$currentLang] }}--}}
         {{--    </span>--}}
     </div>
 
@@ -30,20 +34,20 @@
                  src="{{ asset('storage/' . $book->images->first()->url) }}">
         @endif
         <div class="book-info top-books d-flex justify-content-between flex-column align-items-start">
-            <span class="author">• {{ $book->author->name['ru'] }}</span><br>
+            <span class="author">• {{ $book->author->name[$currentLang] }}</span><br>
             <h2>
-                {{ $book->title['ru'] }}
+                {{ $book->title[$currentLang] }}
             </h2>
             <div>
                 <button class="top-read-book" onclick="window.location.href='{{route('read.book', $book->id)}}'">
-                    Читать книгу
+                    @lang('site.read_book')
                 </button>
                 <button class="top-readen" onclick="window.location.href='{{route( 'mark.as.read', $book->id )}}'">
-                    Прочитана
+                    @lang('mark_read')
                 </button>
             </div>
             <p class="top-book-desc">
-                {{ $book->description['ru'] }}
+                {{ $book->description[$currentLang] }}
             </p>
             {{--        <button class="see-more">Показать полностью</button>--}}
         </div>
@@ -56,44 +60,44 @@
             <div class="book-details d-flex flex-column justify-content-between align-items-start">
                 <div class="best-book-month-info">
                     <div>
-                        <span class='author'>Рейтинг</span>
+                        <span class='author'>@lang('site.ratting')</span>
                         <div><img src="{{asset('img/icons/star.svg')}}" alt="">
                             <b>{{ $book->ratting }} </b>
                         </div>
                     </div>
                     <div>
-                        <span class="author">Прочитана (раз)</span>
+                        <span class="author">@lang('site.read_count')</span>
                         <div><img class="me-2" src="{{asset('img/icons/heart.svg')}}" alt="">
-                            <b> {{ $book->readen_count }} тыс</b>
+                            <b> {{ $book->readen_count }} @lang('site.count')</b>
                         </div>
                     </div>
                 </div>
                 <div class="d-flex flex-column">
                     <div>
-                        <span class="author">Год:</span>
+                        <span class="author">@lang('site.year')</span>
                         <b>{{ date('Y', strtotime($book->publication_date)) }}</b><br>
                     </div>
                     <div>
-                        <span class="author">Жанр:</span>
+                        <span class="author">@lang('site.genre')</span>
                         <b>
                             {!!
                                  implode(', ', $book->genres->take(2)->map(function ($genre) {
-                                     return '<a href="' . route('genre.books', $genre->id) . '">' . $genre->name['ru'] . '</a>';
+                                     return '<a href="' . route('genre.books', $genre->id) . '">' . $genre->name[$currentLang] . '</a>';
                                  })->toArray()) .
                                  ($book->genres->count() > 2 ? '...' : '')
                              !!}
                         </b><br>
                     </div>
                     <div>
-                        <span class="author">Бумажных страниц:</span><b> {{ $book->pages }}</b><br>
+                        <span class="author">@lang('site.pages')</span><b> {{ $book->pages }}</b><br>
                     </div>
 
                     <div>
-                        <span class="author">Теги:</span>
+                        <span class="author">@lang('site.tags'):</span>
                         <b>
                             {!!
                                 implode(', ', $book->tags->take(2)->map(function ($tag) {
-                                  return '<a href="' . route('genre.books', $tag->id) . '">' . $tag->name['ru'] . '</a>';
+                                  return '<a href="' . route('genre.books', $tag->id) . '">' . $tag->name[$currentLang] . '</a>';
                               })->toArray()) .
                               ($book->tags->count() > 2 ? '...' : '')
                           !!}
@@ -101,13 +105,13 @@
                         <br>
                     </div>
                 </div>
-                <button class="see-more">Оценить книгу</button>
+                <button class="see-more">@lang('site.rate_the_book')</button>
             </div>
         </div>
     </div>
 
     <div class="category-container w-100">
-        <h3>Похожие книги </h3>
+        <h3>@lang('site.similar_book') </h3>
         <div class="swiper-category-container1">
             <div class="swiper-wrapper">
                 @foreach($books->shuffle()->take(10) as $book)
@@ -117,11 +121,12 @@
                                 <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
                                      height="244px">
                                 <div class="book-container-content">
-                                    <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                    <p>{{ $book->title['ru'] }}</p>
+                                    <span class="author">• {{ $book->author->name[$currentLang] }}</span><br>
+                                    <p>{{ $book->title[$currentLang] }}</p>
                                 </div>
                             </div>
-                            <button onclick="window.location.href='{{route('book.show', $book->id)}}'"> Читать книгу
+                            <button
+                                onclick="window.location.href='{{route('book.show', $book->id)}}'"> @lang('site.read_book')
                             </button>
                         </div>
                     @endif
@@ -136,7 +141,7 @@
 
     @if($reviews ->count() > 0 )
         <div class="category-container reviews-container">
-            <h3>Отзывы</h3>
+            <h3>@lang('site.reviews')</h3>
             @foreach($reviews as $review)
                 <div class="reviews">
                     <div class="review-header">
@@ -160,7 +165,7 @@
     @endif
 
     <div class="category-container review">
-        <h3>Сообщение</h3>
+        <h3>@lang('site.messages')</h3>
         @if(auth()->guard('user')->check())
             <form action="{{ route('review.store') }}" method="post"
                   class="d-flex justify-content-between align-items-start flex-column w-100">
@@ -179,12 +184,12 @@
                 </div>
 
                 <textarea name="text" id="reviewText" placeholder="Напишите ваш отзыв..." maxlength="600"></textarea>
-                <small id="charCount">Осталось символов: 600</small>
-                <button>Отправить</button>
+                <small id="charCount">@lang('site.characters_left'): 600</small>
+                <button>@lang('site.send')</button>
             </form>
         @else
-            <p class="text-center text-muted mb-3">Для того чтобы оставить отзыв, вам необходимо <a
-                    class="login-link auth-text" style="cursor: pointer;">авторизоваться</a>.
+            <p class="text-center text-muted mb-3">
+                {!! __('site.review_rule') !!}
             </p>
         @endif
     </div>
