@@ -9,14 +9,46 @@ new Swiper('.swiper-new-book-container', {
     speed: 500,
 });
 
-new Swiper('.swiper-top-book-container', {
-    loop: true,
-    spaceBetween: 10,
-    navigation: {
-        nextEl: '.swiper-top-book-container-next',
-        prevEl: '.swiper-top-book-container-prev',
-    },
-    speed: 500,
+// new Swiper('.swiper-top-book-container', {
+//     loop: true,
+//     spaceBetween: 10,
+//     navigation: {
+//         nextEl: '.swiper-top-book-container-next',
+//         prevEl: '.swiper-top-book-container-prev',
+//     },
+//     speed: 500,
+// });
+
+$('[class^="swiper-top-book-container"]').each(function () {
+    const $container = $(this);
+    const $slides = $container.find('.swiper-slide');
+
+    if ($slides.length === 0) {
+        return;
+    }
+
+    new Swiper(this, {
+        loop: $slides.length > 1,
+        spaceBetween: 10,
+        slidesPerView: 'auto',
+        slidesPerGroup: 1,
+        navigation: {
+            nextEl: '.swiper-top-book-container-next',
+            prevEl: '.swiper-top-book-container-prev',
+        },
+        speed: 500,
+        breakpoints: {
+            600: {
+                slidesPerView: 1, // Один слайд на мобильных
+            },
+            768: {
+                slidesPerView: Math.min($slides.length, 5), // Не больше реального количества
+            },
+            1024: {
+                slidesPerView: Math.min($slides.length, 7),
+            },
+        },
+    });
 });
 
 
