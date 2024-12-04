@@ -26,6 +26,7 @@ $('[class^="swiper-top-book-container"]').each(function () {
     if ($slides.length === 0) {
         return;
     }
+    console.log($slides.length);
 
     new Swiper(this, {
         loop: $slides.length > 1,
