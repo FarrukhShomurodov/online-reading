@@ -116,7 +116,7 @@
             speed: 500,
             on: {
                 slideChange: function () {
-                    const activeSlide = this.slides[this.realIndex]; // Use realIndex for looped slides
+                    const activeSlide = this.slides[this.activeIndex]; // Use realIndex for looped slides
                     const bookId = activeSlide.dataset.id; // Use native JS to get data-id
 
                     if (bookId) {
