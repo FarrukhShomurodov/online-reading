@@ -34,8 +34,8 @@
             <div class="swiper-category-container1">
                 <div class="swiper-wrapper">
                     @foreach($collections->shuffle()->take(10) as $collection)
-                        <div class="swiper-slide all-genres-section">
-                            <div class="genre-container" style="width: 170px">
+                        <div class="swiper-slide all-genres-section" style="width: 150px">
+                            <div class="genre-container" style="width: 150px">
                                 @if($collection->images->first())
                                     <img src="{{asset('storage/' . $collection->images->first()->url )}}" alt="">
                                 @endif
