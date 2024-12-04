@@ -1,3 +1,7 @@
+@php
+    $currentLang = app()->getLocale();
+@endphp
+
 <header class="desktop justify-content-between align-items-center">
     <img class="pointer-event" src="{{asset('img/logo.png')}}" alt="logo" width="70px" height="27px"
          onclick="window.location.href='{{url('/')}}'">
@@ -33,7 +37,11 @@
         <div class="custom-select-container">
             <div class="custom-select">
                 <div class="custom-select-selected">
-                    <img src="{{asset('img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
+                    @if($currentLang= 'uz')
+                        <img src="{{asset('img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
+                    @else
+                        <img src="{{asset('img/flag/uz.png')}}" alt="UZ" class="option-flag"> Uz
+                    @endif
                 </div>
                 <div class="custom-select-options">
                     <div class="custom-select-option" onclick="window.location.href='{{route('change-locale', 'ru')}}'">
@@ -99,7 +107,11 @@
     <div class="d-flex justify-content-between align-items-cente w-100">
         <div class="custom-select">
             <div class="custom-select-selected">
-                <img src="{{asset('img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
+                @if($currentLang= 'uz')
+                    <img src="{{asset('img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
+                @else
+                    <img src="{{asset('img/flag/uz.png')}}" alt="UZ" class="option-flag"> Uz
+                @endif
             </div>
             <div class="custom-select-options">
                 <div class="custom-select-option" onclick="window.location.href='{{route('change-locale', 'ru')}}'">
