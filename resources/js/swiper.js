@@ -35,7 +35,6 @@ $('[class^="swiper-collection-container"]').each(function (container) {
     const $slides = $container.find('.swiper-slide');
 
     if ($slides.length === 0) {
-        console.warn(`No slides found in container ${index + 1}`);
         return; // Пропускаем контейнеры без слайдов
     }
 
