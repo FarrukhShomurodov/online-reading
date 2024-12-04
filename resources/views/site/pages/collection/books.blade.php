@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container all-categories">
-        @if(count($collection->books) == 0)
+        @if(count($collection->books->where('is_active', true)) == 0)
             <div class="not-found">
                 <p>Упс! Мы не нашли ни одной книги.</p>
                 <button onclick="window.location.href='{{ url()->previous() }}'">Назад</button>
@@ -12,7 +12,7 @@
             <span class="author">{{$collection->description['ru'] ?? ''}}</span>
             <div class="genre-grid all-genres">
 
-                @foreach($collection->books as $book)
+                @foreach($collection->books->where('is_active', true) as $book)
                     <div class="book-container">
                         <div>
                             @if($book->images->first())

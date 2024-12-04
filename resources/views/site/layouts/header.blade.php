@@ -63,7 +63,7 @@
                     @if(auth()->guard('user')->user())
                         <a href="{{route('user.logout')}}">Выход</a>
                     @else
-                        <a id="login-link">Вход</a>
+                        <a class="login-link">Вход</a>
                     @endif
                 </div>
             </div>

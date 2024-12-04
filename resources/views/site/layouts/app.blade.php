@@ -34,6 +34,34 @@
 @include('site.layouts.header')
 
 <main class="container">
+    @if(session()->has('add_mark_as_read_success'))
+        <div class="review-alert">
+            <div class="d-flex justify-content-between align-items-start flex-wrap">
+                <div class="d-flex flex-column">
+                    <h5>Книга была помечена как прочитанная!</h5>
+                    <p>Поздравляем! Вы успешно отметили книгу как прочитанную, и она скоро появится в вашем списке
+                        прочитанных.</p>
+                </div>
+                <div class="not-found" style="padding: 0 !important;">
+                    <button id="hideAlert">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger rounded shadow-sm p-3 d-flex flex-column gap-2 w-100"
+             style="margin: 20px auto; font-size: 14px;">
+            @foreach ($errors->all() as $error)
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bx bx-error-circle text-danger fs-5"></i>
+                    <span>{{ $error }}</span>
+                </div>
+            @endforeach
+            <button type="button" class="btn-close align-self-end mt-2" data-bs-dismiss="alert" aria-label="Close"
+                    style="outline: none; box-shadow: none;"></button>
+        </div>
+    @endif
     @yield('content')
 </main>
 
@@ -59,20 +87,14 @@
 <script src="{{ mix('site_js/main.js') }}"></script>
 
 @yield('scripts')
-
 @if(isset($collections) && $collections->isNotEmpty())
     @php
-        //            $swiperParams = Cache::remember('swiper.params', 3600, function () use ($collections) {
-        //
-        //                return [
-        //                    'slidesPerView' => ,
-        //                    'initialSlide' => ,
-        //                ];
-        //            });
-
-                    $booksCount = $collections->first()->books->count();
+        $booksCount = $collections->first()->books->count();
     @endphp
     <script>
+        const bookCache = {};
+        let isFetching = false;  // To prevent simultaneous AJAX requests
+
         const swiper = new Swiper('.swiper-container', {
             loop: true,
             slidesPerView: {{ $booksCount * 2 }},
@@ -92,9 +114,60 @@
                 slideShadows: true,
             },
             speed: 500,
+            on: {
+                slideChange: function () {
+                    const activeSlide = this.slides[this.realIndex]; // Use realIndex for looped slides
+                    const bookId = activeSlide.dataset.id; // Use native JS to get data-id
+
+                    if (bookId) {
+                        // Only fetch if not already fetching or if data is not cached
+                        if (!bookCache[bookId] && !isFetching) {
+                            fetchBookData(bookId);
+                        } else if (bookCache[bookId]) {
+                            updateBookInfo(bookCache[bookId]);
+                        }
+                    }
+                },
+            },
         });
+
+        function fetchBookData(bookId) {
+            isFetching = true; // Prevent simultaneous requests
+
+            fetch(`/api/book/${bookId}`)
+                .then(response => response.json())
+                .then(data => {
+                    bookCache[bookId] = data; // Cache the book data
+                    updateBookInfo(data);
+                    console.log(data); // For debugging, remove in production
+                })
+                .catch(error => {
+                    console.error('Ошибка загрузки данных:', error);
+                })
+                .finally(() => {
+                    isFetching = false; // Allow new requests
+                });
+        }
+
+        function updateBookInfo(data) {
+            const authorName = data.author ? data.author.name.ru : 'Unknown Author';
+            const title = data.title.ru || 'Untitled';
+            const description = data.description.ru || 'No description available';
+
+            document.getElementById('topBookAuthor').textContent = `• ${authorName}`;
+            document.getElementById('topBookTitle').textContent = title;
+            document.getElementById('topBookInfo').textContent = description;
+
+            document.getElementById('topBookRead').onclick = () => {
+                window.location.href = `/book/${data.id}`;
+            };
+            document.getElementById('topBookMarkAsRead').onclick = () => {
+                window.location.href = `/mark-as-read/${data.id}`;
+            };
+        }
     </script>
 @endif
+
 
 </body>
 </html>

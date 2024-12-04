@@ -80,6 +80,18 @@
     transition: none;
 }
 
+.auth-text {
+    transition: all 0.3s ease;
+}
+
+.auth-text:hover {
+    color: #FFB539 !important;
+}
+
+.auth-text:active {
+    color: #FCE2CE !important;
+}
+
 .auth-footer {
     font-weight: 500;
     margin-top: 10px;

@@ -21,15 +21,16 @@ use Illuminate\Support\Facades\Route;
 //Auth
 Route::post('user-register', [UserAuthController::class, 'register'])->name('user.register');
 Route::post('user-login', [UserAuthController::class, 'login'])->name('user.login');
+Route::get('auth', [UserAuthController::class, 'auth'])->name('auth.view');
 
 Route::middleware('auth:user')->group(function () {
     Route::get('logout', [UserAuthController::class, 'logout'])->name('user.logout');
 
-    // Room
     Route::get('room', [RoomController::class, 'index'])->name('room');
-
-    // Room
     Route::post('review', [ReviewController::class, 'store'])->name('review.store');
+
+    Route::get('mark-as-read/{book}', [BookController::class, 'markAsRead'])->name('mark.as.read');
+    Route::get('get-reed-books', [RoomController::class, 'showReadBooks'])->name('show.read.books');
 });
 
 Route::get('/', [MainPage::class, 'index'])->name('main');

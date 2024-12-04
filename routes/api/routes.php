@@ -13,3 +13,6 @@ Route::delete('/delete/image/{folderName}/{fileName}', [ImageController::class, 
 Route::put('/users/is-active/{id}', [UserController::class, 'isActive']);
 Route::put('/books/is-active/{book}', [BookController::class, 'isActive']);
 Route::put('/reviews/is_view/{review}', [ReviewController::class, 'isView']);
+
+// Book
+Route::get('/book/{book}', [\App\Http\Controllers\Site\Api\BookController::class, 'show']);

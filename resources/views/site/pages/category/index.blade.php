@@ -27,7 +27,7 @@
             @endforeach
         </div>
 
-        @if($collections->find(8)->books->count() > 0)
+        @if($collections->find(8)->books->where('is_active', true)->count() > 0)
             <div class="category-container w-100">
                 <h3>{{ $collections->find(8)->name['ru']}}</h3>
                 <div class="swiper-category-container1">

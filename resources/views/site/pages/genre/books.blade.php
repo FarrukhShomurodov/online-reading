@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container all-categories">
-        @if(count($genre->books) == 0)
+        @if(count($genre->books->where('is_active', true)) == 0)
             <div class="not-found">
                 <p>Упс! Мы не нашли ни одной книги.</p>
                 <button onclick="window.location.href='{{ url()->previous() }}'">Назад</button>
@@ -13,7 +13,7 @@
             <span class="author">{{$genre->description['ru'] ?? ''}}</span>
             <div class="genre-grid all-genres">
 
-                @foreach($genre->books as $book)
+                @foreach($genre->books->where('is_active', true) as $book)
                     <div class="book-container">
                         <div>
                             @if($book->images->first())
@@ -43,28 +43,6 @@
                     <div class="swiper-wrapper">
                         @foreach($genre->books->shuffle()->take(10) as $book)
                             @if($book->is_active)
-                                <div class="book-container swiper-slide">
-                                    <div>
-                                        @if($book->images->first())
-                                            <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt=""
-                                                 width="100%"
-                                                 height="244px">
-                                        @endif
-
-                                        <div class="book-container-content">
-                                            <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                            <div class=book-container-ratting>
-                                                <img src="{{asset('img/icons/star.svg')}}" alt="star"
-                                                     style="height: 15px !important;">
-                                                <b>{{ $book->ratting }} </b>
-                                            </div>
-                                            <p>{{ $book->title['ru'] }}</p>
-                                        </div>
-                                    </div>
-                                    <button onclick="window.location.href='{{route('book.show', $book->id)}}'"> Читать
-                                        книгу
-                                    </button>
-                                </div>
                                 <div class="book-container swiper-slide">
                                     <div>
                                         @if($book->images->first())

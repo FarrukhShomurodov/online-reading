@@ -18,27 +18,32 @@
         </div>
     </div>
 
-    @if($collections->first()->books->count() > 0)
+    @if($collections->first()->books->where('is_active', true)->count() > 0)
         <div class="top-books d-flex justify-content-between align-items-center flex-wrap-reverse w-100">
             <div class="top-books-info d-flex flex-column justify-content-between align-items-start">
                 <button class="top-btn">
                     {{ $collections->first()->name['ru'] }}
                 </button>
                 <div>
-                    <span class="author">• {{ $collections->first()->books->first()->author->name['ru'] }}</span><br>
-                    <h2>
-                        {{ $collections->first()->books->first()->title['ru'] }}
+                    <span
+                        class="author"
+                        id="topBookAuthor">• {{ $collections->first()->books->where('is_active', true)->first()->author->name['ru'] }}</span><br>
+                    <h2 id="topBookTitle">
+                        {{ $collections->first()->books->where('is_active', true)->first()->title['ru'] }}
                     </h2>
-                    <p class="top-book-desc">
-                        {{ $collections->first()->books->first()->description['ru'] }}
+                    <p class="top-book-desc" id="topBookInfo">
+                        {{ $collections->first()->books->where('is_active', true)->first()->description['ru'] }}
                     </p>
                 </div>
                 <div>
                     <button class="top-read-book"
-                            onclick="window.location.href='{{route('book.show', $collections->first()->books->first()->id)}}'">
+                            id="topBookRead"
+                            onclick="window.location.href='{{route('book.show', $collections->first()->books->where('is_active', true)->first()->id)}}'">
                         Читать книгу
                     </button>
-                    <button class="top-readen">
+                    <button class="top-readen"
+                            id="topBookMarkAsRead"
+                            onclick="window.location.href='{{route( 'mark.as.read', $collections->first()->books->where('is_active', true)->first()->id )}}'">
                         Прочитана
                     </button>
                 </div>
@@ -53,10 +58,10 @@
                     <img class="crown" src="{{asset('/img/icons/crown.svg')}}" alt="">
                     <div class="d-flex flex-row swiper-container">
                         <div class="swiper-wrapper">
-                            @foreach( $collections->first()->books as $book)
-                                <div class="top-book-container swiper-slide">
+                            @foreach( $collections->first()->books->where('is_active', true) as $book)
+                                <div class="top-book-container swiper-slide" data-id="{{ $book->id }}">
                                     @if($book->images->first())
-                                        <img src="{{asset('storage/'.$book->images->first()->url)}}" alt="">
+                                        <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="">
                                     @endif
                                     <div class="book-container-content">
                                         <span class="author">• {{ $book->author->name['ru'] }}</span><br>
@@ -64,10 +69,10 @@
                                     </div>
                                 </div>
                             @endforeach
-                            @foreach( $collections->first()->books as $book)
-                                <div class="top-book-container swiper-slide">
+                            @foreach( $collections->first()->books->where('is_active', true) as $book)
+                                <div class="top-book-container swiper-slide" data-id="{{ $book->id }}">
                                     @if($book->images->first())
-                                        <img src="{{asset('storage/'.$book->images->first()->url)}}" alt="">
+                                        <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="">
                                     @endif
                                     <div class="book-container-content">
                                         <span class="author">• {{ $book->author->name['ru'] }}</span><br>
@@ -127,7 +132,7 @@
         @endif
 
 
-        @if($placeNumber == 2 && $collections->find(2)->books->count() > 0)
+        @if($placeNumber == 2 && $collections->find(2)->books->where('is_active', true)->count() > 0)
             @if($collections->find(2))
                 <div class="best-book-month d-flex justify-content-between w-100">
                     <div class="d-flex top-books flex-column justify-content-between align-items-start">
@@ -136,28 +141,29 @@
                         </button>
                         <div>
                         <span
-                            class="author">•  {{ $collections->find(2)->books->first()->author->name['ru'] }}</span><br>
+                            class="author">•  {{ $collections->find(2)->books->where('is_active', true)->first()->author->name['ru'] }}</span><br>
                             <h2>
-                                {{ $collections->find(2)->books->first()->title['ru'] }}
+                                {{ $collections->find(2)->books->where('is_active', true)->first()->title['ru'] }}
                             </h2>
                             <p class="top-book-desc">
-                                {{ $collections->find(2)->books->first()->description['ru'] }}
+                                {{ $collections->find(2)->books->where('is_active', true)->first()->description['ru'] }}
                             </p>
                         </div>
                         <div>
                             <button class="top-read-book"
-                                    onclick="window.location.href='{{route('book.show', $collections->find(2)->books->first()->id)}}'">
+                                    onclick="window.location.href='{{route('book.show', $collections->find(2)->books->where('is_active', true)->first()->id)}}'">
                                 Читать книгу
                             </button>
-                            <button class="top-readen">
+                            <button class="top-readen"
+                                    onclick="window.location.href='{{route( 'mark.as.read', $collections->find(2)->books->where('is_active', true)->first()->id )}}'">
                                 Прочитана
                             </button>
                         </div>
                     </div>
                     <div class="d-flex flex-row justify-content-between align-items-start">
-                        @if($collections->find(2)->books->first()->images)
+                        @if($collections->find(2)->books->where('is_active', true)->first()->images)
                             <img class="best-book"
-                                 src="{{ asset('storage/' . $collections->find(2)->books->first()->images->first()->url) }}"
+                                 src="{{ asset('storage/' . $collections->find(2)->books->where('is_active', true)->first()->images->first()->url) }}"
                                  alt=""
                                  height="518px" width="349px">
 
@@ -187,7 +193,7 @@
             @endif
         @endif
 
-        @if($placeNumber == 3 && $collections->find(3)->books->count() > 0)
+        @if($placeNumber == 3 && $collections->find(3)->books->where('is_active', true)->count() > 0)
             @if($collections->find(3))
                 <div class="top-readen-book-container d-flex justify-content-between align-items-center w-100">
                     <div class="top-readen-book d-flex justify-content-between flex-column align-items-start">

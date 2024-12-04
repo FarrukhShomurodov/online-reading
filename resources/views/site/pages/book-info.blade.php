@@ -1,6 +1,21 @@
 @extends('site.layouts.app')
 
 @section('content')
+    <!-- Модальное окно -->
+    @if(session()->has('review_success'))
+        <div class="review-alert">
+            <div class="d-flex justify-content-between align-items-start flex-wrap">
+                <div class="d-flex flex-column">
+                    <h5>Спасибо за отзыв!</h5>
+                    <p>Ваш отзыв был успешно отправлен и скоро появится на сайте.</p>
+                </div>
+                <div class="not-found" style="padding: 0 !important;">
+                    <button id="hideAlert">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div class="genres-book-info" style="padding-left: 0">
         {{--    <span class="d-flex align-items-center">--}}
         {{--        <img src="/img/icons/chevron-left.svg" alt="" width="16px">--}}
@@ -10,8 +25,10 @@
 
 
     <div class="about-book d-flex  justify-content-between">
-        <img class="book"
-             src="{{ asset('storage/' . $book->images->first()->url) }}">
+        @if($book->images->first())
+            <img class="book"
+                 src="{{ asset('storage/' . $book->images->first()->url) }}">
+        @endif
         <div class="book-info top-books d-flex justify-content-between flex-column align-items-start">
             <span class="author">• {{ $book->author->name['ru'] }}</span><br>
             <h2>
@@ -21,7 +38,7 @@
                 <button class="top-read-book" onclick="window.location.href='{{route('read.book', $book->id)}}'">
                     Читать книгу
                 </button>
-                <button class="top-readen">
+                <button class="top-readen" onclick="window.location.href='{{route( 'mark.as.read', $book->id )}}'">
                     Прочитана
                 </button>
             </div>
@@ -32,8 +49,10 @@
         </div>
 
         <div class="d-flex justify-content-between">
-            <img class="book-info-mobile"
-                 src="{{ asset('storage/' . $book->first()->images->first()->url) }}">
+            @if($book->images->first())
+                <img class="book-info-mobile"
+                     src="{{ asset('storage/' . $book->images->first()->url) }}">
+            @endif
             <div class="book-details d-flex flex-column justify-content-between align-items-start">
                 <div class="best-book-month-info">
                     <div>
@@ -115,32 +134,34 @@
         </div>
     </div>
 
-    <div class="category-container reviews-container">
-        <h3>Отзывы</h3>
-        @foreach($reviews as $review)
-            <div class="reviews">
-                <div class="review-header">
-                    <div class="review-rating">
-                        @for($i = 1; $i <= 5; $i++)
-                            @if($i <= $review->ratting)
-                                <span class="star filled">&#9733;</span>
-                            @else
-                                <span class="star">&#9733;</span>
-                            @endif
-                        @endfor
+    @if($reviews ->count() > 0 )
+        <div class="category-container reviews-container">
+            <h3>Отзывы</h3>
+            @foreach($reviews as $review)
+                <div class="reviews">
+                    <div class="review-header">
+                        <div class="review-rating">
+                            @for($i = 1; $i <= 5; $i++)
+                                @if($i <= $review->ratting)
+                                    <span class="star filled">&#9733;</span>
+                                @else
+                                    <span class="star">&#9733;</span>
+                                @endif
+                            @endfor
+                        </div>
+                        <span class="review-user">{{ $review->name }}</span>
                     </div>
-                    <span class="review-user">{{ $review->name }}</span>
+                    <p class="review-text">{{ $review->text }}</p>
+                    <span class="review-date">{{ $review->created_at->format('d.m.Y H:i') }}</span>
                 </div>
-                <p class="review-text">{{ $review->text }}</p>
-                <span class="review-date">{{ $review->created_at->format('d.m.Y H:i') }}</span>
-            </div>
-        @endforeach
-    </div>
+            @endforeach
+        </div>
 
+    @endif
 
-    @if(auth()->guard('user')->user())
-        <div class="category-container review">
-            <h3>Сообщение <span style="color: rgba(239, 79, 79, 1)">*</span></h3>
+    <div class="category-container review">
+        <h3>Сообщение</h3>
+        @if(auth()->guard('user')->check())
             <form action="{{ route('review.store') }}" method="post"
                   class="d-flex justify-content-between align-items-start flex-column w-100">
                 @csrf
@@ -157,9 +178,14 @@
                     <span data-value="1" class="star">&#9733;</span>
                 </div>
 
-                <textarea name="text" placeholder="Напишите ваш отзыв..."></textarea>
+                <textarea name="text" id="reviewText" placeholder="Напишите ваш отзыв..." maxlength="600"></textarea>
+                <small id="charCount">Осталось символов: 600</small>
                 <button>Отправить</button>
             </form>
-        </div>
-    @endif
+        @else
+            <p class="text-center text-muted mb-3">Для того чтобы оставить отзыв, вам необходимо <a
+                    class="login-link auth-text" style="cursor: pointer;">авторизоваться</a>.
+            </p>
+        @endif
+    </div>
 @endsection

@@ -11,7 +11,7 @@
         <div id="reader-container" class="w-100"
              data-path="{{ asset('book_files/' . $book->id . '/ru') }}"
              data-show-fullscreen="true"
-             data-language="ru"
+             data-language="en"
              data-enable-swiping="true"
              data-enable-pinching="true"
              data-max-zoom="200"></div>

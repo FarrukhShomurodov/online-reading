@@ -17,13 +17,6 @@ class Review extends Model
         'is_view',
     ];
 
-    /**
-     * @var string[]
-     */
-    protected $casts = [
-        'is_view' => 'boolean',
-    ];
-
     public function book(): BelongsTo
     {
         return $this->belongsTo(Book::class);

@@ -23,7 +23,7 @@ class CollectionController
     public function books(Collection $collection): View
     {
         $collection->with('books');
-        $books = Book::query()->get();
+        $books = Book::query()->where('is_active', true)->get();
 
         return view('site.pages.collection.books', compact('collection', 'books'));
     }

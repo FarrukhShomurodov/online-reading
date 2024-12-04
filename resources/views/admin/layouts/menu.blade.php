@@ -79,7 +79,7 @@
         <li class="menu-item {{ Request::is('dashboard/collections*') ? 'active' : '' }}">
             <a href="{{ route('collections.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-layer"></i>
-                <div data-i18n="Пользователи">Калекции</div>
+                <div data-i18n="Пользователи">Коллекци</div>
             </a>
         </li>
 

@@ -14,4 +14,13 @@ mix.js('resources/js/main.js', 'public/site_js')
     .css('resources/css/main-content.css', 'public/css')
     .css('resources/css/room.css', 'public/css')
     .css('resources/css/style.css', 'public/css')
-    .version();
+    .version()
+    .minify('public/css/auth.css')
+    .minify('public/css/book-info.css')
+    .minify('public/css/contacts.css')
+    .minify('public/css/genres-book.css')
+    .minify('public/css/header.css')
+    .minify('public/css/main-content.css')
+    .minify('public/css/room.css')
+    .minify('public/css/style.css');
+

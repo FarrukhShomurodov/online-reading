@@ -30,14 +30,42 @@ new Swiper('.swiper-collection-container', {
     speed: 500,
 });
 
-for (let i = 0; i <= 5; i++) {
-    new Swiper('.swiper-category-container' + i, {
-        loop: true,
-        spaceBetween: 10,
-        navigation: {
-            nextEl: '.swiper-category-button-next' + i,
-            prevEl: '.swiper-category-button-prev' + i,
-        },
-        speed: 500,
+$(document).ready(function () {
+    // Находим все элементы с классом, начинающимся на `swiper-category-container`
+    $('[class^="swiper-category-container"]').each(function (index, container) {
+        const $container = $(container); // Преобразуем в объект jQuery
+        const $slides = $container.find('.swiper-slide'); // Находим слайды внутри контейнера
+
+        if ($slides.length === 0) {
+            console.warn(`No slides found in container ${index + 1}`);
+            return; // Пропускаем контейнеры без слайдов
+        }
+
+        // Инициализация Swiper
+        const swiper = new Swiper(container, {
+            loop: $slides.length > 1, // Включить loop только если больше одного слайда
+            spaceBetween: 10,
+            slidesPerView: 'auto', // Подстраивается под ширину
+            slidesPerGroup: 1, // По одному слайду за раз
+            navigation: {
+                nextEl: `.swiper-category-button-next${index + 1}`, // Привязка к уникальным кнопкам
+                prevEl: `.swiper-category-button-prev${index + 1}`,
+            },
+            speed: 500,
+            breakpoints: {
+                600: {
+                    slidesPerView: 1, // Один слайд на мобильных
+                },
+                768: {
+                    slidesPerView: Math.min($slides.length, 5), // Не больше реального количества
+                },
+                1024: {
+                    slidesPerView: Math.min($slides.length, 7),
+                },
+            },
+        });
+
+        console.log(`Swiper initialized for container ${index + 1}`, swiper);
     });
-}
+});
+

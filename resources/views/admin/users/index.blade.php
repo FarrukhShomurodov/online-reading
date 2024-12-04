@@ -78,7 +78,7 @@
             let isActive = $(this).is(':checked') ? 1 : 0;
 
             $.ajax({
-                url: `api/users/is-active/${userId}`,
+                url: `/api/users/is-active/${userId}`,
                 method: 'PUT',
                 data: {
                     _token: '{{ csrf_token() }}',

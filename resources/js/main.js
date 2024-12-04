@@ -119,7 +119,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#login-link').on('click', function (event) {
+    $('.login-link').on('click', function (event) {
         event.preventDefault();
         $('#auth-popup').css('display', 'flex');
     });
@@ -148,4 +148,15 @@ $(document).ready(function () {
         $(this).addClass("selected");
         $(this).nextAll(".star").addClass("selected");
     });
+
+    $("#hideAlert").on("click", function () {
+        $('.review-alert').fadeOut(300);
+    });
+
+    $('#reviewText').on('input', function () {
+        const maxLength = 600;
+        const remaining = maxLength - $(this).val().length;
+        $('#charCount').text(`Осталось символов: ${remaining}`);
+    });
+
 });

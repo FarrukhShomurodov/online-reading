@@ -15,6 +15,7 @@ class SearchController
 
         $books = Book::query()
             ->where('title->ru', 'ILIKE', "%$query%")
+            ->where('is_active', true)
             ->get();
 
         $authors = Author::query()
