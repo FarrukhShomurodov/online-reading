@@ -4,28 +4,27 @@
     <div class="container d-flex justify-content-between align-items-center">
         <ul class="menu">
             <li class="menu-item @if(Request::is('/')) active @endif" style="margin-left: 0 !important;"><a
-                    href="{{ url('/') }}">Главная</a></li>
+                    href="{{ url('/') }}">@lang('site.home')</a></li>
             <li class="menu-item @if(Request::is('categories') || Request::is('category-books*')) active @endif"><a
-                    href="{{ route('categories') }}">Все
-                    категории</a></li>
+                    href="{{ route('categories') }}">@lang('site.categories')</a></li>
             <li class="menu-item @if(Request::is('genres') || Request::is('genre-books*')) active @endif"><a
-                    href="{{ route('genres') }}">Все жанры</a>
+                    href="{{ route('genres') }}">@lang('site.genres')</a>
             </li>
             <li class="menu-item @if(Request::is('collections') || Request::is('collection-books*')) active @endif"><a
-                    href="{{ route('collections') }}">
-                    Подборки</a></li>
-            <li class="menu-item @if(Request::is('contacts')) active @endif"><a href="{{ route('contacts') }}">
-                    Контакты </a></li>
+                    href="{{ route('collections') }}">@lang('site.collections')</a></li>
+            <li class="menu-item @if(Request::is('contacts')) active @endif"><a
+                    href="{{ route('contacts') }}">@lang('site.contacts')</a></li>
             <li class="menu-item @if(Request::is('offer') || Request::is('news*') || Request::is('promotion*')) active @endif">
-                <a href="{{ route('offer') }}">Оферта</a></li>
-            <li class="menu-item @if(Request::is('about-us')) active @endif"><a href="{{ route('about-us') }}">О нас</a>
+                <a href="{{ route('offer') }}">@lang('site.offer')</a></li>
+            <li class="menu-item @if(Request::is('about-us')) active @endif"><a
+                    href="{{ route('about-us') }}">@lang('site.about_us')</a>
             </li>
         </ul>
 
         <div class="search-container">
             <form action="{{ route('search') }}" method="GET">
                 <img class="search-icon" src="{{ asset('img/icons/search.svg') }}" alt="search">
-                <input class="search" name="query" type="text" placeholder="Книга, автор"
+                <input class="search" name="query" type="text" placeholder="{{ __('site.search_placeholder') }}"
                        value="{{ request('query') }}">
                 <img class="cross-icon" src="{{ asset('img/icons/cross.svg') }}" alt="search">
             </form>
@@ -57,13 +56,13 @@
             </div>
             <div class="custom-select-options">
                 <div class="custom-select-option">
-                    <a href="{{route('room')}}">Кабинет</a>
+                    <a href="{{route('room')}}">@lang('site.room')</a>
                 </div>
                 <div class="custom-select-option">
                     @if(auth()->guard('user')->user())
-                        <a href="{{route('user.logout')}}">Выход</a>
+                        <a href="{{route('user.logout')}}">@lang('site.logout')</a>
                     @else
-                        <a class="login-link">Вход</a>
+                        <a class="login-link">@lang('site.login')</a>
                     @endif
                 </div>
             </div>
@@ -88,7 +87,7 @@
 <div class="search-container search-mobile">
     <form action="{{ route('search') }}" method="GET">
         <img class="search-icon" src="{{ asset('img/icons/search.svg') }}" alt="search">
-        <input class="search" name="query" type="text" placeholder="Книга, автор"
+        <input class="search" name="query" type="text" placeholder="{{ __('site.search_placeholder') }}"
                value="{{ request('query') }}">
         <img class="cross-icon" src="{{ asset('img/icons/cross.svg') }}" alt="search">
     </form>
@@ -115,16 +114,16 @@
         <img class="close-menu" src="{{ asset('img/icons/cross.svg') }}" alt="" width="36px" height="36px">
     </div>
     <ul class="menu d-flex justify-content-center flex-column">
-        <li class="menu-item active"><a href="{{ url('/') }}">Главная</a></li>
-        <li class="menu-item"><a href="{{ route('categories') }}">Все категории</a></li>
-        <li class="menu-item"><a href="{{ route('genres') }}">Все жанры</a></li>
-        <li class="menu-item"><a href="{{ route('collections') }}"> Подборки</a></li>
-        <li class="menu-item"><a href="{{ route('contacts') }}"> Контакты </a></li>
-        <li class="menu-item"><a href="{{ route('offer') }}">Оферта</a></li>
-        <li class="menu-item"><a href="{{ route('about-us') }}">О нас</a></li>
+        <li class="menu-item active"><a href="{{ url('/') }}">@lang('site.home')</a></li>
+        <li class="menu-item"><a href="{{ route('categories') }}">@lang('site.categories')</a></li>
+        <li class="menu-item"><a href="{{ route('genres') }}">@lang('site.genres')</a></li>
+        <li class="menu-item"><a href="{{ route('collections') }}">@lang('site.collections')</a></li>
+        <li class="menu-item"><a href="{{ route('contacts') }}"> @lang('site.contacts') </a></li>
+        <li class="menu-item"><a href="{{ route('offer') }}">@lang('site.offer')</a></li>
+        <li class="menu-item"><a href="{{ route('about-us') }}">@lang('site.about_us')</a></li>
     </ul>
 
-    <button onclick="window.location.href='{{route('room')}}'">Мои книги</button>
+    <button onclick="window.location.href='{{route('room')}}'">@lang('site.my_books')</button>
 </div>
 
 {{-- Auth --}}
@@ -134,19 +133,21 @@
 
         <div class="d-flex justify-content-between align-items-center flex-column h-100">
             <div class="text-center">
-                <h2>Авторизация</h2>
-                <span style="color: rgba(72, 72, 72, 1)">Введите ваш номер и придумайте пароль</span>
+                <h2>@lang('site.authorization')</h2>
+                <span style="color: rgba(72, 72, 72, 1)">@lang('site.login_prompt')</span>
             </div>
             <div class="auth-form-section w-100 h-100">
                 <form action="{{route('user.register')}}" method="post" class="d-flex flex-column gap-4" id="auth-form">
                     @csrf
                     <div class="d-flex flex-column align-items-start w-100">
-                        <label for="phone">Номер телефона <span style="color: rgba(239, 79, 79, 1)">*</span></label>
+                        <label for="phone">@lang('site.phone_number') <span
+                                style="color: rgba(239, 79, 79, 1)">*</span></label>
                         <input type="text" name="phone_number" placeholder="+ 998 (XX) XXX XX XX" class="phone"
                                required>
                     </div>
                     <div class="d-flex flex-column align-items-start w-100">
-                        <label for="sms-code">Код из смс <span style="color: rgba(239, 79, 79, 1)">*</span></label>
+                        <label for="sms-code">@lang('site.sms_code') <span
+                                style="color: rgba(239, 79, 79, 1)">*</span></label>
                         <div class="d-flex gap-2">
                             <input name="sms_code[1]" type="number" maxlength="1" class="sms-code-input" id="sms-code-1"
                                    required>
@@ -163,14 +164,17 @@
                         </div>
                     </div>
                     <div class="d-flex flex-column align-items-start w-100">
-                        <label for="password">Пароль <span style="color: rgba(239, 79, 79, 1)">*</span></label>
-                        <input type="password" name="password" placeholder="Придумайте пароль" id="password" required>
+                        <label for="password">@lang('site.password') <span
+                                style="color: rgba(239, 79, 79, 1)">*</span></label>
+                        <input type="password" name="password" placeholder="{{ __('site.create_password') }}"
+                               id="password"
+                               required>
                     </div>
-                    <button type="submit">Получить код</button>
+                    <button type="submit">@lang('site.get_code')</button>
                 </form>
             </div>
             <div class="auth-footer">
-                <span>У вас уже есть аккаунт?</span> <a id="login"><u>Войти</u></a>
+                <span>@lang('site.already_have_account')</span> <a id="login"><u>@lang('site.entire')</u></a>
             </div>
         </div>
     </div>
@@ -181,26 +185,30 @@
 
         <div class="d-flex justify-content-between align-items-center flex-column h-100">
             <div class="text-center">
-                <h2>Вход в аккаунт</h2>
-                <span style="color: rgba(72, 72, 72, 1)">Введите ваш номер и пароль</span>
+                <h2>@lang('site.entire_ac')</h2>
+                <span style="color: rgba(72, 72, 72, 1)">@lang('site.login_prompt_main')</span>
             </div>
             <div class="auth-form-section w-100 h-100">
                 <form action="{{route('user.login')}}" method="post" class="d-flex flex-column gap-4" id="auth-form">
                     @csrf
                     <div class="d-flex flex-column align-items-start w-100">
-                        <label for="phone">Номер телефона <span style="color: rgba(239, 79, 79, 1)">*</span></label>
+                        <label for="phone">@lang('site.phone_number') <span
+                                style="color: rgba(239, 79, 79, 1)">*</span></label>
                         <input type="text" name="phone_number" placeholder="+ 998 (XX) XXX XX XX" class="phone"
                                required>
                     </div>
                     <div class="d-flex flex-column align-items-start w-100">
-                        <label for="password">Пароль <span style="color: rgba(239, 79, 79, 1)">*</span></label>
-                        <input type="password" name="password" placeholder="Введите пароль" id="password" required>
+                        <label for="password">@lang('site.password') <span
+                                style="color: rgba(239, 79, 79, 1)">*</span></label>
+                        <input type="password" name="password" placeholder="{{ __('site.password_entire') }}"
+                               id="password"
+                               required>
                     </div>
-                    <button type="submit">Подтвердить</button>
+                    <button type="submit">@lang('site.confirm')</button>
                 </form>
             </div>
             <div class="auth-footer">
-                <span>У вас уже есть аккаунт?</span> <a id="register"><u>Авторизация</u></a>
+                <span>@lang('site.already_have_account')</span> <a id="register"><u>@lang('site.authorization')</u></a>
             </div>
         </div>
     </div>

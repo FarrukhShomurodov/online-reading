@@ -54,8 +54,8 @@
     <div class="auth-container register">
         <div class="d-flex justify-content-between align-items-center flex-column h-100">
             <div class="text-center">
-                <h2>Авторизация</h2>
-                <span style="color: rgba(72, 72, 72, 1)">Введите ваш номер и придумайте пароль</span>
+                <h2>@lang('site.authorization')</h2>
+                <span style="color: rgba(72, 72, 72, 1)">@lang('site.login_prompt')</span>
             </div>
             <div class="w-100">
                 @if ($errors->any())
@@ -73,12 +73,12 @@
                       id="auth-form">
                     @csrf
                     <div class="d-flex flex-column align-items-start w-100">
-                        <label for="phone">Номер телефона <span style="color: rgba(239, 79, 79, 1)">*</span></label>
+                        <label for="phone">@lang('site.phone_number') <span style="color: rgba(239, 79, 79, 1)">*</span></label>
                         <input type="text" name="phone_number" placeholder="+ 998 (XX) XXX XX XX" class="phone"
                                required>
                     </div>
                     <div class="d-flex flex-column align-items-start w-100">
-                        <label for="sms-code">Код из смс <span style="color: rgba(239, 79, 79, 1)">*</span></label>
+                        <label for="sms-code">@lang('site.sms_code') <span style="color: rgba(239, 79, 79, 1)">*</span></label>
                         <div class="d-flex gap-2">
                             <input name="sms_code[1]" type="number" maxlength="1" class="sms-code-input" id="sms-code-1"
                                    required>
@@ -95,15 +95,17 @@
                         </div>
                     </div>
                     <div class=" d-flex flex-column align-items-start w-100">
-                        <label for="password">Пароль <span style="color: rgba(239, 79, 79, 1)">*</span></label>
-                        <input type="password" name="password" placeholder="Придумайте пароль" id="password"
+                        <label for="password">@lang('password') <span
+                                style="color: rgba(239, 79, 79, 1)">*</span></label>
+                        <input type="password" name="password" placeholder="{{ __('site.create_password') }}"
+                               id="password"
                                required>
                     </div>
-                    <button type="submit">Получить код</button>
+                    <button type="submit">@lang('site.get_code')</button>
                 </form>
             </div>
             <div class="auth-footer">
-                <span>У вас уже есть аккаунт?</span> <a id="login-auth-view"><u>Войти</u></a>
+                <span>@lang('site.already_have_account')</span> <a id="login-auth-view"><u>@lang('site.entire')</u></a>
             </div>
         </div>
     </div>
@@ -112,8 +114,8 @@
     <div class="auth-container login">
         <div class="d-flex justify-content-between align-items-center flex-column h-100">
             <div class="text-center">
-                <h2>Вход в аккаунт</h2>
-                <span style="color: rgba(72, 72, 72, 1)">Введите ваш номер и пароль</span>
+                <h2>@lang('site.entire_ac')</h2>
+                <span style="color: rgba(72, 72, 72, 1)">@lang('site.login_prompt_main')</span>
             </div>
             <div class="w-100">
                 @if ($errors->any())
@@ -130,19 +132,21 @@
                 <form action="{{ route('user.login') }}" method="post" class="d-flex flex-column gap-4" id="auth-form">
                     @csrf
                     <div class="d-flex flex-column align-items-start w-100">
-                        <label for="phone">Номер телефона <span style="color: rgba(239, 79, 79, 1)">*</span></label>
+                        <label for="phone">@lang('site.phone_number') <span style="color: rgba(239, 79, 79, 1)">*</span></label>
                         <input type="text" name="phone_number" placeholder="+ 998 (XX) XXX XX XX" class="phone"
                                required>
                     </div>
                     <div class="d-flex flex-column align-items-start w-100">
-                        <label for="password">Пароль <span style="color: rgba(239, 79, 79, 1)">*</span></label>
-                        <input type="password" name="password" placeholder="Введите пароль" id="password" required>
+                        <label for="password">@lang('site.password') <span style="color: rgba(239, 79, 79, 1)">*</span></label>
+                        <input type="password" name="password" placeholder="{{ __('site.password_entire') }}"
+                               id="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Подтвердить</button>
+                    <button type="submit" class="btn btn-primary w-100">@lang('site.confirm')</button>
                 </form>
             </div>
             <div class="auth-footer mt-3">
-                <span>У вас уже есть аккаунт?</span> <a id="register-auth-view"><u>Авторизация</u></a>
+                <span>@lang('site.already_have_account')</span> <a
+                    id="register-auth-view"><u>@lang('site.authorization')</u></a>
             </div>
         </div>
     </div>
@@ -152,7 +156,7 @@
         <div class="not-found d-flex align-items-start" style="padding: 0">
             <button
                 onclick="window.location.href='{{ url()->previous() == route('room') ? '/' : url()->previous()  }}'">
-                Назад
+                @lang('site.back')
             </button>
         </div>
     </div>

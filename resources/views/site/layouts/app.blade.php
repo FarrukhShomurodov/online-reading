@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+@php
+    $currentLang = app()->getLocale();
+@endphp
+
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -38,12 +42,11 @@
         <div class="review-alert">
             <div class="d-flex justify-content-between align-items-start flex-wrap">
                 <div class="d-flex flex-column">
-                    <h5>Книга была помечена как прочитанная!</h5>
-                    <p>Поздравляем! Вы успешно отметили книгу как прочитанную, и она скоро появится в вашем списке
-                        прочитанных.</p>
+                    <h5>@lang('site.book_marked.title')</h5>
+                    <p>@lang('site.book_marked.message')</p>
                 </div>
                 <div class="not-found" style="padding: 0 !important;">
-                    <button id="hideAlert">Закрыть</button>
+                    <button id="hideAlert">@lang('site.close')</button>
                 </div>
             </div>
         </div>
@@ -93,7 +96,7 @@
     @endphp
     <script>
         const bookCache = {};
-        let isFetching = false;  // To prevent simultaneous AJAX requests
+        let isFetching = false;
 
         const swiper = new Swiper('.swiper-container', {
             loop: true,
@@ -116,11 +119,10 @@
             speed: 500,
             on: {
                 slideChange: function () {
-                    const activeSlide = this.slides[this.activeIndex]; // Use realIndex for looped slides
-                    const bookId = activeSlide.dataset.id; // Use native JS to get data-id
+                    const activeSlide = this.slides[this.activeIndex];
+                    const bookId = activeSlide.dataset.id;
 
                     if (bookId) {
-                        // Only fetch if not already fetching or if data is not cached
                         if (!bookCache[bookId] && !isFetching) {
                             fetchBookData(bookId);
                         } else if (bookCache[bookId]) {
@@ -132,20 +134,20 @@
         });
 
         function fetchBookData(bookId) {
-            isFetching = true; // Prevent simultaneous requests
+            isFetching = true;
 
             fetch(`/api/book/${bookId}`)
                 .then(response => response.json())
                 .then(data => {
-                    bookCache[bookId] = data; // Cache the book data
+                    bookCache[bookId] = data;
                     updateBookInfo(data);
-                    console.log(data); // For debugging, remove in production
+                    console.log(data);
                 })
                 .catch(error => {
                     console.error('Ошибка загрузки данных:', error);
                 })
                 .finally(() => {
-                    isFetching = false; // Allow new requests
+                    isFetching = false;
                 });
         }
 

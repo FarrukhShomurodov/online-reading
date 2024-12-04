@@ -2,14 +2,14 @@
 
 @section('content')
     <div class="all-books-container w-100">
-        <p>Все книги</p>
+        <p>@lang('site.all_books')</p>
         <div class="all-books">
             <ul>
                 @foreach($categories as $category)
                     <li>
                         <button class="click">
                             <a href="{{ route('category.books', $category->id) }}">
-                                {{ $category->name['ru'] }}
+                                {{ $category->name[$currentLang] }}
                             </a>
                         </button>
                     </li>
@@ -22,17 +22,17 @@
         <div class="top-books d-flex justify-content-between align-items-center flex-wrap-reverse w-100">
             <div class="top-books-info d-flex flex-column justify-content-between align-items-start">
                 <button class="top-btn">
-                    {{ $collections->first()->name['ru'] }}
+                    {{ $collections->first()->name[$currentLang] }}
                 </button>
                 <div>
                     <span
                         class="author"
-                        id="topBookAuthor">• {{ $collections->first()->books->where('is_active', true)->first()->author->name['ru'] }}</span><br>
+                        id="topBookAuthor">• {{ $collections->first()->books->where('is_active', true)->first()->author->name[$currentLang] }}</span><br>
                     <h2 id="topBookTitle">
-                        {{ $collections->first()->books->where('is_active', true)->first()->title['ru'] }}
+                        {{ $collections->first()->books->where('is_active', true)->first()->title[$currentLang] }}
                     </h2>
                     <p class="top-book-desc" id="topBookInfo">
-                        {{ $collections->first()->books->where('is_active', true)->first()->description['ru'] }}
+                        {{ $collections->first()->books->where('is_active', true)->first()->description[$currentLang] }}
                     </p>
                 </div>
                 <div>
@@ -52,7 +52,7 @@
             <!-- Slider -->
             <div class="slider">
                 <button class="top-btn">
-                    {{ $collections->first()->name['ru'] }}
+                    {{ $collections->first()->name[$currentLang] }}
                 </button>
                 <div class="top-books-collection">
                     <img class="crown" src="{{asset('/img/icons/crown.svg')}}" alt="">
@@ -64,8 +64,8 @@
                                         <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="">
                                     @endif
                                     <div class="book-container-content">
-                                        <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                        <p>{{ $book->title['ru'] }}</p>
+                                        <span class="author">• {{ $book->author->name[$currentLang] }}</span><br>
+                                        <p>{{ $book->title[$currentLang] }}</p>
                                     </div>
                                 </div>
                             @endforeach
@@ -75,8 +75,8 @@
                                         <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="">
                                     @endif
                                     <div class="book-container-content">
-                                        <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                        <p>{{ $book->title['ru'] }}</p>
+                                        <span class="author">• {{ $book->author->name[$currentLang] }}</span><br>
+                                        <p>{{ $book->title[$currentLang] }}</p>
                                     </div>
                                 </div>
                             @endforeach
@@ -96,7 +96,7 @@
         @if($category->books->count() > 0)
             @php $placeNumber++ @endphp
             <div class="category-container w-100">
-                <h3>{{ $category->name['ru']}}</h3>
+                <h3>{{ $category->name[$currentLang]}}</h3>
                 <div class="swiper-category-container{{$placeNumber}}">
                     <div class="swiper-wrapper">
                         @foreach($category->books as $book)
@@ -109,8 +109,8 @@
                                                  height="244px">
                                         @endif
                                         <div class="book-container-content">
-                                            <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                            <p>{{ $book->title['ru'] }}</p>
+                                            <span class="author">• {{ $book->author->name[$currentLang] }}</span><br>
+                                            <p>{{ $book->title[$currentLang] }}</p>
                                         </div>
                                     </div>
                                     <button onclick="window.location.href='{{route('book.show', $book->id)}}'"> Читать
@@ -137,16 +137,16 @@
                 <div class="best-book-month d-flex justify-content-between w-100">
                     <div class="d-flex top-books flex-column justify-content-between align-items-start">
                         <button class="top-btn">
-                            {{ $collections->find(2)->name['ru'] }}
+                            {{ $collections->find(2)->name[$currentLang] }}
                         </button>
                         <div>
                         <span
-                            class="author">•  {{ $collections->find(2)->books->where('is_active', true)->first()->author->name['ru'] }}</span><br>
+                            class="author">•  {{ $collections->find(2)->books->where('is_active', true)->first()->author->name[$currentLang] }}</span><br>
                             <h2>
-                                {{ $collections->find(2)->books->where('is_active', true)->first()->title['ru'] }}
+                                {{ $collections->find(2)->books->where('is_active', true)->first()->title[$currentLang] }}
                             </h2>
                             <p class="top-book-desc">
-                                {{ $collections->find(2)->books->where('is_active', true)->first()->description['ru'] }}
+                                {{ $collections->find(2)->books->where('is_active', true)->first()->description[$currentLang] }}
                             </p>
                         </div>
                         <div>
@@ -187,7 +187,7 @@
                     </div>
                     <div class="top-books-mobile">
                         <button class="top-btn">
-                            {{ $collections->find(2)->name['ru'] }}
+                            {{ $collections->find(2)->name[$currentLang] }}
                         </button>
                     </div>
                 </div>
@@ -199,9 +199,9 @@
                 <div class="top-readen-book-container d-flex justify-content-between align-items-center w-100">
                     <div class="top-readen-book d-flex justify-content-between flex-column align-items-start">
                         <button>Cамые читаемые книги</button>
-                        <p>{{ $collections->find(3)->name['ru'] }}</p>
+                        <p>{{ $collections->find(3)->name[$currentLang] }}</p>
                         <span>
-                     {{ $collections->find(3)->description['ru']}}
+                     {{ $collections->find(3)->description[$currentLang]}}
                     </span>
                     </div>
                     <div class="category-container">
@@ -212,11 +212,12 @@
                                         <div>
                                             @if($book->images->first())
                                                 <img src="{{asset('storage/'. $book->images->first()->url)}}"
-                                                     alt="{{ $book->title['ru'] }}">
+                                                     alt="{{ $book->title[$currentLang] }}">
                                             @endif
                                             <div class="book-container-content">
-                                                <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                                <p>{{ $book->title['ru'] }}</p>
+                                                <span
+                                                    class="author">• {{ $book->author->name[$currentLang] }}</span><br>
+                                                <p>{{ $book->title[$currentLang] }}</p>
                                             </div>
                                         </div>
                                         <button onclick="window.location.href='{{route('book.show', $book->id)}}'">
@@ -242,10 +243,10 @@
             @if($collections->find(4))
                 <div class="new-books w-100">
                     <button>
-                        {{ $collections->find(4)->name['ru'] }}
+                        {{ $collections->find(4)->name[$currentLang] }}
                     </button>
                     <p>
-                        {{ $collections->find(4)->description['ru'] }}
+                        {{ $collections->find(4)->description[$currentLang] }}
                     </p>
 
                     <div class="new-books-slide swiper-new-book-container">
@@ -262,9 +263,9 @@
                                                      height="100%">
                                             @endif
                                             <div class="book-container-content">
-                                                <h3>{{ $book->title['ru'] }}</h3>
-                                                <p>{{ $book->description['ru'] }}</p>
-                                                <span class="author">• {{ $book->author->name['ru'] }}</span>
+                                                <h3>{{ $book->title[$currentLang] }}</h3>
+                                                <p>{{ $book->description[$currentLang] }}</p>
+                                                <span class="author">• {{ $book->author->name[$currentLang] }}</span>
                                             </div>
                                         </div>
                                     @endforeach
@@ -288,8 +289,8 @@
                                             <img src="{{asset('storage/'.$book->images->first()->url)}}" alt="">
                                         @endif
                                         <div class="book-container-content">
-                                            <span class="author">• {{ $book->author->name['ru'] }}</span><br>
-                                            <p>{{ $book->title['ru'] }}</p>
+                                            <span class="author">• {{ $book->author->name[$currentLang] }}</span><br>
+                                            <p>{{ $book->title[$currentLang] }}</p>
                                         </div>
                                     </div>
                                     <button onclick="window.location.href='{{route('book.show', $book->id)}}'"> Читать
@@ -321,10 +322,10 @@
                             <img src="{{asset('storage/' . $top->genre->images->first()->url)}}" alt="genre photo">
                         @endif
                         <div class="genres-info">
-                            <span class="author">• {{ $top->genre->name['ru'] }}</span><br>
-                            <span class="author">{{ $top->genre->description['ru'] ?? ''}}</span><br>
+                            <span class="author">• {{ $top->genre->name[$currentLang] }}</span><br>
+                            <span class="author">{{ $top->genre->description[$currentLang] ?? ''}}</span><br>
                             <p>Книги в жанре<br>
-                                <span>«{{ $top->genre->name['ru'] }}»</span>
+                                <span>«{{ $top->genre->name[$currentLang] }}»</span>
                             </p>
                         </div>
                     </div>
