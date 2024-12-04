@@ -1,3 +1,7 @@
+@php
+    $currentLang = app()->getLocale();
+@endphp
+
 @extends('site.layouts.app')
 
 @section('content')

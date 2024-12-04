@@ -1,8 +1,4 @@
-@php
-    $currentLang = app()->getLocale();
-@endphp
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
