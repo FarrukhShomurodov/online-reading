@@ -153,9 +153,9 @@
 
         function updateBookInfo(data) {
             const locale = '{{ $currentLang }}'
-            const authorName = data.author ? data.author.name.locale : 'Unknown Author';
-            const title = data.title.locale || 'Untitled';
-            const description = data.description.locale || 'No description available';
+            const authorName = data.author ? data.author.name[locale] : 'Unknown Author';
+            const title = data.title[locale] || 'Untitled';
+            const description = data.description[locale] || 'No description available';
 
             document.getElementById('topBookAuthor').textContent = `• ${authorName}`;
             document.getElementById('topBookTitle').textContent = title;
