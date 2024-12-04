@@ -39,10 +39,10 @@ $('[class^="swiper-top-book-container"]').each(function () {
         speed: 500,
         breakpoints: {
             600: {
-                slidesPerView: 1, // Один слайд на мобильных
+                slidesPerView: 1,
             },
             768: {
-                slidesPerView: Math.min($slides.length, 5), // Не больше реального количества
+                slidesPerView: Math.min($slides.length, 5),
             },
             1024: {
                 slidesPerView: Math.min($slides.length, 7),
