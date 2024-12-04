@@ -30,16 +30,15 @@ new Swiper('.swiper-top-book-container', {
 //     speed: 500,
 // });
 
-$('[class^="swiper-collection-container"]').each(function (container) {
-    const $container = $(container);
+$('[class^="swiper-collection-container"]').each(function () {
+    const $container = $(this);
     const $slides = $container.find('.swiper-slide');
 
     if ($slides.length === 0) {
-        return; // Пропускаем контейнеры без слайдов
+        return;
     }
 
-    // Инициализация Swiper
-    const swiper = new Swiper(container, {
+    new Swiper(this, {
         loop: $slides.length > 1,
         spaceBetween: 10,
         slidesPerView: 'auto',
