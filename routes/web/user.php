@@ -7,6 +7,7 @@ use App\Http\Controllers\Site\CategoryController;
 use App\Http\Controllers\Site\CollectionController;
 use App\Http\Controllers\Site\ContactController;
 use App\Http\Controllers\Site\GenreController;
+use App\Http\Controllers\Site\LocaleController;
 use App\Http\Controllers\Site\MainPage;
 use App\Http\Controllers\Site\NewsController;
 use App\Http\Controllers\Site\OfferController;
@@ -22,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('user-register', [UserAuthController::class, 'register'])->name('user.register');
 Route::post('user-login', [UserAuthController::class, 'login'])->name('user.login');
 Route::get('auth', [UserAuthController::class, 'auth'])->name('auth.view');
+
+Route::get('change-locale/{locale}', [LocaleController::class, 'changeLocale'])->name('change-locale');
 
 Route::middleware('auth:user')->group(function () {
     Route::get('logout', [UserAuthController::class, 'logout'])->name('user.logout');
