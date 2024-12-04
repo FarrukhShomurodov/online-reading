@@ -96,7 +96,7 @@
     @endif
 
     @php $placeNumber = 0; @endphp
-    @foreach($categories->take(5) as $category)
+    @foreach($categories->sortBy('id')->take(5) as $category)
         @if($category->books->count() > 0)
             @php $placeNumber++ @endphp
             <div class="category-container w-100">
