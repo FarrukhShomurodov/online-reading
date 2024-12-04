@@ -29,6 +29,8 @@ Route::middleware('auth:user')->group(function () {
     Route::get('room', [RoomController::class, 'index'])->name('room');
     Route::post('review', [ReviewController::class, 'store'])->name('review.store');
 
+    // Book
+    Route::get('flip-book{book}', [BookController::class, 'read'])->name('read.book');
     Route::get('mark-as-read/{book}', [BookController::class, 'markAsRead'])->name('mark.as.read');
     Route::get('get-reed-books', [RoomController::class, 'showReadBooks'])->name('show.read.books');
 });
@@ -70,4 +72,3 @@ Route::get('promotion/{promotion}', [PromotionController::class, 'show'])->name(
 //Author
 Route::get('author-books/{author}', [AuthorController::class, 'books'])->name('author.books');
 
-Route::get('flip-book{book}', [BookController::class, 'read'])->name('read.book');
