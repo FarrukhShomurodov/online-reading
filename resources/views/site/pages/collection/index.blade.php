@@ -48,7 +48,8 @@
                                 </div>
                             </div>
                             <button class="btn"
-                                    onclick="window.location.href='{{ route('collection.books', $collection->id) }}'">
+                                    onclick="window.location.href='{{ route('collection.books', $collection->id) }}'"
+                                    style="width: 150px">
                                 Посмотреть
                             </button>
                         </div>
