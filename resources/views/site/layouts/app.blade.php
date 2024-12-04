@@ -27,6 +27,10 @@
 </head>
 <body>
 
+@php
+    $currentLang = app()->getLocale();
+@endphp
+
 <div id="preloader">
     <div class="spinner"></div>
 </div>
@@ -148,9 +152,10 @@
         }
 
         function updateBookInfo(data) {
-            const authorName = data.author ? data.author.name.ru : 'Unknown Author';
-            const title = data.title.ru || 'Untitled';
-            const description = data.description.ru || 'No description available';
+            const locale = '{{ $currentLang }}'
+            const authorName = data.author ? data.author.name.locale : 'Unknown Author';
+            const title = data.title.locale || 'Untitled';
+            const description = data.description.locale || 'No description available';
 
             document.getElementById('topBookAuthor').textContent = `• ${authorName}`;
             document.getElementById('topBookTitle').textContent = title;
