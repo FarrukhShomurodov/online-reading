@@ -38,9 +38,9 @@
             <div class="custom-select">
                 <div class="custom-select-selected">
                     @if($currentLang= 'uz')
-                        <img src="{{asset('img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
-                    @else
                         <img src="{{asset('img/flag/uz.png')}}" alt="UZ" class="option-flag"> Uz
+                    @else
+                        <img src="{{asset('img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
                     @endif
                 </div>
                 <div class="custom-select-options">
@@ -108,9 +108,9 @@
         <div class="custom-select">
             <div class="custom-select-selected">
                 @if($currentLang= 'uz')
-                    <img src="{{asset('img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
-                @else
                     <img src="{{asset('img/flag/uz.png')}}" alt="UZ" class="option-flag"> Uz
+                @else
+                    <img src="{{asset('img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
                 @endif
             </div>
             <div class="custom-select-options">
