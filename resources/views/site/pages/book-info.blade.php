@@ -105,7 +105,7 @@
                         <br>
                     </div>
                 </div>
-                <button class="see-more">@lang('site.rate_the_book')</button>
+                <button class="see-more"><a href="#send_review">@lang('site.rate_the_book')</a></button>
             </div>
         </div>
     </div>
@@ -167,7 +167,7 @@
     <div class="category-container review">
         <h3>@lang('site.messages')</h3>
         @if(auth()->guard('user')->check())
-            <form action="{{ route('review.store') }}" method="post"
+            <form id="send_review" action="{{ route('review.store') }}" method="post"
                   class="d-flex justify-content-between align-items-start flex-column w-100">
                 @csrf
                 <input type="hidden" name="book_id" value="{{ $book->id }}">
