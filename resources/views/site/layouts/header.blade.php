@@ -25,7 +25,7 @@
             </li>
         </ul>
 
-        <div class="search-container">
+        <div class="search-container" @if($currentLang == 'uz') style="max-width: 220px !important;" @endif>
             <form action="{{ route('search') }}" method="GET">
                 <img class="search-icon" src="{{ asset('img/icons/search.svg') }}" alt="search">
                 <input class="search" name="query" type="text" placeholder="{{ __('site.search_placeholder') }}"
