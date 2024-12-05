@@ -12,7 +12,7 @@
                 <button onclick="window.location.href='{{ url()->previous() }}'">@lang('site.back')</button>
             </div>
         @else
-            <h3 style="padding-left: 0">@lang('siet.author_book') “{{ $author->name[$currentLang] }}”</h3>
+            <h3 style="padding-left: 0">@lang('site.author_book') “{{ $author->name[$currentLang] }}”</h3>
             <div class="genre-grid all-genres">
                 @foreach($author->books as $book)
                     <div class="book-container">
