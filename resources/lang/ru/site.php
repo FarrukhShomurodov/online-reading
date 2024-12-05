@@ -91,4 +91,5 @@ return [
     "most_read_book" => "Самые читаемые книги",
     "top_genres" => "Топ жанры",
     "authors" => "Авторы",
+    "review_title" => "Напишите ваш отзыв...",
 ];

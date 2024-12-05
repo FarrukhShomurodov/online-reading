@@ -90,4 +90,5 @@ return [
     "most_read_book" => "Eng ko'p o'qiladigan kitoblar",
     "top_genres" => "Top janrlar",
     "authors" => "Mualliflar",
+    "review_title" => "Fikringizni yozing...",
 ];

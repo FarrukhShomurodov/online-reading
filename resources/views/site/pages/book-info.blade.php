@@ -183,7 +183,8 @@
                     <span data-value="1" class="star">&#9733;</span>
                 </div>
 
-                <textarea name="text" id="reviewText" placeholder="Напишите ваш отзыв..." maxlength="600"></textarea>
+                <textarea name="text" id="reviewText" placeholder="{{ __('site.review_title') }}"
+                          maxlength="600"></textarea>
                 <small>@lang('site.characters_left'): <span id="charCount"> 600</span></small>
                 <button>@lang('site.send')</button>
             </form>
