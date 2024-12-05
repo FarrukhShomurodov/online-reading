@@ -107,7 +107,7 @@
     <div class="d-flex justify-content-between align-items-cente w-100">
         <div class="custom-select">
             <div class="custom-select-selected">
-                @if($currentLang = 'uz')
+                @if($currentLang == 'uz')
                     <img src="{{asset('img/flag/uz.png')}}" alt="UZ" class="selected-flag"> Uz
                 @else
                     <img src="{{asset('img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
