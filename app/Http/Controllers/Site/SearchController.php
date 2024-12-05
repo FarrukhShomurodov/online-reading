@@ -13,13 +13,15 @@ class SearchController
     {
         $query = $request->input('query');
 
+        $currentLang = app()->getLocale();
+
         $books = Book::query()
-            ->where('title->ru', 'ILIKE', "%$query%")
+            ->where("title->$currentLang", 'ILIKE', "%$query%")
             ->where('is_active', true)
             ->get();
 
         $authors = Author::query()
-            ->where('name->ru', 'ILIKE', "%$query%")
+            ->where("name->$currentLang", 'ILIKE', "%$query%")
             ->get();
 
         return view('site.pages.search-results', compact('books', 'authors'));
