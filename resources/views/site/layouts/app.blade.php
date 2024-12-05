@@ -94,24 +94,24 @@
 @yield('scripts')
 
 <script>
-    const locale = '{{ $currentLang }}'
+    const locale = '{{ $currentLang }}';
     const text = {
         'uz': {
-            'read': "o'qish",
-            'book': "Kitobni ",
+            'read': 'Kitobni',
+            'book': " o'qish",
         },
         'ru': {
             'read': 'Читать',
             'book': ' книгу',
         },
-    }
+    };
 
     $('.top-read-book').hover(
         function () {
-            $(this).text(text[locale].read).delay(500);
+            $(this).text(text[locale].read);
         },
         function () {
-            $(this).append(text[locale].book).delay(500);
+            $(this).text(text[locale].read + text[locale].book);
         }
     );
 </script>
