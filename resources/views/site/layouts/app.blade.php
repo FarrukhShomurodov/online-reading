@@ -97,8 +97,8 @@
     const locale = '{{ $currentLang }}'
     const text = {
         'uz': {
-            'read': 'Kitobni',
-            'book': " o'qish",
+            'read': "o'qish",
+            'book': "Kitobni ",
         },
         'ru': {
             'read': 'Читать',
