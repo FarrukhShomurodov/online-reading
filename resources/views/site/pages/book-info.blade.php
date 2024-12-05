@@ -43,7 +43,7 @@
                     @lang('site.read_book')
                 </button>
                 <button class="top-readen" onclick="window.location.href='{{route( 'mark.as.read', $book->id )}}'">
-                    @lang('mark_read')
+                    @lang('site.mark_read')
                 </button>
             </div>
             <p class="top-book-desc">
