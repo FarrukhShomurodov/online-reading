@@ -63,15 +63,6 @@ $(document).ready(function () {
         });
     });
 
-    $('.top-read-book').hover(
-        function () {
-            $(this).text('Читать').delay(500);
-        },
-        function () {
-            $(this).append(' книгу').delay(500);
-        }
-    );
-
     // Phone mask
     const phoneInput = $('.phone');
 

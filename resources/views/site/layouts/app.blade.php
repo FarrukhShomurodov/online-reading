@@ -92,6 +92,30 @@
 <script src="{{ mix('site_js/main.js') }}"></script>
 
 @yield('scripts')
+
+<script>
+    const locale = '{{ $currentLang }}'
+    const text = {
+        'uz': {
+            'read': 'Kitobni',
+            'book': " o'qish",
+        },
+        'ru': {
+            'read': 'Читать',
+            'book': ' книгу',
+        },
+    }
+
+    $('.top-read-book').hover(
+        function () {
+            $(this).text(text[locale].read).delay(500);
+        },
+        function () {
+            $(this).append(text[locale].book).delay(500);
+        }
+    );
+</script>
+
 @if(isset($collections) && $collections->isNotEmpty())
     @php
         $booksCount = $collections->first()->books->count();
@@ -172,7 +196,6 @@
         }
     </script>
 @endif
-
 
 </body>
 </html>
