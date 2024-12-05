@@ -97,21 +97,21 @@
     const locale = '{{ $currentLang }}';
     const text = {
         'uz': {
-            'read': " o'qish",
-            'book': "Kitobni",
+            'hoverText': "O'qish",
+            'defaultText': "Kitobni o'qish",
         },
         'ru': {
-            'read': 'Читать',
-            'book': ' книгу',
+            'hoverText': 'Читать',
+            'defaultText': 'Читать книгу',
         },
     };
 
     $('.top-read-book').hover(
         function () {
-            $(this).text(text[locale].read);
+            $(this).text(text[locale].hoverText);
         },
         function () {
-            $(this).text(text[locale].read + text[locale].book);
+            $(this).text(text[locale].defaultText);
         }
     );
 </script>
