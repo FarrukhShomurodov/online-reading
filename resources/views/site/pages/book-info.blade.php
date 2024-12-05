@@ -81,7 +81,7 @@
                         <span class="author">@lang('site.genre')</span>
                         <b>
                             {!!
-                                 implode(', ', $book->genres->take(2)->map(function ($genre, $currentLang) {
+                                 implode(', ', $book->genres->take(2)->map(function ($genre) use ($currentLang){
                                      return '<a href="' . route('genre.books', $genre->id) . '">' . $genre->name[$currentLang] . '</a>';
                                  })->toArray()) .
                                  ($book->genres->count() > 2 ? '...' : '')
@@ -96,7 +96,7 @@
                         <span class="author">@lang('site.tags'):</span>
                         <b>
                             {!!
-                                implode(', ', $book->tags->take(2)->map(function ($tag, $currentLang) {
+                                implode(', ', $book->tags->take(2)->map(function ($tag) use ($currentLang) {
                                   return '<a href="' . route('genre.books', $tag->id) . '">' . $tag->name[$currentLang] . '</a>';
                               })->toArray()) .
                               ($book->tags->count() > 2 ? '...' : '')
