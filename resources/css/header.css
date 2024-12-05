@@ -255,8 +255,7 @@ header {
 
     .search-container-mobile {
         display: block;
-        margin: 20px auto;
-        max-width: 90%;
+        margin-top: 20px;
     }
 
     .menu-mobile-nav {

@@ -92,7 +92,7 @@
     </div>
 </header>
 
-<div class="search-container search-mobile">
+<div class="search-container search-mobile container">
     <form action="{{ route('search') }}" method="GET">
         <img class="search-icon" src="{{ asset('img/icons/search.svg') }}" alt="search">
         <input class="search" name="query" type="text" placeholder="{{ __('site.search_placeholder') }}"
