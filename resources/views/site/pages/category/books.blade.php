@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <button
-                            onclick="window.location.href='{{route('book.show', $book->id)}}'"> @lang('site.show_books')
+                            onclick="window.location.href='{{route('book.show', $book->id)}}'"> @lang('site.read_book')
                         </button>
                     </div>
                 @endforeach
@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
                                     <button
-                                        onclick="window.location.href='{{route('book.show', $book->id)}}'"> @lang('site.show_books')
+                                        onclick="window.location.href='{{route('book.show', $book->id)}}'"> @lang('site.read_book')
                                     </button>
                                 </div>
                             @endif
