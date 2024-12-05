@@ -37,6 +37,7 @@
         <div class="custom-select-container">
             <div class="custom-select">
                 <div class="custom-select-selected">
+                    @dd($currentLang)
                     @if($currentLang = 'uz')
                         <img src="{{asset('img/flag/uz.png')}}" alt="UZ" class="selected-flag"> Uz
                     @else
