@@ -184,7 +184,7 @@
                 </div>
 
                 <textarea name="text" id="reviewText" placeholder="Напишите ваш отзыв..." maxlength="600"></textarea>
-                <small id="charCount">@lang('site.characters_left'): 600</small>
+                <small>@lang('site.characters_left'): <span id="charCount"> 600</span></small>
                 <button>@lang('site.send')</button>
             </form>
         @else

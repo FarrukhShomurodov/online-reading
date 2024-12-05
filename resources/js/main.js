@@ -156,7 +156,7 @@ $(document).ready(function () {
     $('#reviewText').on('input', function () {
         const maxLength = 600;
         const remaining = maxLength - $(this).val().length;
-        $('#charCount').text(`Осталось символов: ${remaining}`);
+        $('#charCount').text(`${remaining}`);
     });
 
 });
