@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="flex-column g-2">
-                        <h3>Авторы ({{$authors->count()}})</h3>
+                        <h3>@lang('site.authors') ({{$authors->count()}})</h3>
                         @foreach($authors as $author)
                             <div class="author-container d-flex justify-content-between flex-row g-2"
                                  onclick="window.location.href='{{route('author.books', $author->id)}}'">

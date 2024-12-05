@@ -37,8 +37,8 @@
         <div class="custom-select-container">
             <div class="custom-select">
                 <div class="custom-select-selected">
-                    @if($currentLang= 'uz')
-                        <img src="{{asset('img/flag/uz.png')}}" alt="UZ" class="option-flag"> Uz
+                    @if($currentLang = 'uz')
+                        <img src="{{asset('img/flag/uz.png')}}" alt="UZ" class="selected-flag"> Uz
                     @else
                         <img src="{{asset('img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
                     @endif
@@ -107,8 +107,8 @@
     <div class="d-flex justify-content-between align-items-cente w-100">
         <div class="custom-select">
             <div class="custom-select-selected">
-                @if($currentLang= 'uz')
-                    <img src="{{asset('img/flag/uz.png')}}" alt="UZ" class="option-flag"> Uz
+                @if($currentLang = 'uz')
+                    <img src="{{asset('img/flag/uz.png')}}" alt="UZ" class="selected-flag"> Uz
                 @else
                     <img src="{{asset('img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
                 @endif

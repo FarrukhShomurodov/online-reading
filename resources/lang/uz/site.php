@@ -89,4 +89,5 @@ return [
     "categories_title" => "Boshqa kitob kategoriyalarini o'rganing. O'z sevimli kategoriyangizni tanlab, o'zingizga yoqadigan o'qishni toping.",
     "most_read_book" => "Eng ko'p o'qiladigan kitoblar",
     "top_genres" => "Top janrlar",
+    "authors" => "Mualliflar",
 ];
