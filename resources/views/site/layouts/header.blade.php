@@ -38,6 +38,7 @@
             <div class="custom-select">
                 <div class="custom-select-selected">
                     @if($currentLang = 'uz')
+                        {{$currentLang}}
                         <img src="{{asset('img/flag/uz.png')}}" alt="UZ" class="selected-flag"> Uz
                     @else
                         <img src="{{asset('img/flag/ru.png')}}" alt="RU" class="selected-flag"> RU
