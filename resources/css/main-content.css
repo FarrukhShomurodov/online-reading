@@ -723,7 +723,8 @@ footer .container img {
 }
 
 .offer-section-menu {
-    height: 200px;
+    /*height: 200px;*/
+    flex-wrap: wrap;
     flex-direction: column;
 }
 
