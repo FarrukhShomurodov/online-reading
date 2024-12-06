@@ -23,4 +23,3 @@ mix.js('resources/js/main.js', 'public/site_js')
     .minify('public/css/main-content.css')
     .minify('public/css/room.css')
     .minify('public/css/style.css');
-

@@ -3,6 +3,7 @@
 /public/build
 /public/hot
 /public/storage
+/public/book_files/
 /storage/*.key
 /storage/pail
 /storage/framework/

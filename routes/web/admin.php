@@ -35,6 +35,8 @@ Route::prefix('dashboard')->middleware('auth:admin')->group(function () {
     Route::resource('genres', GenreController::class);
     Route::post('genres/top', [TopGenreController::class, 'save'])->name('genres.top.save');
     Route::resource('books', BookController::class);
+    Route::get('flip-book/{book}/{lang}', [BookController::class, 'flip'])->name('flip.book');
+
     Route::resource('reviews', ReviewController::class);
     Route::resource('collections', CollectionController::class);
     Route::resource('authors', AuthorController::class);

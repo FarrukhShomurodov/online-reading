@@ -88,6 +88,7 @@
                     <th>Автор</th>
                     <th>Активный</th>
                     <th>Дата публикации</th>
+                    <th>Активация книги</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -106,7 +107,33 @@
                                 </span>
                             </label>
                         </td>
-                        <td>{{ $book->publication_date }}</td>
+                        <td>{{ $book->publication_date }}
+                        <td>
+                            @php
+                                $sourcePathRu= public_path("book_files/$book->id/ru/upload.php");
+                                $sourcePathUz = public_path("book_files/$book->id/uz/upload.php");
+                            @endphp
+                            <div class="m-auto">
+                                @if(file_exists($sourcePathRu))
+                                    <button class="btn btn-sm btn-primary">
+                                        <a class="text-white"
+                                           href="{{ route('flip.book', [$book->id, 'ru'])}}">Ru</a>
+                                    </button>
+                                @endif
+                                @if(file_exists($sourcePathUz))
+                                    <button class="btn btn-sm btn-primary">
+                                        <a class="text-white"
+                                           href="{{ route('flip.book', [$book->id, 'uz'])}}">Uz</a>
+                                    </button>
+                                @endif
+
+                                @if(!file_exists($sourcePathUz) && !file_exists($sourcePathUz))
+                                    <span class="text-success">
+                                        <i class="fas fa-check-circle"></i> Активировано
+                                    </span>
+                                @endif
+                            </div>
+                        </td>
                         <td>
                             <div class="d-inline-block text-nowrap">
                                 <button class="btn btn-sm btn-icon"
