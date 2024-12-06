@@ -1,0 +1,36 @@
+.contact-container {
+    margin-top: 50px;
+    width: 550px;
+    height: 99px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 18px;
+    border: 1px solid #F3F3F3;
+}
+
+.contact-container img {
+    background-color: #FFB539;
+    padding: 35px 65px;
+    border-radius: 10px;
+}
+
+.contact-container span {
+    color: #9A9A9A;
+}
+
+.contact-container p {
+    margin: 0px !important;
+}
+
+.contact-container div {
+    padding: 40px;
+}
+
+@media (max-width: 700px) {
+    .contact-container div {
+        font-size: 14px;
+    }
+}
