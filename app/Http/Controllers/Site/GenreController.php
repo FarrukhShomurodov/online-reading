@@ -40,7 +40,7 @@ class GenreController
             ->when(
                 $request->input('rating'),
                 function ($query, $ratting) {
-                    return $query->where('rating', $ratting);
+                    return $query->where('ratting', $ratting);
                 }
             );
         return view('site.pages.genre.books', compact('genre', 'authors', 'books'));

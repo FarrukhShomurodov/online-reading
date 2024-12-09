@@ -37,7 +37,7 @@ class CategoryController
             ->when(
                 $request->input('rating'),
                 function ($query, $ratting) {
-                    return $query->where('rating', $ratting);
+                    return $query->where('ratting', $ratting);
                 }
             );
 
