@@ -20,7 +20,7 @@
             </button>
         </div>
 
-        <div class="room-book">
+        <div class="room-book room-section">
             @foreach($books as $userBook)
                 @if($userBook->book->is_active)
                     <div class="d-flex flex-row align-items-start gap-5">

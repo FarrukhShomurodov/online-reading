@@ -874,9 +874,10 @@ footer .container img {
         flex-direction: column;
     }
 
-    /*.room-book .author-container {*/
-    /*    display: none !important;*/
-    /*}*/
+    .room-section .author-container {
+        display: none !important;
+    }
+
     .author-container {
         max-width: 100%;
     }
