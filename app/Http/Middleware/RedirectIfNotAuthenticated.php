@@ -14,7 +14,7 @@ class RedirectIfNotAuthenticated
      */
     public function handle(Request $request, Closure $next, $guard): Response
     {
-        dd();
+        dd(Auth::getDefaultDriver());
         if ($guard && !Auth::guard($guard)->check()) {
             if ($guard == 'user') {
                 return redirect()->route('auth.view');
