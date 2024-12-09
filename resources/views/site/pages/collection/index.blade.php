@@ -5,7 +5,7 @@
 @extends('site.layouts.app')
 
 @section('content')
-    <div class="container all-categories">
+    <div class="all-categories">
         <h3>@lang('site.collections')</h3>
         <span class="author">@lang('site.collection_title')</span>
 
