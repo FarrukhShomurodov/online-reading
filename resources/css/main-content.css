@@ -646,15 +646,11 @@
 .genre-grid {
     display: flex;
     gap: 30px;
-    justify-content: space-between;
     flex-direction: row;
     flex-wrap: wrap;
-}
-
-.genre-grid > * {
-    flex: 1 1 calc(33.33% - 20px); /* Элемент занимает треть ширины */
-    max-width: calc(33.33% - 20px);
-    box-sizing: border-box; /* Учитываем отступы */
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Footer */
