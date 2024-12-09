@@ -2,7 +2,6 @@
 
 use App\Http\Middleware\SetLocale;
 use App\Http\Middleware\UserStatus;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -18,13 +17,12 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->redirectGuestsTo(function (\Illuminate\Http\Request $request) {
-            $guard = app(Guard::class);
-            dd($guard->getProvider());
-//            $request->route()->middleware()
-            if ($guard == 'user') {
-                route('auth.view');
-            } else {
+            $guard = $request->route()->middleware();
+            dd($guard[1]);
+            if ($guard[1] == 'admin') {
                 route('dashboard.login');
+            } else {
+                route('auth.view');
             }
         });
 
