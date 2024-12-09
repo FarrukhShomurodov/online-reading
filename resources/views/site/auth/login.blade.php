@@ -104,9 +104,13 @@
                     <button type="submit">@lang('site.get_code')</button>
                 </form>
             </div>
-            <div class="auth-footer">
-                <span>@lang('site.already_have_account')</span> <a id="login-auth-view"><u>@lang('site.entire')</u></a>
+            <div class="auth-footer mt-3 d-flex flex-row justify-content-between align-items-center w-100">
+                <a href="{{ url()->previous() == route('room') ? '/' : url()->previous() }}"><u>Назад</u></a>
+                <div>
+                    <span>@lang('site.already_have_account')</span> <a id="login-auth-view"><u>@lang('site.entire')</u></a>
+                </div>
             </div>
+
         </div>
     </div>
 
@@ -144,9 +148,12 @@
                     <button type="submit" class="btn btn-primary w-100">@lang('site.confirm')</button>
                 </form>
             </div>
-            <div class="auth-footer mt-3">
-                <span>@lang('site.already_have_account')</span> <a
-                    id="register-auth-view"><u>@lang('site.authorization')</u></a>
+            <div class="auth-footer mt-3 d-flex flex-row justify-content-between align-items-center w-100">
+                <a href="{{ url()->previous() == route('room') ? '/' : url()->previous() }}"><u>Назад</u></a>
+                <div>
+                    <span>@lang('site.already_have_account')</span> <a
+                        id="register-auth-view"><u>@lang('site.authorization')</u></a>
+                </div>
             </div>
         </div>
     </div>
@@ -234,3 +241,5 @@
 </script>
 </body>
 </html>
+
+
