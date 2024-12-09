@@ -12,16 +12,16 @@ class RedirectIfNotAuthenticated
     /**
      * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
      */
-    public function handle(Request $request, Closure $next, $guard): Response
+    public function handle(Request $request, Closure $next): Response
     {
         dd(Auth::getDefaultDriver());
-        if ($guard && !Auth::guard($guard)->check()) {
-            if ($guard == 'user') {
-                return redirect()->route('auth.view');
-            } elseif ($guard == 'admin') {
-                return redirect()->route('dashboard.login');
-            }
-        }
+//        if ($guard && !Auth::guard($guard)->check()) {
+//            if ($guard == 'user') {
+//                return redirect()->route('auth.view');
+//            } elseif ($guard == 'admin') {
+//                return redirect()->route('dashboard.login');
+//            }
+//        }
 
         return $next($request);
     }
