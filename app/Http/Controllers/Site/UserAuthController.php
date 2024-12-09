@@ -62,6 +62,7 @@ class UserAuthController
     public function logout(): RedirectResponse
     {
         Auth::guard('user')->logout();
-        return redirect()->route('main');
+//        return redirect()->route('main');
+        return redirect()->route('auth.view');
     }
 }
