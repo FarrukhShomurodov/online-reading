@@ -27,7 +27,7 @@ class UserAuthController
         $user = User::query()->create($validated);
         Auth::guard('user')->login($user);
 
-        return redirect()->intended(url()->previous());
+        return redirect()->intended(route('room'));
     }
 
     public function login(Request $request): RedirectResponse
@@ -38,7 +38,7 @@ class UserAuthController
         ]);
 
         if (Auth::guard('user')->attempt($credentials)) {
-            return redirect()->intended(url()->previous());
+            return redirect()->intended(route('room'));
         }
 
         return back()->withErrors(['login' => 'Неверные данные для входа в систему']);
