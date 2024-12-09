@@ -85,8 +85,27 @@
 
         <div class="menu-mobile-nav">
             <img class="search-icon-mobile" src="{{asset('img/icons/search.svg')}}" alt="">
-            <div class="user-ava d-flex justify-content-center align-items-center"
-                 onclick="window.location.href='/room'"><span>F</span></div>
+            {{--            <div class="user-ava d-flex justify-content-center align-items-center"--}}
+            {{--                 onclick="window.location.href='/room'"><span>F</span></div>--}}
+            <div class="w-100" style=" display: inline-block; position: relative;">
+                <div class="custom-select w-100">
+                    <div class="custom-select-selected user-ava w-100 d-flex align-items-center justify-content-center">
+                        F
+                    </div>
+                    <div class="custom-select-options w-100" style="min-width: 90px">
+                        <div class="custom-select-option">
+                            <a href="{{route('room')}}">@lang('site.room')</a>
+                        </div>
+                        <div class="custom-select-option">
+                            @if(auth()->guard('user')->user())
+                                <a href="{{route('user.logout')}}">@lang('site.logout')</a>
+                            @else
+                                <a class="login-link">@lang('site.login')</a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
             <img class="menu-icon" src="{{asset('img/icons/menu.svg')}}" alt="">
         </div>
     </div>
