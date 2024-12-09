@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 //Auth
 Route::post('user-register', [UserAuthController::class, 'register'])->name('user.register');
 Route::post('user-login', [UserAuthController::class, 'login'])->name('user.login');
+Route::post('user-login-modal', [UserAuthController::class, 'modalLogin'])->name('user.modal.login');
 Route::get('auth', [UserAuthController::class, 'auth'])->name('auth.view');
 
 Route::get('change-locale/{locale}', [LocaleController::class, 'changeLocale'])->name('change-locale');
@@ -30,12 +31,11 @@ Route::middleware('auth:user')->group(function () {
     Route::get('logout', [UserAuthController::class, 'logout'])->name('user.logout');
 
     Route::get('room', [RoomController::class, 'index'])->name('room');
-    Route::post('review', [ReviewController::class, 'store'])->name('review.store');
-
-    // Book
+    Route::get('get-reed-books', [RoomController::class, 'showReadBooks'])->name('show.read.books');
     Route::get('flip-book{book}', [BookController::class, 'read'])->name('read.book');
     Route::get('mark-as-read/{book}', [BookController::class, 'markAsRead'])->name('mark.as.read');
-    Route::get('get-reed-books', [RoomController::class, 'showReadBooks'])->name('show.read.books');
+
+    Route::post('review', [ReviewController::class, 'store'])->name('review.store');
 });
 
 Route::get('/', [MainPage::class, 'index'])->name('main');

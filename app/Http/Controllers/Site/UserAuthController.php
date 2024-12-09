@@ -44,6 +44,20 @@ class UserAuthController
         return back()->withErrors(['login' => 'Неверные данные для входа в систему']);
     }
 
+    public function modalLogin(Request $request): RedirectResponse
+    {
+        $credentials = $request->validate([
+            'phone_number' => 'required|string',
+            'password' => ['required', 'string', Password::min(8)],
+        ]);
+
+        if (Auth::guard('user')->attempt($credentials)) {
+            return redirect()->intended(url()->previous());
+        }
+
+        return back()->withErrors(['login' => 'Неверные данные для входа в систему']);
+    }
+
 
     public function logout(): RedirectResponse
     {

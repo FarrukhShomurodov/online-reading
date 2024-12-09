@@ -201,7 +201,8 @@
                 <span style="color: rgba(72, 72, 72, 1)">@lang('site.login_prompt_main')</span>
             </div>
             <div class="auth-form-section w-100 h-100">
-                <form action="{{route('user.login')}}" method="post" class="d-flex flex-column gap-4" id="auth-form">
+                <form action="{{route('user.modal.login')}}" method="post" class="d-flex flex-column gap-4"
+                      id="auth-form">
                     @csrf
                     <div class="d-flex flex-column align-items-start w-100">
                         <label for="phone">@lang('site.phone_number') <span
