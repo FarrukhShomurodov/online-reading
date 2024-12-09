@@ -94,10 +94,10 @@
 
 <div class="search-container search-mobile container">
     <form action="{{ route('search') }}" method="GET">
-        <img class="search-icon" src="{{ asset('img/icons/search.svg') }}" alt="search">
+        <img class="search-icon" src="{{ asset('img/icons/search.svg') }}" alt="search" style="margin-left: 5px">
         <input class="search" name="query" type="text" placeholder="{{ __('site.search_placeholder') }}"
                value="{{ request('query') }}">
-        <img class="cross-icon" src="{{ asset('img/icons/cross.svg') }}" alt="search">
+        <img class="cross-icon" src="{{ asset('img/icons/cross.svg') }}" alt="search" style="margin-right: 5px">
     </form>
 </div>
 
