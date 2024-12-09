@@ -17,8 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->redirectGuestsTo(function (\Illuminate\Http\Request $request) {
-            $guard = $request->header('guard');
-            dd($request->route()->getActionMethod());
+            dd($request->route()->middleware());
             if ($guard == 'user') {
                 route('auth.view');
             } else {
