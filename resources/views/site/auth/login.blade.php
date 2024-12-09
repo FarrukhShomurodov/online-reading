@@ -157,16 +157,6 @@
             </div>
         </div>
     </div>
-
-
-    <div class="">
-        <div class="not-found d-flex align-items-start" style="padding: 0">
-            <button
-                onclick="window.location.href='{{ url()->previous() == route('room') ? '/' : url()->previous()  }}'">
-                @lang('site.back')
-            </button>
-        </div>
-    </div>
 </main>
 
 
