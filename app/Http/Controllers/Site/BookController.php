@@ -47,6 +47,6 @@ class BookController
             ]);
         }
 
-        return redirect()->back()->with('add_mark_as_read_success', true);
+        return redirect(route('show.read.books'))->with('add_mark_as_read_success', true);
     }
 }
