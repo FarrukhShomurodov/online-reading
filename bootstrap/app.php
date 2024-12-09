@@ -19,9 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectGuestsTo(function (\Illuminate\Http\Request $request) {
             $guard = $request->route()->middleware();
             if ($guard[1] == 'auth:admin') {
-                route('dashboard.login');
+                return route('dashboard.login');
             } else {
-                route('auth.view');
+                return route('auth.view');
             }
         });
 
