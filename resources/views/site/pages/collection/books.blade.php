@@ -5,7 +5,7 @@
 @extends('site.layouts.app')
 
 @section('content')
-    <div class="container all-categories">
+    <div class="all-categories">
         @if(count($collection->books->where('is_active', true)) == 0)
             <div class="not-found">
                 <p>@lang('site.not_found_book')</p>
