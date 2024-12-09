@@ -127,7 +127,7 @@
                                     </button>
                                 @endif
 
-                                @if(!file_exists($sourcePathUz) && !file_exists($sourcePathUz))
+                                @if(!file_exists($sourcePathRu) && !file_exists($sourcePathUz))
                                     <span class="text-success">
                                         <i class="fas fa-check-circle"></i> Активировано
                                     </span>
