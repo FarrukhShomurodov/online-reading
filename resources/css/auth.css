@@ -136,3 +136,13 @@
 .register {
     display: none;
 }
+
+@media (max-width: 800px) {
+    .slider {
+        width: 100%;
+    }
+
+    .auth-container {
+        max-width: 350px;
+    }
+}
