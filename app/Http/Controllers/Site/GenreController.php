@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Models\Author;
 use App\Models\Collection;
 use App\Models\Genre;
 use App\Models\Tag;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 class GenreController
 {
@@ -23,10 +25,24 @@ class GenreController
         return view('site.pages.genre.index', compact('genres', 'tags', 'collections'));
     }
 
-    public function books(Genre $genre): View
+    public function books(Genre $genre, Request $request): View
     {
         $genre->with('books');
+        $authors = Author::query()->get();
 
-        return view('site.pages.genre.books', compact('genre'));
+        $books = $genre->books->where('is_active', true)
+            ->when(
+                $request->input('author_id'),
+                function ($query, $authorId) {
+                    return $query->where('author_id', $authorId);
+                }
+            )
+            ->when(
+                $request->input('rating'),
+                function ($query, $ratting) {
+                    return $query->where('rating', $ratting);
+                }
+            );
+        return view('site.pages.genre.books', compact('genre', 'authors', 'books'));
     }
 }

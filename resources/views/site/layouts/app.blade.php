@@ -19,6 +19,10 @@
           rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+
+    {{-- Icons --}}
+    <link rel="stylesheet" href="{{ asset('vendor/fonts/boxicons.css') }}"/>
 
     {{-- flipbook --}}
     <script src="{{ asset('flipbook/source/js/magalone.min.js') }}" type="text/javascript"></script>
@@ -86,6 +90,7 @@
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 <!-- Main JS -->
 <script src="{{ mix('site_js/swiper.js') }}"></script>
@@ -94,6 +99,9 @@
 @yield('scripts')
 
 <script>
+    // select2
+    $('.select2').select2();
+
     const locale = '{{ $currentLang }}';
     const text = {
         'uz': {

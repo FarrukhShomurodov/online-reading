@@ -12,11 +12,54 @@
                 <button onclick="window.location.href='{{ url()->previous() }}'">@lang('site.back')</button>
             </div>
         @else
-            <h3 style="padding-left: 0">@lang('site.category_books') “{{ $category->name[$currentLang] }}”</h3>
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 style="padding-left: 0">@lang('site.category_books') “{{ $category->name[$currentLang] }}”</h3>
+
+                <button class="btn btn-link collapsed" style="color: #FFB539; text-decoration: none" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#filtersCollapse">
+                    <i class="bx bx-filter-alt"></i> Фильтры
+                </button>
+            </div>
+
             <span class="author">{{ $category->description[$currentLang] ?? '' }}</span>
 
+            <div id="filtersCollapse" class="collapse
+            @if(request('rating') || request('author_id')) show @endif">
+                <div class="card-body">
+                    <form method="GET"
+                          class="filter d-flex flex-row flex-wrap align-items-center gap-2">
+                        <div class="w-100 d-flex flex-column form-group">
+                            <label for="author">Авторы</label>
+                            <select id="author" name="author_id"
+                                    class="form-control select2" style="height: 50px !important;">
+                                @foreach($authors as $author)
+                                    <option
+                                        value="{{$author->id}}" @selected(request('author_id') == $author->id)>{{$author->name[$currentLang]}}</option>
+                                @endforeach
+                                <option value="">Все</option>
+                            </select>
+                        </div>
+                        <div class="w-100 d-flex flex-column form-group">
+                            <label for="rating">Рейтинг</label>
+                            <select id="rating" name="rating"
+                                    class="form-control select2">
+                                <option value="5" @selected(request('rating') == 5)>5</option>
+                                <option value="4" @selected(request('rating') == 4)>4</option>
+                                <option value="3" @selected(request('rating') == 3)>3</option>
+                                <option value="2" @selected(request('rating') == 2)>2</option>
+                                <option value="1" @selected(request('rating') == 1)>1</option>
+                                <option value="0" @selected(request('rating') == 0)>0</option>
+                                <option value="">Все</option>
+                            </select>
+                        </div>
+                        <button class="w-100" type="submit">Применить</button>
+                    </form>
+                </div>
+            </div>
+
             <div class="genre-grid all-genres">
-                @foreach($category->books->where('is_active', true) as $book)
+                @foreach($books as $book)
                     <div class="book-container">
                         <div>
                             @if($book->images->first())

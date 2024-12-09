@@ -30,6 +30,8 @@ class User extends Authenticatable
         ];
     }
 
+    protected $guarded = 'user';
+
     protected $hidden = ['password'];
 
     protected function images(): MorphMany

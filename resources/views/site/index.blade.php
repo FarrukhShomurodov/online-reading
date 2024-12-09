@@ -7,6 +7,7 @@
 @section('content')
     <div class="all-books-container w-100">
         <p>@lang('site.all_books')</p>
+
         <div class="all-books">
             <ul>
                 @foreach($categories as $category)
