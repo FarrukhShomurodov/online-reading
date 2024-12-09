@@ -16,7 +16,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->redirectGuestsTo('/auth');
+        $middleware->redirectGuestsTo(function (\Illuminate\Http\Request $request) {
+            $guard = $request->header('guard');
+            if ($guard == 'user') {
+                redirect(route('auth.view'));
+            } else {
+                redirect(route('dashboard.login'));
+            }
+        });
 
         $middleware->web([
             UserStatus::class,
