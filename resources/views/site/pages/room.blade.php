@@ -32,7 +32,7 @@
                                          src="{{asset('storage/'.$userBook->book->images->first()->url)}}"
                                          alt="newbook">
                                 @endif
-                                <div class="book-short-info d-flex flex-column justify-content-between">
+                                <div class="book-short-info w-100 d-flex flex-column justify-content-between">
                                     <h5><b>{{ $userBook->book->title[$currentLang] }}</b></h5>
 
                                     <span class="description">
