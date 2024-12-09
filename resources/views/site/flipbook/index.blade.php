@@ -8,7 +8,7 @@
     <div class="all-categories">
         <div class="mb-3">
             <div class="not-found d-flex align-items-start" style="padding: 0">
-                <button onclick="window.location.href='{{ url()->previous() }}'">@lang('site.back')</button>
+                <button onclick="window.location.href='{{ redirect()->back() }}'">@lang('site.back')</button>
             </div>
         </div>
 
