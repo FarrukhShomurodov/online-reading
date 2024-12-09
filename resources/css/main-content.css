@@ -651,6 +651,12 @@
     flex-wrap: wrap;
 }
 
+.genre-grid > * {
+    flex: 1 1 calc(33.33% - 20px); /* Элемент занимает треть ширины */
+    max-width: calc(33.33% - 20px);
+    box-sizing: border-box; /* Учитываем отступы */
+}
+
 /* Footer */
 footer {
     width: 100%;
