@@ -22,8 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web([
             UserStatus::class,
             SetLocale::class,
-            RedirectIfNotAuthenticated::class . ':user',
-            RedirectIfNotAuthenticated::class . ':admin',
+            RedirectIfNotAuthenticated::class,
         ]);
     })->withExceptions(function (Exceptions $exceptions) {
     })->create();
