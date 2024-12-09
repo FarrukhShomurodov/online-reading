@@ -19,6 +19,11 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
 //        $middleware->redirectGuestsTo('/auth');
 
+        $middleware->use([
+            RedirectIfNotAuthenticated::class . ':user',
+            RedirectIfNotAuthenticated::class . ':admin',
+        ]);
+
         $middleware->web([
             UserStatus::class,
             SetLocale::class,
