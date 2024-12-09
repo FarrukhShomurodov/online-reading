@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Middleware\RedirectIfNotAuthenticated;
 use App\Http\Middleware\SetLocale;
 use App\Http\Middleware\UserStatus;
 use Illuminate\Foundation\Application;
@@ -17,8 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->redirectGuestsTo('/auth');
+
         $middleware->web([
-            RedirectIfNotAuthenticated::class,
             UserStatus::class,
             SetLocale::class,
         ]);
