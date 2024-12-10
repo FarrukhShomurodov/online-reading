@@ -25,8 +25,11 @@
                                 <div class="w-100">
                                     <div class="room-book-container"
                                          onclick="window.location.href='{{route('book.show', $book->id)}}'">
-                                        <img class="book-room" src="{{asset('storage/'.$book->images->first()->url)}}"
-                                             alt="">
+                                        @if($book->images->first())
+                                            <img class="book-room"
+                                                 src="{{asset('storage/'.$book->images->first()->url)}}"
+                                                 alt="">
+                                        @endif
                                         <div class="book-short-info d-flex flex-column justify-content-between">
                                             <h5><b>{{$book->title[$currentLang]}}</b></h5>
                                             <span class="description">
