@@ -118,8 +118,10 @@
                     @if($book->is_active)
                         <div class="book-container swiper-slide">
                             <div>
-                                <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
-                                     height="244px">
+                                @if($book->images->first())
+                                    <img src="{{ asset('storage/' . $book->images->first()->url) }}" alt="" width="100%"
+                                         height="244px">
+                                @endif
                                 <div class="book-container-content">
                                     <span class="author">• {{ $book->author->name[$currentLang] }}</span><br>
                                     <p>{{ $book->title[$currentLang] }}</p>
