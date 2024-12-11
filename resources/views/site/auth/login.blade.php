@@ -106,7 +106,7 @@
             </div>
             <div
                 class="auth-footer mt-3 d-flex flex-row justify-content-between align-items-center flex-wrap-reverse w-100">
-                <a href="{{ url()->previous() == route('room') ? '/' : url()->previous() }}"><u>@lang('site.back')</u></a>
+                <a href="{{ url()->previous() == route('room') || url()->previous() == route('auth.view') ? '/' : url()->previous() }}"><u>@lang('site.back')</u></a>
                 <div>
                     <span>@lang('site.already_have_account')</span> <a id="login-auth-view"><u>@lang('site.entire')</u></a>
                 </div>
@@ -151,7 +151,7 @@
             </div>
             <div
                 class="auth-footer mt-3 d-flex flex-row justify-content-between align-items-center flex-wrap-reverse w-100">
-                <a href="{{ url()->previous() == route('room') ? '/' : url()->previous() }}"><u>@lang('site.back')</u></a>
+                <a href="{{ url()->previous() == route('room') || url()->previous() == route('auth.view') ? '/' : url()->previous() }}"><u>@lang('site.back')</u></a>
                 <div>
                     <span>@lang('site.already_have_account')</span> <a
                         id="register-auth-view"><u>@lang('site.authorization')</u></a>
