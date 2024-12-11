@@ -79,7 +79,7 @@
                         @foreach($authors as $author)
                             <div class="author-container d-flex justify-content-between flex-row g-2"
                                  onclick="window.location.href='{{route('author.books', $author->id)}}'"
-                                 style="margin-bottom: 10px">
+                                 style="margin-bottom: 10px; min-width: 250px">
                                 @if($author->images->first())
                                     <img class="book-room me-2"
                                          src="{{asset('storage/'.$author->images->first()->url)}}"

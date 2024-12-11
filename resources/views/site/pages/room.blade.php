@@ -74,8 +74,7 @@
                         </div>
 
                         <div class="author-container d-flex justify-content-between flex-row g-2"
-                             onclick="window.location.href='{{route('author.books', $userBook->book->author->id)}}'"
-                             style="min-width: 250px">
+                             onclick="window.location.href='{{route('author.books', $userBook->book->author->id)}}'">
                             @if($userBook->book->author->images->first())
                                 <img class="book-room me-2"
                                      src="{{asset('storage/'.$userBook->book->author->images->first()->url)}}"
