@@ -123,7 +123,7 @@
 
 <!-- popup menu -->
 <div class="menu-mobile-active">
-    <div class="d-flex justify-content-between align-items-cente w-100">
+    <div class="d-flex justify-content-between align-items-center w-100">
         <div class="custom-select">
             <div class="custom-select-selected">
                 @if($currentLang == 'uz')

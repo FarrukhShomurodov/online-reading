@@ -207,7 +207,7 @@ header {
 }
 
 .menu-mobile-active {
-    display: none;
+    visibility: hidden;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -221,18 +221,15 @@ header {
     opacity: 0;
     pointer-events: none;
     overflow: hidden;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s;
 }
 
 .menu-mobile-active.active {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    visibility: visible;
     transform: translateX(0);
     opacity: 1;
-    z-index: 10000;
     pointer-events: auto;
+    z-index: 10000;
 }
 
 .search-container-mobile {
