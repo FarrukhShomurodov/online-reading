@@ -74,7 +74,7 @@
                         @endforeach
                     </div>
 
-                    <div class="flex-column g-2">
+                    <div class="d-flex flex-column g-2">
                         <h3>@lang('site.authors') ({{$authors->count()}})</h3>
                         @foreach($authors as $author)
                             <div class="author-container d-flex justify-content-between flex-row g-2"
@@ -85,7 +85,7 @@
                                          src="{{asset('storage/'.$author->images->first()->url)}}"
                                          alt="">
                                 @endif
-                                <div class="d-flex justify-content-around flex-column g-2 w-100">
+                                <div class="d-flex justify-content-around flex-column g-2 w-100 flex-fill">
                                     <p>{{ $author->name[$currentLang] }}</p>
                                     <span class="author">• {{ $author->books->count() }} @lang('site.book_m')</span>
                                 </div>
