@@ -232,6 +232,7 @@ header {
     z-index: 10000;
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
 }
 
 .search-container-mobile {
