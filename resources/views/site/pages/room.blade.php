@@ -80,7 +80,7 @@
                                      src="{{asset('storage/'.$userBook->book->author->images->first()->url)}}"
                                      alt="">
                             @endif
-                            <div class="d-flex justify-content-around flex-column g-2">
+                            <div class="d-flex justify-content-around flex-column g-2 w-100">
                                 <p style="margin-bottom: 0 !important;">{{ $userBook->book->author->name[$currentLang] }}</p>
                                 <span
                                     class="author">• {{ $userBook->book->author->books->count() }} @lang('site.book_m')</span>
