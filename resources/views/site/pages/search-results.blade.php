@@ -78,7 +78,8 @@
                         <h3>@lang('site.authors') ({{$authors->count()}})</h3>
                         @foreach($authors as $author)
                             <div class="author-container d-flex justify-content-between flex-row g-2"
-                                 onclick="window.location.href='{{route('author.books', $author->id)}}'">
+                                 onclick="window.location.href='{{route('author.books', $author->id)}}'"
+                                 style="margin-bottom: 10px">
                                 @if($author->images->first())
                                     <img class="book-room me-2"
                                          src="{{asset('storage/'.$author->images->first()->url)}}"
