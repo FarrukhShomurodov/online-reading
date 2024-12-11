@@ -220,6 +220,8 @@
 
     .book-info {
         margin-top: 40px !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
     }
 
     .top-book-desc {
