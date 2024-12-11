@@ -86,7 +86,7 @@
                                          alt="">
                                 @endif
                                 <div class="d-flex justify-content-around flex-column g-2 w-100 flex-fill">
-                                    <p>{{ $author->name[$currentLang] }}</p>
+                                    <p style="margin-bottom: 0px !important;">{{ $author->name[$currentLang] }}</p>
                                     <span class="author">• {{ $author->books->count() }} @lang('site.book_m')</span>
                                 </div>
                             </div>
