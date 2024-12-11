@@ -30,11 +30,11 @@
                                                  src="{{asset('storage/'.$book->images->first()->url)}}"
                                                  alt="">
                                         @endif
-                                        <div class="book-short-info d-flex flex-column justify-content-between">
+                                        <div class="book-short-info d-flex flex-column justify-content-between w-100">
                                             <h5><b>{{$book->title[$currentLang]}}</b></h5>
                                             <span class="description">
                                             {{$book->description[$currentLang]}}
-                                        </span>
+                                            </span>
                                             <span class="author">• {{$book->author->name[$currentLang]}}</span>
                                             <div class="reating-info">
                                                 <div
