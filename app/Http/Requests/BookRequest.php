@@ -24,8 +24,8 @@ class BookRequest extends FormRequest
             'author_id' => 'required|integer|exists:authors,id',
 
             'description' => 'required|array',
-            'description.ru' => 'required|string|max:500',
-            'description.uz' => 'required|string|max:500',
+            'description.ru' => 'required|string|max:1500',
+            'description.uz' => 'required|string|max:1500',
 
             'is_active' => 'required|boolean',
             'publication_date' => 'required|date',

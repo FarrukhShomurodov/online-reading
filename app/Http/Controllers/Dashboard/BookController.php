@@ -55,7 +55,7 @@ class BookController
                 $query->where('author_id', $request->input('author_id'));
             })
             ->select(['id', 'title', 'author_id', 'is_active', 'publication_date'])
-            ->orderBy('id')
+            ->orderBy('id', 'desc')
             ->paginate(10);
 
         return view('admin.books.index', compact('books', 'categories', 'genres', 'tags', 'collections', 'authors'));
