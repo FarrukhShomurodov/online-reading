@@ -95,7 +95,7 @@
                     <input name="publication_date"
                            type="date"
                            class="form-control @error('publication_date') is-invalid @enderror"
-                           id="publication_date" placeholder="Дата публикации" required>
+                           id="publication_date" placeholder="Дата публикации" value="{{  date('Y-m-d') }}" required>
                     @error('publication_date')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

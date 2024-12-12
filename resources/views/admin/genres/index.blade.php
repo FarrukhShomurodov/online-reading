@@ -100,7 +100,7 @@
                 </tbody>
             </table>
             <div class="mt-4 p-1">
-                {{ $genres->links() }}
+                {{ $genres->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

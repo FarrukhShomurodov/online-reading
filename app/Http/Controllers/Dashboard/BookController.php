@@ -56,7 +56,7 @@ class BookController
             })
             ->select(['id', 'title', 'author_id', 'is_active', 'publication_date'])
             ->orderBy('id')
-            ->simplePaginate(10);
+            ->paginate(10);
 
         return view('admin.books.index', compact('books', 'categories', 'genres', 'tags', 'collections', 'authors'));
     }

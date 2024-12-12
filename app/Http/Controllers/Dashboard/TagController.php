@@ -22,7 +22,7 @@ class TagController
         $tags = Tag::query()
             ->select(['id', 'name'])
             ->orderBy('id')
-            ->simplePaginate(10);
+            ->paginate(10);
 
         return view('admin.tags.index', compact('tags'));
     }
@@ -35,7 +35,7 @@ class TagController
     public function store(TagRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->store((array) $validated);
+        $this->service->store((array)$validated);
 
         return redirect()->route('tags.index')->with('success', 'Тег успешно добавлен!');
     }
@@ -48,7 +48,7 @@ class TagController
     public function update(TagRequest $request, Tag $tag): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->update($tag, (array) $validated);
+        $this->service->update($tag, (array)$validated);
 
         return redirect()->route('tags.index')->with('success', 'Тег успешно обновлен!');
     }

@@ -22,7 +22,7 @@ class NewsCategoryController
         $categories = NewsCategory::query()
             ->select(['id', 'name'])
             ->orderBy('id')
-            ->simplePaginate(10);
+            ->paginate(10);
 
         return view('admin.news-categories.index', compact('categories'));
     }
@@ -35,7 +35,7 @@ class NewsCategoryController
     public function store(NewsCategoryRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->store((array) $validated);
+        $this->service->store((array)$validated);
 
         return redirect()->route('news-categories.index')->with('success', 'Категория успешно добавлена!');
     }
@@ -48,7 +48,7 @@ class NewsCategoryController
     public function update(NewsCategoryRequest $request, NewsCategory $category): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->update($category, (array) $validated);
+        $this->service->update($category, (array)$validated);
 
         return redirect()->route('news-categories.index')->with('success', 'Категория успешно обновлена!');
     }

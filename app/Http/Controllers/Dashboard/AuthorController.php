@@ -22,7 +22,7 @@ class AuthorController
         $authors = Author::query()
             ->select(['id', 'name'])
             ->orderBy('id')
-            ->simplePaginate(10);
+            ->paginate(10);
 
         return view('admin.authors.index', compact('authors'));
     }
@@ -35,7 +35,7 @@ class AuthorController
     public function store(AuthorRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->store((array) $validated);
+        $this->service->store((array)$validated);
 
         return redirect()->route('authors.index')->with('success', 'Автор успешно добавлена!');
     }
@@ -48,7 +48,7 @@ class AuthorController
     public function update(AuthorRequest $request, Author $author): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->update($author, (array) $validated);
+        $this->service->update($author, (array)$validated);
 
         return redirect()->route('authors.index')->with('success', 'Автор успешно обновлена!');
     }

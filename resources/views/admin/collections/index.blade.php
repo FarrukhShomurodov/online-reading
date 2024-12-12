@@ -75,7 +75,7 @@
                 </tbody>
             </table>
             <div class="mt-4 p-1">
-                {{ $collections->links() }}
+                {{ $collections->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

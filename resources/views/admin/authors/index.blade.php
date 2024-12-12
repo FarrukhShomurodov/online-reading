@@ -68,7 +68,7 @@
                 </tbody>
             </table>
             <div class="mt-4 p-1">
-                {{ $authors->links() }}
+                {{ $authors->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

@@ -153,7 +153,7 @@
                 </tbody>
             </table>
             <div class="mt-4 p-1">
-                {{ $books->links() }}
+                {{ $books->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

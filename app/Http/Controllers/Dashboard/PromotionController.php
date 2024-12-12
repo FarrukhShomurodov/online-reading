@@ -22,7 +22,7 @@ class PromotionController
         $promotions = Promotion::query()
             ->select(['id', 'title', 'start_time', 'end_time'])
             ->orderBy('id')
-            ->simplePaginate(10);
+            ->paginate(10);
 
         return view('admin.promotions.index', compact('promotions'));
     }
@@ -35,7 +35,7 @@ class PromotionController
     public function store(PromotionRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->store((array) $validated);
+        $this->service->store((array)$validated);
 
         return redirect()->route('promotions.index')->with('success', 'Акция успешно добавлена!');
     }
@@ -48,7 +48,7 @@ class PromotionController
     public function update(PromotionRequest $request, Promotion $promotion): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->update($promotion, (array) $validated);
+        $this->service->update($promotion, (array)$validated);
 
         return redirect()->route('promotions.index')->with('success', 'Акция успешно обновлена!');
     }

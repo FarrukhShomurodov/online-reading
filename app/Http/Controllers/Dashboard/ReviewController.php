@@ -25,7 +25,7 @@ class ReviewController
             ->select(['id', 'name', 'last_name', 'text', 'ratting', 'is_view', 'created_at', 'book_id', 'user_id'])
             ->with(['book', 'user'])
             ->orderBy('id')
-            ->simplePaginate(10);
+            ->paginate(10);
 
         return view('admin.reviews.index', compact('reviews'));
     }

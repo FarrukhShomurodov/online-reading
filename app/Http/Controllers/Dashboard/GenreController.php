@@ -23,7 +23,7 @@ class GenreController
         $genres = Genre::query()
             ->select('id', 'name')
             ->orderBy('id')
-            ->simplePaginate(10);
+            ->paginate(10);
 
         $allGenres = Genre::query()
             ->select('id', 'name')

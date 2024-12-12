@@ -22,7 +22,7 @@ class CategoryController
         $categories = Category::query()
             ->select(['id', 'name'])
             ->orderBy('id')
-            ->simplePaginate(10);
+            ->paginate(10);
 
         return view('admin.categories.index', compact('categories'));
     }
@@ -35,7 +35,7 @@ class CategoryController
     public function store(CategoryRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->store((array) $validated);
+        $this->service->store((array)$validated);
 
         return redirect()->route('categories.index')->with('success', 'Категория успешно добавлена!');
     }
@@ -48,7 +48,7 @@ class CategoryController
     public function update(CategoryRequest $request, Category $category): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->update($category, (array) $validated);
+        $this->service->update($category, (array)$validated);
 
         return redirect()->route('categories.index')->with('success', 'Категория успешно обновлена!');
     }

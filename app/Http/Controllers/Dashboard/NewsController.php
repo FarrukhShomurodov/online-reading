@@ -24,7 +24,7 @@ class NewsController
             ->select(['id', 'title', 'news_category_id'])
             ->with('category')
             ->orderBy('id')
-            ->simplePaginate(10);
+            ->paginate(10);
 
         return view('admin.news.index', compact('news'));
     }
@@ -39,7 +39,7 @@ class NewsController
     public function store(NewsRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->store((array) $validated);
+        $this->service->store((array)$validated);
 
         return redirect()->route('news.index')->with('success', 'Новость успешно добавлена!');
     }
@@ -54,7 +54,7 @@ class NewsController
     public function update(NewsRequest $request, News $news): RedirectResponse
     {
         $validated = $request->validated();
-        $this->service->update($news, (array) $validated);
+        $this->service->update($news, (array)$validated);
 
         return redirect()->route('news.index')->with('success', 'Новость успешно обновлена!');
     }
