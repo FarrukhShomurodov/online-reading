@@ -20,7 +20,6 @@ class BookRequest extends FormRequest
             'title' => 'required|array',
             'title.ru' => 'required|string|max:300',
             'title.uz' => 'required|string|max:300',
-
             'author_id' => 'required|integer|exists:authors,id',
 
             'description' => 'required|array',
