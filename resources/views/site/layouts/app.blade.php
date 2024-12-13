@@ -60,10 +60,7 @@
         <div class="alert alert-danger rounded shadow-sm p-3 d-flex flex-column gap-2 w-100"
              style="margin: 20px auto; font-size: 14px;">
             @foreach ($errors->all() as $error)
-                <div class="d-flex align-items-center gap-2">
-                    <i class="bx bx-error-circle text-danger fs-5"></i>
-                    <span>{{ $error }}</span>
-                </div>
+                <span>{{ $error }}</span>
             @endforeach
             <button type="button" class="btn-close align-self-end mt-2" data-bs-dismiss="alert" aria-label="Close"
                     style="outline: none; box-shadow: none;"></button>
