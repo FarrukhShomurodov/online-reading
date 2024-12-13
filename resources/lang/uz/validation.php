@@ -110,6 +110,8 @@ return [
         ],
     ],
 
+    'incorrect_login_data' => 'Noto\'g\'ri kirish ma\'lumotlari.',
+
     'attributes' => [
         'name' => 'Nomi',
         'name.ru' => 'Nomi Ru',

@@ -41,7 +41,7 @@ class UserAuthController
             return redirect()->intended(route('room'));
         }
 
-        return back()->withErrors(['login' => 'Неверные данные для входа в систему']);
+        return back()->withErrors(['login' => __('validation.incorrect_login_data')]);
     }
 
     public function modalLogin(Request $request): RedirectResponse

@@ -93,7 +93,7 @@
         <li class="menu-item {{ Request::is('dashboard/news*') || Request::is('dashboard/news-categories*') ? 'open' : '' }}"
             style="">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-book"></i>
+                <i class="menu-icon tf-icons bx bx-news"></i>
                 <div data-i18n="Книги">Новости</div>
             </a>
             <ul class="menu-sub">

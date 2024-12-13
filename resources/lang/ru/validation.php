@@ -111,6 +111,8 @@ return [
         ],
     ],
 
+    'incorrect_login_data' => 'Неверные данные для входа в систему.',
+
     'attributes' => [
         'name' => 'Название',
         'name.ru' => 'Название Ru',
