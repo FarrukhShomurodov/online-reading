@@ -97,7 +97,7 @@
                 <div data-i18n="Книги">Новости</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item {{ Request::is('dashboard/news') || Request::is('dashboard/news/create') || Request::is('dashboard/news/update') ? 'active' : '' }}">
+                <li class="menu-item {{ Request::is('dashboard/news') || Request::is('dashboard/news/create') || Request::is('dashboard/news/*/edit') ? 'active' : '' }}">
                     <a href="{{route('news.index')}}" class="menu-link">
                         <div data-i18n="Список">Список</div>
                     </a>
