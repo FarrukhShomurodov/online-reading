@@ -21,7 +21,9 @@ class CollectionService
             }
         }
 
-        $collection->books()->sync($validated['books']);
+        if (isset($validated['books'])) {
+            $collection->books()->sync($validated['books']);
+        }
 
         return $collection;
     }
